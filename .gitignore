@@ -1,0 +1,10 @@
+/*/
+/*
+!.gitignore
+!conky/
+!fish/
+!alacritty/
+!picom/
+!rofi/
+!xmobar/
+!xmonad/
