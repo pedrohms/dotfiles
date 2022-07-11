@@ -1,6 +1,8 @@
 /*/
 /*
 !.gitignore
+!.tmux.conf
+!.local/
 !conky/
 !fish/
 !alacritty/
