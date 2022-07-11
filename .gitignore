@@ -7,8 +7,4 @@
 !picom/
 !rofi/
 !xmobar/
-!xmonad/xmonad.hs
-!xmonad/lib/
-!xmonad/pacman-hooks
-!xmonad/xpm
-!xmonad/xmonadctl.hs
+!xmonad/
