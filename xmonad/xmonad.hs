@@ -520,8 +520,8 @@ myKeys c =
   , ("M-S-q", addName "Quit XMonad"            $ sequence_ [spawn (mySoundPlayer ++ shutdownSound), io exitSuccess])
   , ("M-S-c", addName "Kill focused window"    $ kill1)
   , ("M-S-a", addName "Kill all windows on WS" $ killAll)
-  , ("M-S-<Return>", addName "Rofi - Prompt run" $ spawn "rofi -show drun -config ~/.config/rofi/themes/dt-dmenu.rasi -display-drun \"Run: \" -drun-display-format \"{name}\"") -- Rofi
-  , ("M-w", addName "Rofi - Prompt window" $ spawn "rofi -show-icons -show window -config ~/.config/rofi/themes/dt-dmenu.rasi -display-drun \"Window: \" -drun-display-format \"{name}\" ")
+  , ("M-S-<Return>", addName "Rofi - Prompt run" $ spawn "rofi -modi drun -show drun -config ~/.config/rofi/config.rasi -display-drun \"Run:\" -drun-display-format \"{name}\"") -- Rofi
+  , ("M-w", addName "Rofi - Prompt window" $ spawn "rofi -show-icons -show window -config ~/.config/rofi/config.rasi -display-drun \"Window: \" -drun-display-format \"{name}\" ")
   , ("M-/", addName "DTOS Help"                $ spawn "dtos-help")]
 
   ^++^ subKeys "Switch to workspace"
