@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+docker run -it --rm -v $PWD:/projects -v neovim_root:/root -v ~/.config/nvim:/root/.config/nvim pedrohms/nvim $@

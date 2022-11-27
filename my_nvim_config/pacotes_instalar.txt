@@ -1,0 +1,7 @@
+// lua
+https://github.com/sumneko/lua-language-server/releases/tag/3.3.0
+
+// typescript - vue
+npm install -g @volar/vue-language-server
+npm install -g typescript typescript-language-server
+

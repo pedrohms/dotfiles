@@ -1,0 +1,2 @@
+#!/bin/bash
+wine /home/framework/.wine/drive_c/Compu\ Forte/CompuTM/CompuTM.exe

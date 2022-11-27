@@ -1,0 +1,53 @@
+set -g default-terminal "xterm-256color"
+set-option -ga terminal-overrides ",xterm-256color:Tc"
+
+unbind C-b
+set-option -g prefix C-a
+bind-key C-a send-prefix
+
+set -g message-style bg='#202330',fg='#8be9fd'
+set -g status-style bg='#202330',fg='#4cc4c6'
+set -g status-interval 1
+
+set -g status-left ''
+
+set-window-option -g window-status-style fg='#bd93f9',bg=default
+set-window-option -g window-status-current-style fg='#ff79c6',bg='#282a36'
+
+set -g status-right "#( ~/.config/tmux/right_status.sh )"
+set -g status-right-length 50
+set -g status-right-style bg='#202330',fg='#4cc4c6'
+
+set -g status-justify centre
+
+bind r source-file ~/.config/tmux/tmux.conf
+set -g base-index 1
+
+set-window-option -g mode-keys vi
+bind -T copy-mode-vi v send-keys -X begin-selection
+bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
+
+# vim-like pane switching
+bind -r ^ last-window
+bind -r k select-pane -U
+bind -r j select-pane -D
+bind -r h select-pane -L
+bind -r l select-pane -R
+
+bind -r D neww -c "#{pane_current_path}" "nvim TODO.md || nvim ~/.dotfiles/personal/todo.md"
+
+# forget the find window.  That is for chumps
+bind-key -r f run-shell "tmux neww ~/.config/tmux/tmux-sessionizer"
+
+bind-key -r i run-shell "tmux neww ~/.config/tmux/tmux-cht.sh"
+bind-key -r G run-shell "~/.config/tmux/tmux-sessionizer ~/work"
+# bind-key -r L run-shell "~/.local/bin/tmux-sessionizer ~/work/hpack"
+bind-key -r E run-shell "~/.config/tmux/tmux-sessionizer ~/personal/Projects/docker/dockerfile/environments"
+source ~/.config/tmux/utility.conf
+
+
+
+
+bind o run-shell "pcmanfm #{pane_current_path}"
+bind-key -n C-S-Left swap-window -t -1 \; previous-window
+bind-key -n C-S-Right swap-window -t +1 \; next-window

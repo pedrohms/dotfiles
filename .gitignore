@@ -1,0 +1,7 @@
+nvim-data/
+.vim/
+*.jar
+configstore/
+nvim/plugin/packer_compiled.lua
+nvim/after/plugin/gist.lua
+bkp/
