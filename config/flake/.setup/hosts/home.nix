@@ -17,6 +17,9 @@
       python3
       lazygit
       fzf
+      conky
+      lxappearance
+      pcmanfm
     ];
 
     pointerCursor = {                         # This will set cursor systemwide so applications can not choose their own
