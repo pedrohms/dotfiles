@@ -25,6 +25,7 @@
 
   fileSystems."/mnt/dados" =
     { device = "/dev/disk/by-label/dados";
+      options = [ "rw" "users" "defaults" ];
       fsType = "ext4";
     };
 
