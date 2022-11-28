@@ -21,6 +21,7 @@
       conky
       lxappearance
       pcmanfm
+      appimage-run
     ];
 
     pointerCursor = {                         # This will set cursor systemwide so applications can not choose their own
