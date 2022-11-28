@@ -245,9 +245,9 @@ globalkeys = my_table.join(
       function(_, key, event)
         if event == "release" then return end
         if key == "v" then awful.spawn.with_shell("neovide")
-        elseif key == "c" then awful.spawn.with_shell("code")
+        elseif key == "c" then awful.spawn.with_shell("$HOME/Applications/VSCode-linux-x64/bin/code")
         elseif key == "a" then awful.spawn.with_shell("$HOME/Applications/android-studio/bin/studio.sh")
-        elseif key == "s" then awful.spawn.with_shell("azure-studio")
+        elseif key == "s" then awful.spawn.with_shell("$HOME/Applications/azuredatastudio-linux-x64/bin/azuredatastudio")
         end
         awful.keygrabber.stop(grabber)
       end)
