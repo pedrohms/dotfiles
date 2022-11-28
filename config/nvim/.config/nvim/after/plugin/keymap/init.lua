@@ -76,9 +76,15 @@ keymap.nnoremap("<leader>bc", "<cmd>Bdelete!<CR>")
 
 -- Telescope
 keymap.nnoremap("<leader>sh", "<cmd>nohlsearch<cr>")
-keymap.nnoremap("<leader>sf", function() require("telescope.builtin").find_files(nopreview) end)
+-- Telescope find_files find_command=rg,--ignore,--hidden,--files,-L
+keymap.nnoremap("<leader>sf",
+  function() require("telescope.builtin").find_files(
+      { find_command = { "rg", "--ignore", "--hidden", "--files", "-L" }, previewer = false })
+  end)
 keymap.nnoremap("<leader>sp", "<cmd>Telescope projects<CR>")
-keymap.nnoremap("<leader>sg", "<cmd>Telescope live_grep<CR>")
+-- keymap.nnoremap("<leader>sg", "<cmd>Telescope live_grep<CR>")
+keymap.nnoremap("<leader>sg",
+  function() require("telescope.builtin").live_grep({ find_command = { "rg", "--ignore", "--hidden", "--text", "-L" } }) end)
 keymap.nnoremap("<leader>sk", "<cmd>Telescope keymaps<CR>")
 keymap.nnoremap("<leader>sc", "<cmd>Telescope commands<CR>")
 keymap.nnoremap("<leader>srp", function() require('spectre').open_visual({ select_word = true }) end)
