@@ -246,7 +246,7 @@ globalkeys = my_table.join(
         if event == "release" then return end
         if key == "v" then awful.spawn.with_shell("neovide")
         elseif key == "c" then awful.spawn.with_shell("code")
-        elseif key == "a" then awful.spawn.with_shell("android-studio")
+        elseif key == "a" then awful.spawn.with_shell("$HOME/Applications/android-studio/bin/studio.sh")
         elseif key == "s" then awful.spawn.with_shell("azure-studio")
         end
         awful.keygrabber.stop(grabber)
@@ -801,7 +801,7 @@ client.connect_signal("mouse::enter", function(c)
 end)
 
 -- No border for maximized clients
-function border_adjust(c)
+local function border_adjust(c)
   if c.maximized then -- no borders if only 1 client visible
     c.border_width = 0
   elseif #awful.screen.focused().clients > 1 then
