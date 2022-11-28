@@ -175,7 +175,7 @@ return packer.startup(function(use)
   use "RRethy/vim-illuminate"
   use "stevearc/dressing.nvim"
   use "rcarriga/nvim-notify"
-  use "kazhala/close-buffers.nvim"
+  -- use "kazhala/close-buffers.nvim"
   use "nacro90/numb.nvim"
   use "windwp/nvim-spectre"
   use { "jinh0/eyeliner.nvim",

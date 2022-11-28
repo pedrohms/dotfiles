@@ -824,7 +824,7 @@ awful.spawn.with_shell("conky -c $HOME/.config/conky/awesome/doom-one-01.conkyrc
 -- awful.spawn.with_shell("/usr/bin/emacs --daemon")
 awful.spawn.with_shell("LG3D")
 awful.spawn.with_shell("$HOME/.local/bin/envkb.sh")
-awful.spawn.with_shell("feh  --bg-fill ~/.cache/wall/0001.jpg")
+awful.spawn.with_shell("feh  --bg-fill $HOME/.local/wall/0001.jpg")
 awful.spawn.with_shell("xset r rate 210 40")
 -- awful.spawn.with_shell("xargs xwallpaper --stretch < ~/.cache/wall")
 --awful.spawn.with_shell("~/.fehbg") -- set last saved feh wallpaper

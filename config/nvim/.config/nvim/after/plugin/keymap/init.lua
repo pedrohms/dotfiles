@@ -65,11 +65,12 @@ keymap.vnoremap(">", ">gv")
 
 keymap.nnoremap("<S-l>", ":bnext<CR>")
 keymap.nnoremap("<S-h>", ":bprevious<CR>")
-local close_ok, close_buffers = pcall(require, "close_buffers")
-if close_ok then
-  keymap.nnoremap("<leader>bo", function() require(close_buffers).delete({ type = 'hidden', force = true }) end)
-  keymap.nnoremap("<leader>ba", function() require(close_buffers).wipe({ type = 'all', force = true }) end)
-end
+-- local close_ok, close_buffers = pcall(require, "close_buffers")
+-- if close_ok then
+--   close_buffers.setup({})
+--   keymap.nnoremap("<leader>bo", function() require(close_buffers).delete({ type = 'hidden', force = true }) end)
+--   keymap.nnoremap("<leader>ba", function() require(close_buffers).wipe({ type = 'all', force = true }) end)
+-- end
 keymap.nnoremap("<leader>bc", "<cmd>Bdelete!<CR>")
 
 
