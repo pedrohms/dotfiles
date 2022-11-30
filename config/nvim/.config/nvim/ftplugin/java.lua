@@ -146,7 +146,7 @@ nnoremap("<leader>lrn", function() vim.lsp.buf.rename() end)
 inoremap("<C-h>", function() vim.lsp.buf.signature_help() end)
 inoremap("<C-K>", function() vim.lsp.buf.hover() end)
 -- nnoremap("<leader>lds", "<cmd>Telescope lsp_document_symbols<cr>")
-nnoremap("<F12>", function() require("telescope.builtin").lsp_document_symbols(require("telescope.themes")
+nnoremap("<leader>lsf", function() require("telescope.builtin").lsp_document_symbols(require("telescope.themes")
     .get_dropdown { previewer = false })
 end)
 -- if vim.lsp.buf["format"] == nil then
