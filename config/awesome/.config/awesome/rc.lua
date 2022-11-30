@@ -74,8 +74,7 @@ local altkey      = "Mod1"
 local ctrlkey     = "Control"
 local terminal    = "alacritty"
 local browser     = "brave"
-local editor      = "neovide"
-local emacs       = "emacsclient -c -a 'emacs' "
+local editor      = "nvim"
 local mediaplayer = "mpv"
 local soundplayer = "ffplay -nodisp -autoexit " -- The program that will play system sounds
 
@@ -244,7 +243,7 @@ globalkeys = my_table.join(
     grabber = awful.keygrabber.run(
       function(_, key, event)
         if event == "release" then return end
-        if key == "v" then awful.spawn.with_shell("neovide")
+        if key == "v" then awful.spawn.with_shell(terminal .. " -e " .. editor)
         elseif key == "c" then awful.spawn.with_shell("$HOME/Applications/VSCode-linux-x64/bin/code")
         elseif key == "a" then awful.spawn.with_shell("$HOME/Applications/android-studio/bin/studio.sh")
         elseif key == "s" then awful.spawn.with_shell("$HOME/Applications/azuredatastudio-linux-x64/bin/azuredatastudio")
@@ -267,7 +266,7 @@ globalkeys = my_table.join(
   -- Awesome keybindings
   awful.key({ modkey, }, "Return", function() awful.spawn.with_shell(terminal .. " -e tmux") end,
     { description = "Launch terminal", group = "awesome" }),
-  awful.key({ modkey, }, "b", function() awful.spawn("brave") end,
+  awful.key({ modkey, }, "b", function() awful.spawn(browser) end,
     { description = "Launch brave", group = "awesome" }),
   awful.key({ modkey, "Shift" }, "r", awesome.restart,
     { description = "Reload awesome", group = "awesome" }),
@@ -328,7 +327,7 @@ globalkeys = my_table.join(
       function(_, key, event)
         if event == "release" then return end
 
-        if key == "e" then awful.spawn.with_shell("nvim")
+        if key == "e" then awful.spawn.with_shell(terminal .. " -e " .. editor)
         elseif key == "v" then awful.spawn.with_shell("neovide")
         end
         awful.keygrabber.stop(grabber)
@@ -455,7 +454,7 @@ globalkeys = my_table.join(
     { description = "restore minimized", group = "client" }),
 
   -- Dropdown application
-  awful.key({ modkey, }, "F12", function() awful.spawn.with_shell("neovide") end,
+  awful.key({ modkey, }, "F12", function() awful.spawn.with_shell(terminal .. " -e " .. editor) end,
     { description = "Open Neovide", group = "super" }),
 
   -- Widgets popups
