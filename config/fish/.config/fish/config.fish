@@ -21,8 +21,8 @@ set -U fish_user_patsh $fish_user_paths $HOME/bin $HOME/.local/appimage
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message
 set TERM "xterm-256color"                         # Sets the terminal type
-set EDITOR "emacsclient -t -a ''"                 # $EDITOR use Emacs in terminal
-set VISUAL "emacsclient -c -a emacs"              # $VISUAL use Emacs in GUI mode
+set EDITOR "nvim"                                 # $EDITOR use Nvim in terminal
+set VISUAL "nvim"                                 # $VISUAL use Nvim in GUI mode
 set CHROME_EXECUTABLE "$HOME/.local/bin/google-chrome"
 set DOCKER_CONTEXT rootless
 set DOCKER_HOST "unix://$XDG_RUNTIME_DIR/docker.sock"
