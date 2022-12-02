@@ -41,8 +41,7 @@ local mason_packages = {
   "php-debug-adapter",
   "phpcbf",
   "prettier",
-  "rustfmt",
-  "phpcs"
+  "rustfmt"
 }
 
 local settings = {

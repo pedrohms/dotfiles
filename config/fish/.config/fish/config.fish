@@ -17,6 +17,7 @@ set ANDROID_HOME "$HOME/Applications/Android/Sdk"
 
 set -U fish_user_paths /usr/local/bin $HOME/.local/bin $HOME/Applications $fish_user_paths $ANDROID_HOME/emulator $ANDROID_HOME/tools $ANDROID_HOME/tools/bin $ANDROID_HOME/platform-tools
 set -U fish_user_patsh $fish_user_paths $HOME/bin $HOME/.local/appimage
+set -U fish_user_paths $HOME/Applications/flutter/bin $HOME/Applications/genymotion
 
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message
