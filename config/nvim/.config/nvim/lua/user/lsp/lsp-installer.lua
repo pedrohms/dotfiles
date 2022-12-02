@@ -39,7 +39,7 @@ local mason_packages = {
   "js-debug-adapter",
   "node-debug2-adapter",
   "php-debug-adapter",
-  "phpcbf",
+  "php-cs-fixer",
   "prettier",
   "rustfmt"
 }
