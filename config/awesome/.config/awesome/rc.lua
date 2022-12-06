@@ -209,6 +209,14 @@ end)
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
 
+local scratchpad_ok = pcall(require, "user.scratchpad")
+
+if not scratchpad_ok then
+  naughty.notify({ preset = naughty.config.presets.critical,
+    title = "scratchpad_ok == false!",
+    text = awesome.startup_errors })
+end
+
 root.buttons(my_table.join(
   awful.button({}, 3, function() awful.util.mymainmenu:toggle() end),
   awful.button({}, 4, awful.tag.viewnext),
@@ -218,13 +226,11 @@ root.buttons(my_table.join(
 globalkeys = my_table.join(
 
 -- {{{ Personal keybindings
--- awful.key({ modkey, "Shift" }, "s",
---   function() awful.spawn.with_shell("scrot -s ~/scrot/%Y-%m-%d-@%H-%M-%S-scrot.png -e 'xclip -selection clipboard -target image/png -i $f'") end)
--- ,
--- awful.key({ modkey, "Shift" }, "w",
---   function() awful.spawn.with_shell("scrot -u ~/scrot/%Y-%m-%d-@%H-%M-%S-scrot.png -e 'xclip -selection clipboard -target image/png -i $f'") end)
--- ,
--- Appplication
+  awful.key({ modkey, ctrlkey }, "Return", function() if scratchpad_ok and Term_scratch then Term_scratch:toggle() end end),
+  -- awful.key({ modkey, "Shift" }, "w",
+  --   function() awful.spawn.with_shell("scrot -u ~/scrot/%Y-%m-%d-@%H-%M-%S-scrot.png -e 'xclip -selection clipboard -target image/png -i $f'") end)
+  -- ,
+  -- Appplication
   awful.key({ modkey, "Shift" }, "a", function()
     local grabber
     grabber = awful.keygrabber.run(
@@ -691,6 +697,8 @@ awful.rules.rules = {
   { rule = { class = "Xfce4-settings-manager" },
     properties = { floating = false } },
 
+  -- { rule = { class = "scratchpad", role = "scratchpad" },
+  --   properties = { floating = true } },
 
 
   -- Floating clients.
