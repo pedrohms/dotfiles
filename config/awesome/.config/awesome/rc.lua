@@ -209,11 +209,11 @@ end)
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
 
-local scratchpad_ok = pcall(require, "user.scratchpad")
+require("user")
 
-if not scratchpad_ok then
+if not Term_scratch then
   naughty.notify({ preset = naughty.config.presets.critical,
-    title = "scratchpad_ok == false!",
+    title = "Term_scratch == nil!",
     text = awesome.startup_errors })
 end
 
@@ -226,7 +226,7 @@ root.buttons(my_table.join(
 globalkeys = my_table.join(
 
 -- {{{ Personal keybindings
-  awful.key({ modkey, ctrlkey }, "Return", function() if scratchpad_ok and Term_scratch then Term_scratch:toggle() end end),
+  awful.key({ modkey, ctrlkey }, "Return", function() if Term_scratch then Term_scratch:toggle() end end),
   -- awful.key({ modkey, "Shift" }, "w",
   --   function() awful.spawn.with_shell("scrot -u ~/scrot/%Y-%m-%d-@%H-%M-%S-scrot.png -e 'xclip -selection clipboard -target image/png -i $f'") end)
   -- ,
@@ -830,7 +830,7 @@ awful.spawn.with_shell("conky -c $HOME/.config/conky/awesome/doom-one-01.conkyrc
 -- awful.spawn.with_shell("/usr/bin/emacs --daemon")
 awful.spawn.with_shell("LG3D")
 awful.spawn.with_shell("$HOME/.local/bin/envkb.sh")
-awful.spawn.with_shell("feh  --bg-fill $HOME/.local/wall/0001.jpg")
+-- awful.spawn.with_shell("feh  --bg-fill $HOME/.local/wall/0001.jpg")
 awful.spawn.with_shell("xset r rate 210 40")
 -- awful.spawn.with_shell("xargs xwallpaper --stretch < ~/.cache/wall")
 --awful.spawn.with_shell("~/.fehbg") -- set last saved feh wallpaper
