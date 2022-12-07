@@ -6,3 +6,4 @@ nvim/plugin/packer_compiled.lua
 nvim/after/plugin/gist.lua
 bkp/
 fish_variables
+fish_plugins
