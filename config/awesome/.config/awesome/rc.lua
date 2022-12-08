@@ -268,7 +268,7 @@ globalkeys = my_table.join(
     { description = "Launch brave", group = "awesome" }),
   awful.key({ modkey, "Shift" }, "r", awesome.restart,
     { description = "Reload awesome", group = "awesome" }),
-  awful.key({ modkey, "Shift" }, "q", function() awful.spawn.with_shell("dm-logout") end,
+  awful.key({ modkey, "Shift" }, "q", function() awful.spawn.with_shell("bash "..os.getenv("HOME").."/.local/bin/dm-logout") end,
     { description = "Quit awesome", group = "awesome" }),
   awful.key({ modkey, }, "s", hotkeys_popup.show_help,
     { description = "Show help", group = "awesome" }),
