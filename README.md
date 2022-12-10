@@ -1,1 +1,3 @@
 # dotfiles
+
+ Some personal configurations
