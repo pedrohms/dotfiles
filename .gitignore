@@ -7,3 +7,4 @@ nvim/after/plugin/gist.lua
 bkp/
 fish_variables
 fish_plugins
+config/fish/.config/fish/fundle
