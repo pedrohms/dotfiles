@@ -362,6 +362,7 @@ alias dtoscopy='[ -d ~/.config ] || mkdir ~/.config && cp -Rf ~/.config ~/.confi
 alias dtosbackup='cp -Rf /etc/dtos ~/dtos-backup-(date +%Y.%m.%d-%H.%M.%S)'
 
 alias denv="docker run --name nvim-dev -it --rm -v ~/.config/nvim:/root/.config/nvim -v ~/.local/share/nvim:/root/.local/share/nvim -v ~/Projetos:/Projetos -v ~/.wakatime.cfg:/root/.wakatime.cfg pedrohms/nvim:0.8.0-alpine-dev"
+alias flake_dev_init="curl -o flake.nix https://v.pedrohms.com:8080/gist/pedro/5fd61b3e94c9168810b9ed9ad185c6a0/raw/master/flake.nix"
 
 ### SETTING THE STARSHIP PROMPT ###
 starship init fish | source
