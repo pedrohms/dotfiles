@@ -48,8 +48,8 @@ symbol = " "
 #read_only = " "
 
 [docker_context]
-symbol = " "
-format = "via [$symbol$context]($style) "
+symbol = ""
+format = "[$symbol docker]($style) "
 style = "blue bold"
 only_with_files = true
 detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
@@ -87,7 +87,10 @@ symbol = " "
 symbol = " "
 
 [nix_shell]
-symbol = " "
+symbol = ""
+format = 'via [$symbol$state(\($name\))]($style) '
+impure_msg = "i"
+pure_msg = "p"
 
 [package]
 symbol = " "
@@ -124,6 +127,6 @@ symbol = " "
 symbol = "ﯣ "
 
 [nodejs]
-format = "via [ Node.js $version](bold green) "
+format = "via [ $version](bold green) "
 detect_files = ["package.json", ".node-version"]
 detect_folders = ["node_modules"]
