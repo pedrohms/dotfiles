@@ -1,0 +1,3 @@
+[submodule "config/flake/.setup"]
+	path = config/flake/.setup
+	url = git@github.com:pedrohms/flake-config.git
