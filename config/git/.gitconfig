@@ -1,6 +1,7 @@
 [user]
   email = pedro@pedro.com
   name = Pedro Souza
+  signingkey = Pedro Souza
 [safe]
 	directory = /mnt/dados5/VM/Virtual Machines/qemu/Sistemas
 [core]
