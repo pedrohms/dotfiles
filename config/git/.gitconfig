@@ -5,3 +5,5 @@
 	directory = /mnt/dados5/VM/Virtual Machines/qemu/Sistemas
 [core]
 	editor = nvim
+[commit]
+	gpgsign = true
