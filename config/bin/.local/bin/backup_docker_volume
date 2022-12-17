@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+VOLUME_NAME=$1
+# VOLUME_CMD=docker volume inspect $VOLUME_NAME | jq -r '.[].Mountpoint'
+DESTINATION_PATH=$2
+
+usage(){
+  echo "Usage: $0 [volume name] [backup destination]"
+  exit 1
+}
+
+if [ -z $VOLUME_NAME ]
+then
+  echo "Error: Missing volume name parameters"
+  usage
+fi
+
+if [ -z $DESTINATION_PATH ]
+then
+  DESTINATION_PATH='./'
+fi
+
+cp -Rf $(docker volume inspect $VOLUME_NAME | jq -r '.[].Mountpoint') $DESTINATION_PATH
