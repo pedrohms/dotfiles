@@ -9,6 +9,14 @@ usage(){
   exit 1
 }
 
+# volume_cmd(){
+#   return docker volume inspect $1 | jq -r '.[].Mountpont'
+# }
+#
+# cp_volume(){
+#   cp -Rf volume_cmd ./backup
+# }
+
 if [ -z $VOLUME_NAME ]
 then
   echo "Error: Missing volume name parameters"
@@ -17,7 +25,9 @@ fi
 
 if [ -z $DESTINATION_PATH ]
 then
-  DESTINATION_PATH='./'
+  DESTINATION_PATH=$VOLUME_NAME
 fi
 
-cp -Rf $(docker volume inspect $VOLUME_NAME | jq -r '.[].Mountpoint') $DESTINATION_PATH
+cp -Rf $(docker volume inspect $VOLUME_NAME | jq -r '.[].Mountpoint') ./backup
+cd backup && tar cvf ../$DESTINATION_PATH.tar ./ && cd .. && rm -Rf ./backup
+
