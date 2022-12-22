@@ -341,13 +341,7 @@ alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
 
 # bare git repo alias for dotfiles
-alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
-
-# termbin
-alias tb="nc termbin.com 9999"
-
-# the terminal rickroll
-alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
+# alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 
 # Unlock LBRY tips
 alias tips="lbrynet txo spend --type=support --is_not_my_input --blocking"
@@ -357,9 +351,7 @@ alias mocp="bash -c mocp"
 
 ### DTOS ###
 # Copy/paste all content of /etc/dtos over to home folder. A backup of config is created. (Be careful running this!)
-alias dtoscopy='[ -d ~/.config ] || mkdir ~/.config && cp -Rf ~/.config ~/.config-backup-(date +%Y.%m.%d-%H.%M.%S) && cp -rf /etc/dtos/* ~'
-# Backup contents of /etc/dtos to a backup folder in $HOME.
-alias dtosbackup='cp -Rf /etc/dtos ~/dtos-backup-(date +%Y.%m.%d-%H.%M.%S)'
+alias ccopy='[ -d ~/.config ] || mkdir ~/.config && mkdir -p ~/Personal && cp -Rf ~/.config ~/Personal/config-backup-(date +%Y.%m.%d-%H.%M.%S)'
 
 alias denv="docker run --name nvim-dev -it --rm -v ~/.config/nvim:/root/.config/nvim -v ~/.local/share/nvim:/root/.local/share/nvim -v ~/Projetos:/Projetos -v ~/.wakatime.cfg:/root/.wakatime.cfg pedrohms/nvim:0.8.0-alpine-dev"
 alias flake_dev_init="curl -o flake.nix https://v.pedrohms.com:8080/gist/pedro/5fd61b3e94c9168810b9ed9ad185c6a0/raw/master/flake.nix"
