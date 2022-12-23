@@ -41,9 +41,9 @@ set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 ### "nvim" as manpager
 # set -x MANPAGER "nvim -c 'set ft=man' -"
-fundle plugin 'FabioAntunes/fish-nvm'
-fundle plugin 'edc/bass'
-fundle init
+## fundle plugin 'FabioAntunes/fish-nvm'
+## fundle plugin 'edc/bass'
+## fundle init
 ### SET EITHER DEFAULT EMACS MODE OR VI MODE ###
 function fish_user_key_bindings
   # fish_default_key_bindings
@@ -358,7 +358,7 @@ alias flake_dev_init="curl -o flake.nix https://v.pedrohms.com:8080/gist/pedro/5
 
 ### SETTING THE STARSHIP PROMPT ###
 starship init fish | source
-nvm use latest --silent
+##nvm use latest --silent
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
