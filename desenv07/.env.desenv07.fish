@@ -8,3 +8,4 @@ alias cp_flake_develop="curl -o flake.nix https://gist.githubusercontent.com/ped
 alias mk=minikube
 alias pd=podman
 alias pdc=podman-compose
+alias albiononline="flatpak run com.albiononline.AlbionOnline"

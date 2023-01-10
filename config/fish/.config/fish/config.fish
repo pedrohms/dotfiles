@@ -19,6 +19,7 @@ set -U fish_user_paths /usr/local/bin $HOME/.local/bin $HOME/Applications $fish_
 # set -U fish_user_paths $ANDROID_HOME/emulator $ANDROID_HOME/tools $ANDROID_HOME/tools/bin $ANDROID_HOME/platform-tools
 set -U fish_user_paths $fish_user_paths $HOME/bin $HOME/Applications/AppImages
 set -U fish_user_paths $fish_user_paths $HOME/Applications/flutter/bin $HOME/Applications/genymotion
+set -U fish_user_paths $fish_user_paths /var/lib/flatpak/exports/share $HOME/.local/share/flatpak/exports/share
 
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message
