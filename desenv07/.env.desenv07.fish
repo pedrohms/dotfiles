@@ -9,3 +9,4 @@ alias mk=minikube
 alias pd=podman
 alias pdc=podman-compose
 alias albiononline="flatpak run com.albiononline.AlbionOnline"
+alias jump="cd (ghq list -p | fzf -1 -e)"
