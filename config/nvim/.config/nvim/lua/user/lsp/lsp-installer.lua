@@ -5,7 +5,7 @@ end
 
 local servers = {
   "emmet_ls",
-  "eslint",
+  -- "eslint",
   "cssls",
   "html",
   "jdtls",
@@ -97,24 +97,24 @@ for _, server in pairs(servers) do
     capabilities = capabilities_temp,
   }
 
-  if server == "eslint" then
-    local eslint_opts = {
-      handlers = {
-        ["eslint/probeFailed"] = function()
-          return {}
-        end,
-        ["eslint/noLibrary"] = function()
-          return {}
-        end,
-      }
-    }
-    opts = vim.tbl_deep_extend("force", eslint_opts, opts)
-  end
+  -- if server == "eslint" then
+  --   local eslint_opts = {
+  --     handlers = {
+  --       ["eslint/probeFailed"] = function()
+  --         return {}
+  --       end,
+  --       ["eslint/noLibrary"] = function()
+  --         return {}
+  --       end,
+  --     }
+  --   }
+  --   opts = vim.tbl_deep_extend("force", eslint_opts, opts)
+  -- end
 
   if server == "sumneko_lua" then
     local sumneko_opts = require "user.lsp.settings.sumneko_lua"
     if os.getenv("NIX_USER_PROFILE_DIR")~=nil then
-      local sumneko_cmd = { cmd = { "/home/".. os.getenv("USER") .."/.nix-profile/bin/lua-language-server"} }
+      local sumneko_cmd = { cmd = { "/etc/profiles/per-user/framework/bin/lua-language-server"} }
       opts = vim.tbl_deep_extend("force", sumneko_cmd, opts)
     end
     opts = vim.tbl_deep_extend("force", sumneko_opts, opts)

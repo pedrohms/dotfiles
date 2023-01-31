@@ -336,10 +336,10 @@ globalkeys = my_table.join(
   ),
 
   -- Tag browsing ALT+TAB (ALT+SHIFT+TAB)
-  awful.key({ altkey, }, "Tab", awful.tag.viewnext,
-    { description = "view next", group = "tag" }),
-  awful.key({ altkey, "Shift" }, "Tab", awful.tag.viewprev,
-    { description = "view previous", group = "tag" }),
+  -- awful.key({ altkey, }, "Tab", awful.tag.viewnext,
+  --   { description = "view next", group = "tag" }),
+  -- awful.key({ altkey, "Shift" }, "Tab", awful.tag.viewprev,
+  --   { description = "view previous", group = "tag" }),
 
   -- -- Non-empty tag browsing CTRL+TAB (CTRL+SHIFT+TAB)
   -- awful.key({ ctrlkey }, "Tab", function() lain.util.tag_view_nonempty(-1) end,
