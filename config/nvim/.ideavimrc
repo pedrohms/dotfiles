@@ -1,0 +1,92 @@
+"Plug 'https://github.com/preservim/nerdtree'
+"Plug 'https://github.com/tpope/vim-surround'
+"Plug 'https://github.com/easymotion/vim-easymotion'
+"" Source your .vimrc
+"source ~/.vimrc
+
+set NERDTree
+set surround
+
+set clipboard=unnamedplus
+
+let mapleader=" "
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=8
+
+
+" Do incremental searching.
+set incsearch
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+set numbers
+set relativenumber
+
+nnoremap d "0d<Esc>
+nnoremap dd "0dd<Esc>
+vnoremap d "0d<Esc>
+xnoremap d "0d<Esc>
+
+nnoremap y "0y<Esc>
+nnoremap yy "0yy<Esc>
+vnoremap y "0y<Esc>
+xnoremap y "0y<Esc>
+
+nnoremap p "0p<Esc>
+vnoremap p "0p<Esc>
+xnoremap p "0p<Esc>
+
+
+nnoremap D "0D<Esc>
+nnoremap DD "0DD<Esc>
+vnoremap D "0D<Esc>
+xnoremap D "0D<Esc>
+
+nnoremap Y "0y<Esc>
+nnoremap YY "0YY<Esc>
+vnoremap Y "0Y<Esc>
+xnoremap Y "0Y<Esc>
+
+nnoremap P "0P<Esc>
+vnoremap P "0P<Esc>
+xnoremap P "0P<Esc>
+
+nnoremap <C-c> "+y<Esc>
+vnoremap <C-c> "+y<Esc>
+xnoremap <C-c> "+y<Esc>
+
+nnoremap <C-v> "+p<Esc>
+vnoremap <C-v> "+p<Esc>
+xnoremap <C-v> "+p<Esc>
+
+inoremap jk <Esc>
+nnoremap <S-l> :bnext<CR>
+nnoremap <S-h> :bprevious<CR>
+nnoremap <leader>bc :bd!<CR>
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+vnoremap <A-j> :move '>+1<CR>gv-gv
+vnoremap <A-k> :move '>-2<CR>gv-gv
+inoremap <A-j> <Esc>:m .+1<CR>==$A
+inoremap <A-k> <Esc>:m .-2<CR>==$A
+vnoremap < <gv
+vnoremap > >gv
+
+if has('ide')
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+map <leader>lf <Action>(ReformatCode)
+endif
+
+"cope find_files Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
+
+
+" Find more examples here: https://jb.gg/share-ideavimrc
+"set clipboard+=ideaput
