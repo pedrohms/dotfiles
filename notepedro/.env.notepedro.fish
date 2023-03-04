@@ -11,3 +11,7 @@ alias dev-java="nix-shell -p sumneko-lua-language-server openjdk17-bootstrap mav
 alias dev-go="nix-shell -p go sumneko-lua-language-server --run fish"
 alias dev-python="nix-shell -p python3 sumneko-lua-language-server --run fish"
 alias dev-lua="nix-shell -p sumneko-lua-language-server --run fish"
+alias flatpak-nvidia="flatpak override --user --device=dri --env=__NV_PRIME_RENDER_OFFLOAD=1 --env=__VK_LAYER_NV_optimus=NVIDIA_only --env=__GLX_VENDOR_LIBRARY_NAME=nvidia"
+alias albiononline="nvidia-offload flatpak run com.albiononline.AlbionOnline"
+alias runescape="nvidia-offload flatpak run com.jagex.RuneScape"
+alias runelite="nvidia-offload flatpak run net.runelite.RuneLite"
