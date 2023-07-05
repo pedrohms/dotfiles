@@ -122,7 +122,12 @@ return packer.startup(function(use)
     end
   }
   use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
-  use { "christianchiarulli/nvim-gps", branch = "text_hl" }
+--  use { "christianchiarulli/nvim-gps", branch = "text_hl" }
+  use {
+    "SmiteshP/nvim-navic",
+    requires = "neovim/nvim-lspconfig"
+  }
+
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
