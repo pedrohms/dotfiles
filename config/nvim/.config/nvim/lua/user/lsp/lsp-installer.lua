@@ -114,7 +114,7 @@ for _, server in pairs(servers) do
   if server == "lua_ls" then
     local sumneko_opts = require "user.lsp.settings.lua_ls"
     if os.getenv("NIX_USER_PROFILE_DIR")~=nil then
-      local sumneko_cmd = { cmd = { "/etc/profiles/per-user/framework/bin/lua-language-server"} }
+      local sumneko_cmd = { cmd = { "/home/pedro/.nix-profile/bin/lua-language-server"} }
       opts = vim.tbl_deep_extend("force", sumneko_cmd, opts)
     end
     opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
