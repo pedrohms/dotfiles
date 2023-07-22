@@ -65,9 +65,10 @@ main() {
     case $choice in
         'Logout')
             if [[ "$(echo -e "No\nYes" | ${DMENU} "${choice}?" "${@}" )" == "Yes" ]]; then
-                for manager in "${MANAGERS[@]}"; do 
-                    killall "${manager}" || output "Process ${manager} was not running."
-                done
+              killall X
+                # for manager in "${MANAGERS[@]}"; do 
+                #     killall "${manager}" || output "Process ${manager} was not running."
+                # done
             else
                 output "User chose not to logout." && exit 1
             fi

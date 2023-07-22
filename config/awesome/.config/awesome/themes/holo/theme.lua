@@ -342,7 +342,7 @@ function theme.at_screen_connect(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             --theme.mail.widget,
-            --bat.widget,
+            bat.widget,
             -- spr_right,
             -- musicwidget,
             bar,

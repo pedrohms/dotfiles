@@ -31,13 +31,12 @@ keymap.nnoremap("Y", "\"0Y")
 keymap.vnoremap("Y", "\"0Y")
 keymap.xnoremap("Y", "\"0Y")
 
-keymap.vnoremap("<C-c>c", "\"+y")
-keymap.nnoremap("<C-c>c", "\"+y")
-keymap.xnoremap("<C-c>c", "\"+y")
+keymap.vnoremap("<leader>cc", "\"+y")
+keymap.xnoremap("<leader>cc", "\"+y")
 
-keymap.vnoremap("<C-c>v", "\"+p")
-keymap.nnoremap("<C-c>v", "\"+p")
-keymap.xnoremap("<C-c>v", "\"+p")
+keymap.vnoremap("<leader>cv", "\"+p")
+keymap.nnoremap("<leader>cv", "\"+p")
+keymap.xnoremap("<leader>cv", "\"+p")
 
 keymap.nnoremap("<leader>qq", ":qa<CR>")
 keymap.nnoremap("<leader>qa", ":qa!<CR>")

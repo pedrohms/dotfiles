@@ -6,10 +6,10 @@ alias rebuild="sudo nixos-rebuild switch --flake .#notepedro"
 alias pd=podman
 alias pdc=podman-compose
 alias dev="nix-shell -p nodejs-19_x go python3 sumneko-lua-language-server openjdk17-bootstrap maven gradle --run fish"
-alias dev-node="nix-shell -p nodejs-19_x sumneko-lua-language-server --run fish"
+alias dev-node="nix develop github:pedrohms/flake-develop#nodejs -c fish"
 alias dev-java="nix-shell -p sumneko-lua-language-server openjdk17-bootstrap maven gradle --run fish"
 alias dev-go="nix-shell -p go sumneko-lua-language-server --run fish"
-alias dev-python="nix-shell -p python3 sumneko-lua-language-server --run fish"
+alias dev-python="nix-shell -p python3 sumneko-lua-language-server nodejs-20 --run fish"
 alias dev-lua="nix-shell -p sumneko-lua-language-server --run fish"
 alias flatpak-nvidia="flatpak override --user --device=dri --env=__NV_PRIME_RENDER_OFFLOAD=1 --env=__VK_LAYER_NV_optimus=NVIDIA_only --env=__GLX_VENDOR_LIBRARY_NAME=nvidia"
 alias albiononline="nvidia-offload flatpak run com.albiononline.AlbionOnline"
