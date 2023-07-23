@@ -7,6 +7,7 @@ alias pd=podman
 alias pdc=podman-compose
 alias dev="nix-shell -p nodejs-19_x go python3 sumneko-lua-language-server openjdk17-bootstrap maven gradle --run fish"
 alias dev-node="nix develop github:pedrohms/flake-develop#nodejs -c fish"
+alias dev-php="nix develop github:pedrohms/flake-develop#php -c fish"
 alias dev-java="nix-shell -p sumneko-lua-language-server openjdk17-bootstrap maven gradle --run fish"
 alias dev-go="nix-shell -p go sumneko-lua-language-server --run fish"
 alias dev-python="nix-shell -p python3 sumneko-lua-language-server nodejs-20 --run fish"

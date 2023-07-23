@@ -35,6 +35,19 @@ set NIXPKGS_ALLOW_UNFREE 1
 
 source $HOME/.env.*.fish 
 
+function verifyWhereIs
+    if command -sq $argv
+        return 0
+    else
+        return 1
+    end
+end
+
+if verifyWhereIs direnv
+  set -x DIRENV_LOG_FORMAT ""
+  direnv hook fish | source
+end
+
 ### "bat" as manpager
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
