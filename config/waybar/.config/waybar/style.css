@@ -9,7 +9,8 @@
 }
 
 window#waybar {
-    background: rgba(30, 30, 46, 0.5);
+    /* background: rgba(30, 30, 46, 1); */
+    background: #282828;
     border-bottom: 1px solid #282828;
     color: #f4d9e1
 }
@@ -170,7 +171,7 @@ window#waybar {
 }
 
 #custom-playerlabel {
-    background: transparent;
+    /* background: transparent; */
     padding-left: 10px;
     padding-right: 15px;
     border-radius: 16px;

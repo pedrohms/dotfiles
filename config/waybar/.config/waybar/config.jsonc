@@ -7,7 +7,7 @@
     "margin-left": 0,
     "margin-right": 0,
     "modules-left": ["custom/launcher", "wlr/workspaces", "custom/playerctl", "custom/playerlabel"], "modules-center": ["battery", "cpu", "memory", "disk"],
-    "modules-right": ["tray", "custom/randwall", "network", "pulseaudio", "clock"],
+    "modules-right": ["tray","network", "pulseaudio", "clock"],
     // Modules configuration
 	"clock": {
 		"format": "󰥔  {:%H:%M}",
@@ -135,16 +135,11 @@
     "scroll-step": 5,
 		"on-click-right": "pavucontrol"
   },
-  "custom/randwall": {
-    "format": "󰏘",
-    "on-click": "bash $HOME/.config/hypr/randwall.sh",
-    "on-click-right": "bash $HOME/.config/hypr/wall.sh"
-  },
   "custom/launcher": {
     "format": "󰈸",
-    "on-click": "bash $HOME/.config/rofi/launcher.sh",
+    "on-click": "killall rofi || rofi -modi run -show run",
 //    "on-click": "wofi --show drun -I -a -n -W 500 -H 376 -s ~/.config/wofi/themes/gruvbox.css",
-    "on-click-right": "bash $HOME/.config/rofi/run.sh"  
+    "on-click-right": "killall rofi || rofi -modi run -show run"  
 //    "on-click-right": "wofi --show run -I -a -n -W 500 -H 376 -s ~/.config/wofi/themes/gruvbox.css"  
   },
 

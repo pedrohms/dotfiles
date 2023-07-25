@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -o pipefail
 
@@ -40,13 +40,14 @@ function check_dir() {
 }
 
 function get_latest_img() { 
-    _LATEST_IMAGE_=$(/bin/ls -th $_SCREENSHOT_DIR_ | grep -vE '.screensht.png$' | grep -E '.png$' | head -n 1)
+    _LATEST_IMAGE_=$(ls -th $_SCREENSHOT_DIR_ | grep -vE '.screensht.png$' | grep -E '.png$' | head -n 1)
 
     if [[ $( echo "$_LATEST_IMAGE_" | wc -w ) -eq 0 ]]; then
         exit 1
     else
         _LATEST_IMAGE_="$_SCREENSHOT_DIR_/$_LATEST_IMAGE_"
     fi
+    wl-copy < "$_LATEST_IMAGE_"
 }
 
 function convert() {
@@ -95,6 +96,7 @@ function convert() {
 
     magick convert "$_target_file_" -profile /usr/share/color/icc/colord/sRGB.icc "$_target_file_" >> $_LOG_FILE_ 2>&1
     check
+
 }
 
 function summary() {
@@ -115,8 +117,8 @@ function main() {
     rm -f $_LOG_FILE_
     _start_job_=$(date +%s)
 
-	_screenshot_command_="$1"
-	_notif_message_="$2"
+    _screenshot_command_="$1"
+    _notif_message_="$2"
 
     $_screenshot_command_ $_SCREENSHOT_DIR_\/$_start_job_.png> /dev/null 2>&1
     check
@@ -124,8 +126,10 @@ function main() {
     get_latest_img
     convert
 
-	mv $_LATEST_IMAGE_ $_ORIGINAL_DIR_
+
+    mv $_LATEST_IMAGE_ $_ORIGINAL_DIR_
     
+
     _end_job_=$(date +%s)
     summary $_start_job_ $_end_job_
 }
@@ -144,9 +148,9 @@ then
 elif [ "$1" = 'full' ];
 then
 	msg="Full screenshot saved and copied to clipboard!"
-	main 'grimblast copysave output' "${msg}"
+  main 'grimshot save output' "${msg}"
 elif [ "$1" = 'area' ];
 then
 	msg='Area screenshot saved and copied to clipboard!'
-	main 'grimblast copysave area' "${msg}"
+	main 'grimshot save area' "${msg}"
 fi

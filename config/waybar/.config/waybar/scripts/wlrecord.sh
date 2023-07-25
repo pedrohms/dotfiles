@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 active=$(pacmd list-sources | awk 'c&&!--c;/* index*/{c=1}' | awk '{gsub(/<|>/,"",$0); print $NF}')
 
