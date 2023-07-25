@@ -87,7 +87,7 @@ symbol = " "
 symbol = " "
 
 [nix_shell]
-symbol = ""
+symbol = " "
 format = 'via [$symbol$state(\($name\))]($style) '
 impure_msg = "i"
 pure_msg = "p"
@@ -127,6 +127,6 @@ symbol = " "
 symbol = "ﯣ "
 
 [nodejs]
-format = "via [ $version](bold green) "
+format = "via [󰎙 $version](bold green) "
 detect_files = ["package.json", ".node-version"]
 detect_folders = ["node_modules"]

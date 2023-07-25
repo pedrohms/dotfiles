@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from gi.repository import Playerctl, GLib
 import argparse
 import logging
 import sys
@@ -6,17 +7,21 @@ import signal
 import gi
 import json
 gi.require_version('Playerctl', '2.0')
-from gi.repository import Playerctl, GLib
 
 logger = logging.getLogger(__name__)
 
 
-def write_output(text, player):
+def write_output(text, player, mode):
     logger.info('Writing output')
 
-    output = {'text': text,
-              'class': 'custom-' + player.props.player_name,
-              'alt': player.props.player_name}
+    if mode == 'paused':
+        output = {'text': text,
+                  'class': 'paused',
+                  'alt': player.props.player_name}
+    else:
+        output = {'text': text,
+                  'class': 'playing',
+                  'alt': player.props.player_name}
 
     sys.stdout.write(json.dumps(output) + '\n')
     sys.stdout.flush()
@@ -36,21 +41,22 @@ def on_metadata(player, metadata, manager):
             ':ad:' in player.props.metadata['mpris:trackid']:
         track_info = 'AD PLAYING'
     elif player.get_artist() != '' and player.get_title() != '':
-        track_info = '{artist} - {title}'.format(artist=player.get_artist(),
-                                                 title=player.get_title())
+        track_info = '{title}'.format(title=player.get_title())
     else:
         track_info = player.get_title()
 
     if player.props.status != 'Playing' and track_info:
-        track_info = ' ' + track_info
-    write_output(track_info, player)
+        write_output(track_info, player, 'paused')
+    else:
+        write_output(track_info, player, 'playing')
 
 
 def on_player_appeared(manager, player, selected_player=None):
     if player is not None and (selected_player is None or player.name == selected_player):
         init_player(manager, player)
     else:
-        logger.debug("New player appeared, but it's not the selected player, skipping")
+        logger.debug(
+            "New player appeared, but it's not the selected player, skipping")
 
 
 def on_player_vanished(manager, player):
@@ -105,7 +111,8 @@ def main():
     manager = Playerctl.PlayerManager()
     loop = GLib.MainLoop()
 
-    manager.connect('name-appeared', lambda *args: on_player_appeared(*args, arguments.player))
+    manager.connect('name-appeared',
+                    lambda *args: on_player_appeared(*args, arguments.player))
     manager.connect('player-vanished', on_player_vanished)
 
     signal.signal(signal.SIGINT, signal_handler)

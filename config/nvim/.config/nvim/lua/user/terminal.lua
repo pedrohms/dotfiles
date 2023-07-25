@@ -1,13 +1,13 @@
 local M = {}
 
-local localshell = "fish"
-if os.getenv("OS") == "Windows_NT" then
-  localshell = "pwsh"
-else
-  if vim.fn.empty(vim.fn.glob("/usr/bin/fish")) > 0 then
-    localshell = "/bin/sh"
-  end
-end
+local localshell = "/run/current-system/sw/bin/fish"
+-- if os.getenv("OS") == "Windows_NT" then
+--   localshell = "pwsh"
+-- else
+--   if vim.fn.empty(vim.fn.glob("/usr/bin/fish")) > 0 then
+--     localshell = "/bin/sh"
+--   end
+-- end
 
 M.config = function()
   return {

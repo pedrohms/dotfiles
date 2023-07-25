@@ -61,6 +61,7 @@ return packer.startup(function(use)
       require("color-picker")
     end,
   })
+  -- use 'roobert/tailwindcss-colorizer-cmp.nvim'
   use "NvChad/nvim-colorizer.lua"
   use "lunarvim/darkplus.nvim"
   use "rose-pine/neovim"

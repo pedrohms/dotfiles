@@ -94,21 +94,21 @@ cmp.setup({
         fallback()
       end
     end, {
-      "i",
-      "s",
-    }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
+    "i",
+    "s",
+  }),
+  ["<S-Tab>"] = cmp.mapping(function(fallback)
+    if cmp.visible() then
+      cmp.select_prev_item()
+    elseif luasnip.jumpable(-1) then
+      luasnip.jump(-1)
+    else
+      fallback()
+    end
+  end, {
+  "i",
+  "s",
+}),
   }),
   formatting = {
     fields = { "kind", "abbr", "menu" },
@@ -155,8 +155,5 @@ cmp.setup({
   },
   experimental = {
     ghost_text = true,
-  },
-  completion = {
-    completeopt = 'menu,menuone,noinsert',
   },
 })
