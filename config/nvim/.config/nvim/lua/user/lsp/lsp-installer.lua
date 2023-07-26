@@ -31,7 +31,6 @@ local servers = {
 
 local mason_packages = {
   "solidity-ls",
-  "rustfmt",
   "delve",
   "go-debug-adapter",
   "java-debug-adapter",
@@ -41,7 +40,6 @@ local mason_packages = {
   "php-debug-adapter",
   "php-cs-fixer",
   "prettier",
-  "rustfmt"
 }
 
 local settings = {
@@ -61,6 +59,8 @@ local settings = {
 
   log_level = vim.log.levels.INFO,
 }
+
+
 
 local status_ok_mason_registry, mason_registry = pcall(require, "mason-registry")
 if status_ok_mason_registry then
@@ -86,7 +86,6 @@ if not status_cmp_ok then
 end
 
 for _, server in pairs(servers) do
-
   local capabilities_temp = vim.lsp.protocol.make_client_capabilities()
   capabilities_temp = cmp_nvim_lsp.default_capabilities(capabilities_temp)
   capabilities_temp.textDocument.completion.completionItem.snippetSupport = true
@@ -113,8 +112,8 @@ for _, server in pairs(servers) do
 
   if server == "lua_ls" then
     local sumneko_opts = require "user.lsp.settings.lua_ls"
-    if os.getenv("NIX_USER_PROFILE_DIR")~=nil then
-      local sumneko_cmd = { cmd = { "/home/pedro/.nix-profile/bin/lua-language-server"} }
+    if os.getenv("NIX_USER_PROFILE_DIR") ~= nil then
+      local sumneko_cmd = { cmd = { "/home/pedro/.nix-profile/bin/lua-language-server" } }
       opts = vim.tbl_deep_extend("force", sumneko_cmd, opts)
     end
     opts = vim.tbl_deep_extend("force", sumneko_opts, opts)

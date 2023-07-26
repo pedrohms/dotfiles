@@ -20,6 +20,8 @@ set -U fish_user_paths /usr/local/bin $HOME/.local/bin $HOME/Applications $fish_
 set -U fish_user_paths $fish_user_paths $HOME/bin $HOME/Applications/AppImages
 set -U fish_user_paths $fish_user_paths $HOME/Applications/flutter/bin $HOME/Applications/genymotion
 set -U fish_user_paths $fish_user_paths /var/lib/flatpak/exports/share $HOME/.local/share/flatpak/exports/share
+set -U fish_user_paths $fish_user_paths $HOME/.cargo/bin
+set -U fish_user_paths $fish_user_paths $HOME/Applications/go/bin
 
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message
