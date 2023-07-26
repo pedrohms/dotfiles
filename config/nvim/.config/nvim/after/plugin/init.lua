@@ -1,4 +1,12 @@
-vim.cmd [[ colorscheme onedarker ]]
+-- local onedarker_ok, onedarker  = pcall(require, "onedarker")
+-- if onedarker_ok then
+--   onedarker.setup({
+--     transparent = true
+--   }) 
+--   onedarker.load()
+-- else 
+  vim.cmd [[ colorscheme onedarker ]]
+-- end
 
 local status_ok, comment = pcall(require, "Comment")
 if status_ok then

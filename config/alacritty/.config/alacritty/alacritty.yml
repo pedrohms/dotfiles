@@ -228,7 +228,7 @@ schemes:
   ### Doom One ###
   DoomOne: &DoomOne
     primary:
-      background: '#282c34'
+      background: '#111111'
       foreground: '#bbc2cf'
     cursor:
       text: CellBackground
