@@ -190,4 +190,5 @@ return packer.startup(function(use)
         highlight_on_key = true,
       }
     end }
+  use "xiyaowong/transparent.nvim"
 end)

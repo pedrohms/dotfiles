@@ -40,7 +40,7 @@ if os.getenv("OS") == "Windows_NT" then
 		set shellquote= shellxquote=
   ]]
 else
-  vim.o.shell = "/bin/bash"
+  vim.o.shell = "fish"
 end
 
 for k, v in pairs(options) do

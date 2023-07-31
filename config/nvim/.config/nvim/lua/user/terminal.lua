@@ -1,6 +1,6 @@
 local M = {}
 
-local localshell = "/run/current-system/sw/bin/fish"
+local localshell = "fish"
 -- if os.getenv("OS") == "Windows_NT" then
 --   localshell = "pwsh"
 -- else
@@ -39,7 +39,7 @@ M.config = function()
       winblend = 0,
       highlights = {
         border = "Normal",
-        background = "Normal",
+        background = "Transparent",
       },
     },
     -- Add executables on the config.lua
