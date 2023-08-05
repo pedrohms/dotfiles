@@ -6,7 +6,7 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
-    "modules-left": ["custom/launcher", "wlr/workspaces", "custom/playerctl", "custom/playerlabel"], "modules-center": ["battery", "cpu", "memory", "disk"],
+    "modules-left": ["custom/launcher", "wlr/workspaces", "hyprland/window" ], "modules-center": ["battery", "cpu", "memory", "disk"],
     "modules-right": ["tray","network", "pulseaudio", "clock"],
     // Modules configuration
 	"clock": {
@@ -16,55 +16,35 @@
         	"format-alt": " {:%d/%m}"
 	},
 	
+  "hyprland/window": {
+    "format": "{}"
+  },
 
 	"wlr/workspaces": {
-        "active-only": false,
-        "all-outputs": true,
-        "disable-scroll": false,
-        "on-scroll-up": "hyprctl dispatch workspace -1",
-        "on-scroll-down": "hyprctl dispatch workspace +1",
+    "active-only": false,
+    "all-outputs": true,
+    "disable-scroll": false,
+    "on-scroll-up": "hyprctl dispatch workspace -1",
+    "on-scroll-down": "hyprctl dispatch workspace +1",
 		"format": "{icon}",
 		"on-click": "activate",
 		"format-icons": {
-		"1": "1",
-		"2": "2",
-		"3": "3",
-		"4": "4",
-		"5": "5",
-			"urgent": "",
-			"active": "",
-			"default": "󰧞",
-    "sort-by-number": true
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "0": "0",
+      "urgent": "",
+      "active": "",
+      "default": "󰧞",
+      "sort-by-number": true
     },
-    },
-
-    "custom/playerctl": {
-      "format": "{icon}",
-      "return-type": "json",
-      "max-length": 64,
-      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-      "on-click-middle": "playerctl play-pause",
-      "on-click": "playerctl previous",
-      "on-click-right": "playerctl next",
-      "format-icons": {
-        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
-        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
-      },
-    },
-
-    "custom/playerlabel": {
-      "format": "<span>{}</span>",
-      "return-type": "json",
-      "max-length": 48,
-      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-      "on-click-middle": "playerctl play-pause",
-      "on-click": "playerctl previous",
-      "on-click-right": "playerctl next",
-      "format-icons": {
-        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
-        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
-      },
-    },
+  },
 
 	"battery": {
         "states": {
