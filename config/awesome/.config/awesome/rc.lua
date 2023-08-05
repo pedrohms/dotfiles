@@ -77,6 +77,7 @@ local altkey      = "Mod1"
 local ctrlkey     = "Control"
 local terminal    = "alacritty"
 local browser     = "nvidia-offload brave"
+local chrome      = "nvidia-offload google-chrome-stable"
 -- local browser     = "nvidia-offload vivaldi"
 local editor      = "nvim"
 local mediaplayer = "mpv"
@@ -299,7 +300,17 @@ globalkeys = my_table.join(
   -- Awesome keybindings
   awful.key({ modkey, }, "Return", function() awful.spawn.with_shell(terminal .. " -e tmux") end,
     { description = "Launch terminal", group = "awesome" }),
-  awful.key({ modkey, }, "b", function() awful.spawn(browser) end,
+  awful.key({ modkey, }, "b", function()
+    local grabber
+    grabber = awful.keygrabber.run(
+      function(_, key, event)
+        if event == "release" then return end
+        if key == "b" then awful.spawn(browser)
+        elseif key == "c" then awful.spawn(chrome)
+        end
+        awful.keygrabber.stop(grabber)
+      end)
+  end,
     { description = "Launch brave", group = "awesome" }),
   awful.key({ modkey, "Shift" }, "r", awesome.restart,
     { description = "Reload awesome", group = "awesome" }),
