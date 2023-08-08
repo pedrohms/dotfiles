@@ -120,6 +120,14 @@ M.on_attach = function(client, bufnr)
   M.capabilities = vim.lsp.protocol.make_client_capabilities()
   M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
   M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+  if client.server_capabilities.documentSymbolProvider then
+    local navic_ok, navic = pcall(require, 'nvim-navic')
+    if navic_ok then
+      navic.attach(client, bufnr)
+    end
+  end
+
 end
 
 return M

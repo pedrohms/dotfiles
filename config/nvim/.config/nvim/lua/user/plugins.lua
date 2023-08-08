@@ -67,7 +67,6 @@ return packer.startup(function(use)
   use "rose-pine/neovim"
   use { "ellisonleao/gruvbox.nvim" }
   use "arcticicestudio/nord-vim"
-
   use "nvim-telescope/telescope.nvim"
   use "nvim-lua/plenary.nvim"
   use "nvim-treesitter/nvim-treesitter"
@@ -92,10 +91,8 @@ return packer.startup(function(use)
     branch = "main",
   })
   use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
-
   use 'simrat39/symbols-outline.nvim'
   use 'saadparwaiz1/cmp_luasnip'
-
   use "goolord/alpha-nvim"
   use "tom-anders/telescope-vim-bookmarks.nvim"
   use "MattesGroeger/vim-bookmarks"
@@ -110,9 +107,6 @@ return packer.startup(function(use)
     "ahmedkhalf/project.nvim",
     config = function()
       require("project_nvim").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
       }
     end
   }
@@ -122,13 +116,11 @@ return packer.startup(function(use)
       require('Comment').setup()
     end
   }
-  use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
---  use { "christianchiarulli/nvim-gps", branch = "text_hl" }
+  use { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons' }
   use {
     "SmiteshP/nvim-navic",
     requires = "neovim/nvim-lspconfig"
   }
-
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
@@ -143,45 +135,26 @@ return packer.startup(function(use)
   use "tpope/vim-surround"
   use "mfussenegger/nvim-jdtls"
   use "moll/vim-bbye"
-
   -- snippets
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
   use "L3MON4D3/LuaSnip"
   use "ThePrimeagen/harpoon"
-
   -- DAP
   use "mfussenegger/nvim-dap"
   use "theHamsta/nvim-dap-virtual-text"
   use "rcarriga/nvim-dap-ui"
   use "pedrohms/dap-install"
   use "rcarriga/cmp-dap"
-  -- use "github/copilot.vim"
-  -- use {
-  --   "zbirenbaum/copilot.lua",
-  --   event = { "VimEnter" },
-  --   config = function()
-  --     vim.defer_fn(function()
-  --       require "user.copilot"
-  --     end, 100)
-  --   end,
-  -- }
-  -- Git
   use "lewis6991/gitsigns.nvim"
-  -- use "f-person/git-blame.nvim"
-  -- use "ruifm/gitlinker.nvim"
   use "mattn/vim-gist"
   use "mattn/webapi-vim"
   use "tpope/vim-fugitive"
   use "ThePrimeagen/git-worktree.nvim"
   use "TimUntersberger/neogit"
   use "sindrets/diffview.nvim"
-
-  -- use "wakatime/vim-wakatime"
-  -- use "j-hui/fidget.nvim"
   use "RRethy/vim-illuminate"
   use "stevearc/dressing.nvim"
   use "rcarriga/nvim-notify"
-  -- use "kazhala/close-buffers.nvim"
   use "nacro90/numb.nvim"
   use "windwp/nvim-spectre"
   use { "jinh0/eyeliner.nvim",
