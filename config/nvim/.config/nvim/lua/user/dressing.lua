@@ -41,6 +41,7 @@ dressing.setup {
     override = function(conf)
       -- This is the config that will be passed to nvim_open_win.
       -- Change values here to customize the layout
+      conf.row = 1
       return conf
     end,
 
@@ -111,6 +112,8 @@ dressing.setup {
       override = function(conf)
         -- This is the config that will be passed to nvim_open_win.
         -- Change values here to customize the layout
+        conf.row = 1
+        conf.col = 0
         return conf
       end,
     },

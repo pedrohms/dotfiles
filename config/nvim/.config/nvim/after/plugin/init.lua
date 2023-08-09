@@ -5,7 +5,7 @@
 --   })
 --   onedarker.load()
 -- else
-vim.cmd [[ colorscheme onedarker ]]
+vim.cmd [[ colorscheme catppuccin ]]
 -- end
 
 local status_ok, comment = pcall(require, "Comment")

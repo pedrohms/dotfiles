@@ -122,6 +122,7 @@ cmp.setup({
         path = "",
         emoji = "",
       })[entry.source.name]
+      vim_item.abbr = string.sub(vim_item.abbr, 1, 80)
       return vim_item
     end,
   },

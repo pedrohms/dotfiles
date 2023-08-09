@@ -1,4 +1,3 @@
---
 -- local system = os.getenv "OS"
 -- if system == "Windows_NT" then
 --   CONFIG = "win"
