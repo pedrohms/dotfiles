@@ -16,7 +16,7 @@ M.setup = function()
   local config = {
     virtual_text = false, -- disable virtual text
     signs = {
-      active = signs, -- show signs
+      active = signs,     -- show signs
     },
     update_in_insert = true,
     underline = true,
@@ -69,7 +69,8 @@ local function lsp_keymaps(client, bufnr)
   nnoremap("<leader>lrn", function() vim.lsp.buf.rename() end)
   inoremap("<C-h>", function() vim.lsp.buf.signature_help() end)
   inoremap("<C-K>", function() vim.lsp.buf.hover() end)
-  nnoremap("<leader>lsf", function() require("telescope.builtin").lsp_document_symbols(require("telescope.themes")
+  nnoremap("<leader>lsf", function()
+    require("telescope.builtin").lsp_document_symbols(require("telescope.themes")
       .get_dropdown { previewer = false })
   end)
   nnoremap("<leader>lf", function() vim.lsp.buf.format { async = true } end)
@@ -127,7 +128,6 @@ M.on_attach = function(client, bufnr)
       navic.attach(client, bufnr)
     end
   end
-
 end
 
 return M

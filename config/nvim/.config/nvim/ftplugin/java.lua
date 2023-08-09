@@ -23,10 +23,18 @@ vim.list_extend(bundles,
   vim.split(vim.fn.glob(vim.fn.stdpath "data" .. "/mason/packages/java-test/extension/server/*.jar"), "\n"))
 
 local config = {
-  on_attach = function()
+  on_attach = function(client, bufnr)
     vim.lsp.codelens.refresh()
+
     require("jdtls").setup_dap { hotcodereplace = "auto" }
     require("jdtls.dap").setup_dap_main_class_configs()
+
+    if client.server_capabilities.documentSymbolProvider then
+      local navic_ok, navic = pcall(require, 'nvim-navic')
+      if navic_ok then
+        navic.attach(client, bufnr)
+      end
+    end
   end,
   filetypes = { "java" },
   flags = {
