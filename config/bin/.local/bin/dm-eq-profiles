@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+#
+# Script name: dm-eq-profiles
+# Description: Allows you to switch between predefined equalizer profiles easily.
+# Dependencies: dmenu, fzf, rofi, easyeffects
+# GitLab: https://www.gitlab.com/dwt1/dmscripts
+# License: https://www.gitlab.com/dwt1/dmscripts/LICENSE
+# Contributors: Allen (aaw3_)
+#               Derek Taylor
+
+# Note: Avoid using commas in preset names otherwise it will cause errors when trying to parse the presets list
+
+# Set with the flags "-e", "-u","-o pipefail" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
+
+_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd "$(dirname "$(readlink "${BASH_SOURCE[0]}" || echo ".")")" && pwd)"
+if [[ -f "${_path}/_dm-helper.sh" ]]; then
+    # shellcheck disable=SC1090,SC1091
+    source "${_path}/_dm-helper.sh"
+else
+    shellcheck disable=SC1090
+    echo "No helper-script found"
+fi
+
+# script will not hit this if there is no config-file to load
+# shellcheck disable=SC1090
+source "$(get_config)"
+
+# Check if config has updates that should be displayed to the user
+check_updated_config
+
+main() {
+    # shellcheck disable=SC2154
+
+    #Retrieve profiles form easyeffects
+    AllProfiles=$(easyeffects -p)
+
+    #Separate profiles
+    OutputProfiles=$(echo "${AllProfiles}" | head -1)
+    InputProfiles=$(echo "${AllProfiles}" | tail -1)
+
+    #Trim the beginning of I/O profiles
+    OutputProfiles="${OutputProfiles:16}"
+    InputProfiles="${InputProfiles:15}"
+
+    IFS=',' read -r -a OutputArray <<<"${OutputProfiles}"
+    IFS=',' read -r -a InputArray <<<"${InputProfiles}"
+
+    declare -a eq_profiles
+
+    for element in "${OutputArray[@]}"; do
+        eq_profiles+=("O: ${element}")
+    done
+
+    for element in "${InputArray[@]}"; do
+        eq_profiles+=("I: ${element}")
+    done
+
+    eq_profiles+=("Quit")
+
+    #echo $OutputProfiles
+    #echo $InputProfiles
+
+    _profile=$(printf '%s\n' "${eq_profiles[@]}" | ${MENU} "Choose a profile:" "$@") || exit 1
+
+    if [[ $_profile == "Quit" ]]; then echo "Program Terminated" && exit 0; fi
+
+    easyeffects -l "${_profile:3}"
+}
+
+noOpt=1
+# If script is run with '-d', it will use 'dmenu'
+# If script is run with '-f', it will use 'fzf'
+# If script is run with '-d', it will use 'rofi'
+while getopts "dfrh" arg 2>/dev/null; do
+    case "${arg}" in
+    d) # shellcheck disable=SC2153
+        MENU=${DMENU}
+        [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main
+        ;;
+    f) # shellcheck disable=SC2153
+        MENU=${FMENU}
+        [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main
+        ;;
+    r) # shellcheck disable=SC2153
+        MENU=${RMENU}
+        [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "@"
+        ;;
+    h) help ;;
+    *) printf '%s\n' "Error: invalid option" "Type $(basename "$0") -h for help" ;;
+    esac
+    noOpt=0
+done
+
+# If script is run with NO argument, it will use 'dmenu'
+[ $noOpt = 1 ] && MENU=${DMENU} && [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"

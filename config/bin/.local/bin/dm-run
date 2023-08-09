@@ -13,5 +13,4 @@
 set -euo pipefail
 
 export _JAVA_AWT_WM_NONREPARENTING=1
-exec $(dmenu_path | dmenu -l 20 -g 3 -X 0 -Y 0 -W 680 -p 'Run: ' "$@")
-
+exec $(dmenu_path | dmenu -l 20 -p 'Run: ' "$@")

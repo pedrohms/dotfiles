@@ -16,3 +16,4 @@ alias flatpak-nvidia="flatpak override --user --device=dri --env=__NV_PRIME_REND
 alias albiononline="flatpak run com.albiononline.AlbionOnline"
 alias runescape="flatpak run com.jagex.RuneScape"
 alias runelite="flatpak run net.runelite.RuneLite"
+alias disc="discord --use-gl=desktop"

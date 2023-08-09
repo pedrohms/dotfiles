@@ -1,0 +1,240 @@
+#!/usr/bin/env bash
+#
+# Script name: dm-template
+# Description: Tool for generating scripts designed to intigrate in dm-scripts
+# Dependencies: dmenu, fzf, rofi
+# GitLab: https://www.gitlab.com/dwt1/dmscripts
+# License: https://www.gitlab.com/dwt1/dmscripts/LICENSE
+# Contributors: HostGrady
+
+# Set with the flags "-e", "-u","-o pipefail" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
+
+_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd "$(dirname "$(readlink "${BASH_SOURCE[0]}" || echo ".")")" && pwd)"
+if [[ -f "${_path}/_dm-helper.sh" ]]; then
+    # shellcheck disable=SC1090,SC1091
+    source "${_path}/_dm-helper.sh"
+else
+    # shellcheck disable=SC1090
+    echo "No helper-script found"
+fi
+
+# script will not hit this if there is no config-file to load
+# shellcheck disable=SC1090
+source "$(get_config)"
+
+# Check if config has updates that should be displayed to the user
+check_updated_config
+
+template_choice() {
+    printf "simple: a minimal template for personal usage
+contrib: the standard contribution template
+simple-experimental: like simple, but with experimental features
+contrib-experimental: like contrib, but with experimental features" \
+        | ${MENU} "Choose a template" | cut -d':' -f1
+}
+
+generate_simple() {
+    script_name=$(echo "" | ${MENU} "What is the name of the project?")
+    [ -e "$script_name" ] || [ -z "$script_name" ] && err "Invalid script name! already exists"
+    description=$(echo "" | ${MENU} "Description of the tool")
+    printf "#!/usr/bin/env bash
+#
+# Script name: %s
+# Description: %s
+
+# Set with the flags \"-e\", \"-u\",\"-o pipefail\" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
+
+source ./_dm-helper.sh || source _dm-helper.sh
+
+source \"\$(get_config)\"
+
+# Check if config has updates that should be displayed to the user
+# Uncomment for nagging
+# check_updated_config
+
+main() {
+    # DEFINE A MAIN FUNCTION HERE WITH YOUR CODE!
+}
+main
+" "$script_name" "$description" >"$script_name"
+    chmod 755 "$script_name"
+}
+
+generate_simple_experimental() {
+    script_name=$(echo "" | ${MENU} "What is the name of the project?")
+    [ -e "$script_name" ] || [ -z "$script_name" ] && err "Invalid script name! already exists"
+    description=$(echo "" | ${MENU} "Description of the tool")
+    printf "#!/usr/bin/env bash
+#
+# Script name: %s
+# Description: %s
+
+# Set with the flags \"-e\", \"-u\",\"-o pipefail\" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
+
+source ./_dm-helper.sh || source _dm-helper.sh
+
+source_dmscripts_configs
+
+# this script won't nag by default, uncomment for nagging
+#if configs_are_different; then
+#    echo \"\$(date): configs are different\" >>\"\$DM_CONFIG_DIFF_LOGFILE\"
+#fi
+
+main() {
+    # DEFINE A MAIN FUNCTION HERE WITH YOUR CODE!
+}
+main
+" "$script_name" "$description" >"$script_name"
+    chmod 755 "$script_name"
+}
+
+generate_contrib() {
+    script_name=$(echo "" | ${MENU} "What is the name of the project?")
+    [ -e "$script_name" ] || [ -z "$script_name" ] && err "Invalid script name! already exists"
+    description=$(echo "" | ${MENU} "Description of the tool")
+    deps=$(echo "" | ${MENU} "What are the dependencies (space seperate list)?")
+    contributor=$(echo "" | ${MENU} "Who is the author of the script?")
+    printf "#!/usr/bin/env bash
+#
+# Script name: %s 
+# Description: %s 
+# Dependencies: %s 
+# GitLab: https://www.gitlab.com/dwt1/dmscripts
+# License: https://www.gitlab.com/dwt1/dmscripts/LICENSE
+# Contributors: %s 
+
+# Set with the flags \"-e\", \"-u\",\"-o pipefail\" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
+
+_path=\"\$(cd \"\$(dirname \"\${BASH_SOURCE[0]}\")\" && cd \"\$(dirname \"\$(readlink \"\${BASH_SOURCE[0]}\" || echo \".\")\")\" && pwd)\"
+if [[  -f \"\${_path}/_dm-helper.sh\" ]]; then
+    # shellcheck disable=SC1090,SC1091
+    source \"\${_path}/_dm-helper.sh\"
+else
+    # shellcheck disable=SC1090
+    echo \"No helper-script found\"
+fi
+
+# script will not hit this if there is no config-file to load
+# shellcheck disable=SC1090
+source \"\$(get_config)\"
+
+# Check if config has updates that should be displayed to the user
+check_updated_config
+
+main() {
+    # DEFINE A MAIN FUNCTION HERE WITH YOUR CODE!
+}
+
+noOpt=1
+# If script is run with '-d', it will use 'dmenu'
+# If script is run with '-f', it will use 'fzf'
+# If script is run with '-d', it will use 'rofi'
+while getopts \"dfrh\" arg 2>/dev/null; do
+    case \"\${arg}\" in
+    d) # shellcheck disable=SC2153
+        MENU=\${DMENU}
+        [[ \"\${BASH_SOURCE[0]}\" == \"\${0}\" ]] && main ;;
+    f) # shellcheck disable=SC2153
+        MENU=\${FMENU}
+        [[ \"\${BASH_SOURCE[0]}\" == \"\${0}\" ]] && main ;;
+    r) # shellcheck disable=SC2153
+        MENU=\${RMENU}
+        [[ \"\${BASH_SOURCE[0]}\" == \"\${0}\" ]] && main ;;
+    h) help ;;
+    *) err \"invalid option:\nType \$(basename \"\$0\") -h for help\" ;;
+    esac
+    noOpt=0
+done
+
+# If script is run with NO argument, it will use 'dmenu'
+[ \$noOpt = 1 ] && MENU=\${DMENU} && [[ \"\${BASH_SOURCE[0]}\" == \"\${0}\" ]] && main \"\$@\"
+" "$script_name" "$description" "$deps" "$contributor" >"$script_name"
+    chmod 755 "$script_name"
+}
+
+generate_contrib_experimental() {
+    script_name=$(echo "" | ${MENU} "What is the name of the project?")
+    [ -e "$script_name" ] || [ -z "$script_name" ] && err "Invalid script name! already exists"
+    description=$(echo "" | ${MENU} "Description of the tool")
+    deps=$(echo "" | ${MENU} "What are the dependencies (space seperate list)?")
+    contributor=$(echo "" | ${MENU} "Who is the author of the script?")
+    printf "#!/usr/bin/env bash
+#
+# Script name: %s 
+# Description: %s 
+# Dependencies: %s 
+# GitLab: https://www.gitlab.com/dwt1/dmscripts
+# License: https://www.gitlab.com/dwt1/dmscripts/LICENSE
+# Contributors: %s 
+
+# Set with the flags \"-e\", \"-u\",\"-o pipefail\" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
+
+# shellcheck disable=SC1090,SC1091
+source ./_dm-helper.sh || source _dm-helper.sh 2>/dev/null
+
+source_dmscripts_configs
+
+if configs_are_different; then
+    echo \"\$(date): configs are different\" >>\"\$DM_CONFIG_DIFF_LOGFILE\"
+fi
+
+main() {
+    # DEFINE A MAIN FUNCTION HERE WITH YOUR CODE!
+}
+MENU=\"\$(get_menu_program \"\$@\")\"
+[[ \"\${BASH_SOURCE[0]}\" == \"\${0}\" ]] && main
+" "$script_name" "$description" "$deps" "$contributor" >"$script_name"
+    chmod 755 "$script_name"
+}
+
+main() {
+    case "$(template_choice)" in
+    simple) generate_simple ;;
+    contrib) generate_contrib ;;
+    simple-experimental) generate_simple_experimental ;;
+    contrib-experimental) generate_contrib_experimental ;;
+    *) err "Invalid template choice" ;;
+    esac
+}
+
+noOpt=1
+# If script is run with '-d', it will use 'dmenu'
+# If script is run with '-f', it will use 'fzf'
+# If script is run with '-d', it will use 'rofi'
+while getopts "dfrh" arg 2>/dev/null; do
+    case "${arg}" in
+    d) # shellcheck disable=SC2153
+        MENU=${DMENU}
+        [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main
+        ;;
+    f) # shellcheck disable=SC2153
+        MENU=${FMENU}
+        [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main
+        ;;
+    r) # shellcheck disable=SC2153
+        MENU=${RMENU}
+        [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main
+        ;;
+    h) help ;;
+    *) printf '%s\n' "Error: invalid option" "Type $(basename "$0") -h for help" ;;
+    esac
+    noOpt=0
+done
+
+# If script is run with NO argument, it will use 'dmenu'
+[ $noOpt = 1 ] && MENU=${DMENU} && [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"

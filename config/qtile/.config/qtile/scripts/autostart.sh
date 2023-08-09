@@ -6,13 +6,12 @@ function run {
     $@&
   fi
 }
-
+setxkbmap -layout br -variant abnt2 &
 #start sxhkd to replace Qtile native key-bindings
 run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
 conky -c $HOME/.config/conky/awesome/doom-one-01.conkyrc &
 lxsession &
 nm-applet &
-setxkbmap -layout br -variant abnt2
 clipmenud &
 ssh-add &
 dunst &

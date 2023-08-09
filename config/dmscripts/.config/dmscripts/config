@@ -16,15 +16,15 @@ PDF_VIEWER="zathura"
 DMBROWSER="brave"
 # DMBROWSER="qutebrowser"
 
-DMTERM="st -e"
-# DMTERM="alacritty -e"
+# DMTERM="st -e"
+DMTERM="alacritty -e"
 
-DMEDITOR="emacsclient -c -a emacs"
-# DMEDITOR="${DMTERM} vim"
+# DMEDITOR="emacsclient -c -a emacs"
+DMEDITOR="${DMTERM} vim"
 
 # TODO: Rename this variable to something more traditional
-logout_locker='slock'
-# logout_locker='dm-tool lock'
+# logout_locker='slock'
+logout_locker='dm-tool lock'
 
 # This case statement lets you change what the DMENU variable is for different scripts, so if you
 # want a unique variable for each script you can

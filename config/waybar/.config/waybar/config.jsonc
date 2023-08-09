@@ -6,8 +6,8 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
-    "modules-left": ["custom/launcher", "wlr/workspaces", "hyprland/window" ], "modules-center": ["battery", "cpu", "memory", "disk"],
-    "modules-right": ["tray","network", "pulseaudio", "clock"],
+    "modules-left": ["wlr/workspaces", "hyprland/window" ], "modules-center": ["battery", "cpu", "memory", "disk"],
+    "modules-right": ["tray","pulseaudio", "clock"],
     // Modules configuration
 	"clock": {
 		"format": "󰥔  {:%H:%M}",
@@ -26,24 +26,8 @@
     "disable-scroll": false,
     "on-scroll-up": "hyprctl dispatch workspace -1",
     "on-scroll-down": "hyprctl dispatch workspace +1",
-		"format": "{icon}",
+		"format": "{name}",
 		"on-click": "activate",
-		"format-icons": {
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9",
-      "0": "0",
-      "urgent": "",
-      "active": "",
-      "default": "󰧞",
-      "sort-by-number": true
-    },
   },
 
 	"battery": {

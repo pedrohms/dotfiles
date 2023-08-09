@@ -76,8 +76,8 @@ local modkey      = "Mod4"
 local altkey      = "Mod1"
 local ctrlkey     = "Control"
 local terminal    = "alacritty"
-local browser     = "nvidia-offload brave"
-local chrome      = "nvidia-offload google-chrome-stable"
+local browser     = "brave"
+local chrome      = "google-chrome-stable"
 -- local browser     = "nvidia-offload vivaldi"
 local editor      = "nvim"
 local mediaplayer = "mpv"
@@ -331,7 +331,7 @@ globalkeys = my_table.join(
     { description = "Show/hide wibox (bar)", group = "awesome" }),
 
   -- Run launcher
-  awful.key({ modkey, "Shift" }, "Return", function() awful.util.spawn("fish -c 'rofi -modi run -show run'") end,
+  awful.key({ modkey, "Shift" }, "Return", function() awful.util.spawn(os.getenv("HOME").."/.config/rofi/launchers/type-6/launcher.sh") end,
     { description = "Run launcher", group = "hotkeys" }),
 
   -- Dmscripts (Super + p followed by KEY)
