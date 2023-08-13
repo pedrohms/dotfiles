@@ -29,7 +29,11 @@ keys = [
     # The essentials
     Key([mod], "Return", lazy.spawn(myTerm), desc="Terminal"),
     Key([mod, "shift"], "Return", lazy.spawn(home + "/.local/bin/dm-run"), desc='Run Launcher'),
-    Key([mod], "b", lazy.spawn(myBrowser), desc='Brave'),
+    KeyChord([mod], "b", [
+        Key([], "b", lazy.spawn(myBrowser), desc='Brave'),
+        Key([], "f", lazy.spawn("firefox"), desc='Firefox'),
+        Key([], "c", lazy.spawn("google-chrome-stable"), desc='Chrome'),
+    ]),
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "Tab", lazy.prev_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
