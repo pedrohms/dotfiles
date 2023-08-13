@@ -215,16 +215,6 @@ def init_widgets_list(monitor_num):
         widget.Spacer(),
         widget.WindowName(),
         widget.Spacer(),
-        widget.TextBox(text = "", fontsize = 23, font = "JetBrainsMono Nerd Font", padding = 0, foreground = colors[5], background = colors[0]),
-        widget.TextBox(text = " ", fontsize = 14, font = "JetBrainsMono Nerd Font", foreground = colors[0], background = colors[5]),
-        widget.Mpris2(
-            background = colors[5],
-            foreground = colors[0],
-            display_metadata = ['xesam:title', 'xesam:artist'],
-            scroll = False,
-            padding = 3,
-            ),
-        widget.TextBox(text = "", fontsize = 23, font = "JetBrainsMono Nerd Font", padding = 0, foreground = colors[0], background = colors[5]),
         widget.TextBox(text = " ", fontsize = 14, font = "JetBrainsMono Nerd Font", foreground = colors[7]),
         widget.CPU(
             font = "JetBrainsMono Nerd Font",
@@ -244,6 +234,8 @@ def init_widgets_list(monitor_num):
             padding = 5,
         ),
         widget.Sep(linewidth = 0, padding = 10),
+        widget.Volume( foreground = colors[4], fmt = '🕫  Vol: {}',),
+        widget.Sep(linewidth = 0, padding = 10),
         widget.TextBox(text = "", fontsize = 23, font = "JetBrainsMono Nerd Font", padding = 0, foreground = colors[4], background = colors[0]),
         widget.TextBox(text = " ", fontsize = 14, font = "JetBrainsMono Nerd Font", foreground = colors[0], background = colors[4]),
         widget.Clock(format='%I:%M %p', font = "JetBrainsMono Nerd Font", padding = 10, foreground = colors[0], background = colors[4]),
@@ -257,7 +249,7 @@ def init_widgets_list(monitor_num):
 
 def init_secondary_widgets_list(monitor_num):
     secondary_widgets_list = init_widgets_list(monitor_num)
-    del secondary_widgets_list[18:20]
+    del secondary_widgets_list[len(secondary_widgets_list)-4:len(secondary_widgets_list)-1]
     return secondary_widgets_list
 
 widgets_list = init_widgets_list("1")
