@@ -5,7 +5,7 @@ import subprocess
 from os import path
 
 from libqtile import bar, layout, widget, hook, qtile
-from libqtile.config import Click, Drag, Group, ScratchPad, DropDown, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, ScratchPad, DropDown, KeyChord, Key, Match, Screen
 from libqtile.lazy import lazy
 from settings.path import qtile_path
 import colors
@@ -16,14 +16,20 @@ brawser = "brave"
 
 
 keys = [
-    Key([mod], "b", lazy.spawn(brawser)),
-    Key([mod], "f", lazy.spawn("pcmanfm")),
-    Key([mod, "shift"], "Return", lazy.spawn("rofi -modi run -show run") ),
+    KeyChord([mod], "b", [
+        Key([], "b", lazy.spawn(brawser)),
+        Key([], "c", lazy.spawn("google-chrome-stable")),
+        Key([], "f", lazy.spawn("firefox")),
+    ]),
+    KeyChord([mod, "shift"], "a", [
+        Key([], "f", lazy.spawn("pcmanfm")),
+    ]),
+    Key([mod, "shift"], "Return", lazy.spawn(os.path.expanduser('~/') + ".local/bin/dm-run") ),
 # Open terminal
     Key([mod], "Return", lazy.spawn(terminal)),
 # Qtile System Actions
     Key([mod, "shift"], "r", lazy.restart()),
-    Key([mod, "shift"], "q", lazy.shutdown()),
+    Key([mod, "shift"], "q", lazy.spawn(os.path.expanduser('~/') + ".local/bin/dm-logout")),
 # Active Window Actions
     Key([mod], "space", lazy.window.toggle_fullscreen()),
     Key([mod, "shift"], "c", lazy.window.kill()),
@@ -108,12 +114,15 @@ keys = [
 groups = []
 
 
-group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "minus", "equal", "F1", "F2", "F3", "F4", "F5"]
+# group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "minus", "equal", "F1", "F2", "F3", "F4", "F5"]
+group_names = ["1", "2", "3", "4", "5", "6", "7"]
 
-group_labels = ["", "", "", "", "", "", "", "", "ﭮ", "", "", "﨣", "F1", "F2", "F3", "F4", "F5"]
-#group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+# group_labels = ["", "", "", "", "", "", "", "", "ﭮ", "", "", "﨣", "F1", "F2", "F3", "F4", "F5"]
+# group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"]
+group_labels = ["1", "2", "3", "4", "5", "6", "7"]
 
-group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
+# group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
+group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
 
 # Add group names, labels, and default layouts to the groups object.
 for i in range(len(group_names)):
@@ -197,7 +206,7 @@ def init_widgets_list(monitor_num):
             disable_drag = True,
             active = colors[4],
             inactive = foregroundColor,
-            hide_unused = True,
+            hide_unused = False,
             rounded = False,
             highlight_method = "line",
             highlight_color = [backgroundColor, backgroundColor],
