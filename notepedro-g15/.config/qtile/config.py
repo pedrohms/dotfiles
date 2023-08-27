@@ -23,6 +23,7 @@ keys = [
     ]),
     KeyChord([mod, "shift"], "a", [
         Key([], "f", lazy.spawn("pcmanfm")),
+        Key([], "s", lazy.spawn("nvidia-offload flatpak run com.valvesoftware.Steam")),
     ]),
     Key([mod, "shift"], "Return", lazy.spawn(os.path.expanduser('~/') + ".local/bin/dm-run") ),
 # Open terminal
