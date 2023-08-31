@@ -224,6 +224,8 @@ def init_widgets_list(monitor_num):
         widget.Spacer(),
         widget.WindowName(),
         widget.Spacer(),
+        widget.Battery(),
+        widget.Sep(linewidth = 0, padding = 10),
         widget.TextBox(text = " ", fontsize = 14, font = "JetBrainsMono Nerd Font", foreground = colors[7]),
         widget.CPU(
             font = "JetBrainsMono Nerd Font",

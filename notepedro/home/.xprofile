@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+function verify_monitor {
+  xrandr &> /dev/null && xrandr --auto
+  IS_HDMI=$(xrandr | grep HDMI)
+
+  if [[ -n $IS_HDMI ]] then
+  IS_DISCONNECTED=$(xrandr | grep disconnected)
+  if [[ -n $IS_DISCONNECTED ]] then
+    return false
+  else
+    return true
+  fi
+  else 
+    return false
+  fi
+}
+
+xrandr --auto
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+if [[ verify_monitor ]] then
+  xrandr --output eDP-1-1 --primary --pos 0x0 --mode 1920x1080 --output HDMI-1-1 --mode 1920x1080 --pos 1920x0 --right-of eDP-1-1
+fi
+  
+# xrandr --output eDP-1-1 --mode 1920x1080 --rate 60 --scale 0.75 --output HDMI-1-1 --mode 1920x1080 --rate 60 --scale 0.75 --right-of eDP-1-1
