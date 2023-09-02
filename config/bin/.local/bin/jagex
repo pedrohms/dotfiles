@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+wine ~/Games/jagex/JagexLauncher.exe
