@@ -26,6 +26,9 @@ keys = [
         Key([], "s", lazy.spawn("nvidia-offload flatpak run com.valvesoftware.Steam")),
         Key([], "o", lazy.spawn(os.path.expanduser('~/') + ".local/bin/dm-offload")),
     ]),
+    KeyChord([mod, "control"], "s", [
+        Key([], "s", lazy.spawn("flameshot gui")),
+    ]),
     Key([mod, "shift"], "Return", lazy.spawn(os.path.expanduser('~/') + ".local/bin/dm-run") ),
 # Open terminal
     Key([mod], "Return", lazy.spawn(terminal)),
@@ -110,6 +113,15 @@ keys = [
 # Switch focus of monitors
     Key([mod], "period", lazy.next_screen()),
     Key([mod], "comma", lazy.prev_screen()),
+    # Brightness
+    Key([], "XF86MonBrightnessDown",
+        lazy.spawn("light -U 5"),
+        desc='Brightness down'
+        ),
+    Key([], "XF86MonBrightnessUp",
+        lazy.spawn("light -A 5"),
+        desc='Brightness up'
+        ),
 ]
 
 # Create labels for groups and assign them a default layout.

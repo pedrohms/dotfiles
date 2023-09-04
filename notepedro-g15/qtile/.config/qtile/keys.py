@@ -237,15 +237,6 @@ keys = [
         desc='Audio previous'
         ),
 
-    # Brightness
-    Key([], "XF86MonBrightnessDown",
-        lazy.spawn(home + "/.local/bin/statusbar/brightnesscontrol down"),
-        desc='Brightness down'
-        ),
-    Key([], "XF86MonBrightnessUp",
-        lazy.spawn(home + "/.local/bin/statusbar/brightnesscontrol up"),
-        desc='Brightness up'
-        ),
 
     # Screenshots
     # Take a screenshot of the currently focused output and save it into screenshots

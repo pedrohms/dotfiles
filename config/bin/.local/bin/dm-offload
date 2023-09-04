@@ -13,4 +13,4 @@
 set -euo pipefail
 
 export _JAVA_AWT_WM_NONREPARENTING=1
-exec nvidia-offload $(dmenu_path | dmenu -l 20 -p 'Run: ' "$@")
+exec nvidia-offload $(dmenu_path | dmenu -l 20 -p 'nvidia-offload: ' "$@")

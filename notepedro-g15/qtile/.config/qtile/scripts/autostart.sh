@@ -21,3 +21,4 @@ dunst &
 feh  --bg-fill $HOME/.local/wall/0001.jpg &
 nvidia-offload picom --config $HOME/.config/picom/picom.conf --vsync &
 xset r rate 210 40 &
+flameshot &
