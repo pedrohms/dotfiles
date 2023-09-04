@@ -267,6 +267,7 @@ globalkeys = my_table.join(
         if key == "f" then awful.spawn("pcmanfm")
         elseif key == "w" then awful.spawn.with_shell("remote-viewer spice://localhost:5900")
         elseif key == "v" then awful.spawn("virt-manager")
+        elseif key == "o" then awful.util.spawn(os.getenv("HOME").."/.local/bin/dm-offload")
         end
         awful.keygrabber.stop(grabber)
       end)
@@ -331,7 +332,9 @@ globalkeys = my_table.join(
     { description = "Show/hide wibox (bar)", group = "awesome" }),
 
   -- Run launcher
-  awful.key({ modkey, "Shift" }, "Return", function() awful.util.spawn(os.getenv("HOME").."/.config/rofi/launchers/type-6/launcher.sh") end,
+  -- awful.key({ modkey, "Shift" }, "Return", function() awful.util.spawn(os.getenv("HOME").."/.config/rofi/launchers/type-6/launcher.sh") end,
+  --   { description = "Run launcher", group = "hotkeys" }),
+  awful.key({ modkey, "Shift" }, "Return", function() awful.util.spawn(os.getenv("HOME").."/.local/bin/dm-run") end,
     { description = "Run launcher", group = "hotkeys" }),
 
   -- Dmscripts (Super + p followed by KEY)
@@ -872,11 +875,30 @@ if os.getenv("USER") == "framework" then
 else
   awful.spawn.with_shell("setxkbmap -layout br -variant abnt2")
 end
-awful.spawn.with_shell("feh  --bg-fill $HOME/.local/wall/0001.jpg")
 awful.spawn.with_shell("xset r rate 210 40")
+awful.spawn.with_shell("feh  --bg-fill $HOME/.local/wall/0001.jpg")
 -- awful.spawn.with_shell("xargs xwallpaper --stretch < ~/.cache/wall")
 --awful.spawn.with_shell("~/.fehbg") -- set last saved feh wallpaper
 --awful.spawn.with_shell("feh --randomize --bg-fill /usr/share/backgrounds/dtos-backgrounds/*") -- feh sets random wallpaper
 --awful.spawn.with_shell("nitrogen --restore") -- if you prefer nitrogen to feh/xwallpaper
 
-
+-- local timer1 = gears.start_new(1, function()
+--     return false
+-- end)
+--
+-- timer1:emit_signal("timeout")
+gears.timer {
+    timeout   = 5,
+    call_now  = true,
+    autostart = false,
+    callback  = function()
+        -- You should read it from `/sys/class/power_supply/` (on Linux)
+        -- instead of spawning a shell. This is only an example.
+      awful.spawn.easy_async("xrandr --auto", function()
+        awful.spawn.easy_async("xrandr --output HDMI-1-0 --off", function()
+          awful.spawn.with_shell("xrandr --output HDMI-1-0 --mode 1920x1080 --rate 60 --pos 1920x0 --output eDP-1 --primary --mode 1920x1080 --rate 120 --pos 0x0")
+          awful.spawn.with_shell("feh  --bg-fill $HOME/.local/wall/0001.jpg")
+        end)
+      end)
+    end
+}
