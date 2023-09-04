@@ -263,12 +263,12 @@ def init_secondary_widgets_list(monitor_num):
 
 widgets_list = init_widgets_list("1")
 
-widgets_list = init_widgets_list("1")
-secondary_widgets_list = init_secondary_widgets_list("2")
+# widgets_list = init_widgets_list("1")
+# secondary_widgets_list = init_secondary_widgets_list("2")
 
 screens = [
     Screen(top=bar.Bar(widgets=widgets_list, size=24, background=backgroundColor, margin=0, opacity=0.8),),
-    Screen(top=bar.Bar(widgets=secondary_widgets_list, size=24, background=backgroundColor, margin=0, opacity=0.8),),
+    # Screen(top=bar.Bar(widgets=secondary_widgets_list, size=24, background=backgroundColor, margin=0, opacity=0.8),),
     ]
 
 # Drag floating layouts.
