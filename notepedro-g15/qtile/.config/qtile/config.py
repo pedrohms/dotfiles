@@ -173,7 +173,7 @@ keys.extend([
     Key([mod, "shift"], "n", lazy.group['scratchpad'].dropdown_toggle('term2')),
 ])
 
-colors, backgroundColor, foregroundColor, workspaceColor, chordColor = colors.gruvbox()
+colors, backgroundColor, foregroundColor, workspaceColor, chordColor = colors.dracula()
 
 # Define layouts and layout themes
 layout_theme = {
@@ -211,7 +211,7 @@ def init_widgets_list(monitor_num):
     widgets_list = [
         widget.GroupBox(
             font="JetBrainsMono Nerd Font",
-            fontsize = 16,
+            fontsize = 18,
             margin_y = 2,
             margin_x = 4,
             padding_y = 6,
@@ -259,13 +259,13 @@ def init_widgets_list(monitor_num):
         widget.Sep(linewidth = 0, padding = 10),
         widget.Volume( foreground = colors[4], fmt = '🕫  Vol: {}',),
         widget.Sep(linewidth = 0, padding = 10),
-        widget.TextBox(text = "", fontsize = 23, font = "JetBrainsMono Nerd Font", padding = 0, foreground = colors[4], background = colors[0]),
-        widget.TextBox(text = " ", fontsize = 14, font = "JetBrainsMono Nerd Font", foreground = colors[0], background = colors[4]),
-        widget.Clock(format='%I:%M %p', font = "JetBrainsMono Nerd Font", padding = 10, foreground = colors[0], background = colors[4]),
-        widget.TextBox(text = "", fontsize = 23, font = "JetBrainsMono Nerd Font", padding = 0, foreground = colors[0], background = colors[4]),
+        widget.TextBox(text = "", fontsize = 23, font = "JetBrainsMono Nerd Font", padding = 0, foreground = colors[3], background = colors[0]),
+        widget.TextBox(text = " ", fontsize = 14, font = "JetBrainsMono Nerd Font", foreground = colors[0], background = colors[3]),
+        widget.Clock(format='%I:%M %p', font = "JetBrainsMono Nerd Font", padding = 10, foreground = colors[0], background = colors[3]),
+        widget.TextBox(text = "", fontsize = 23, font = "JetBrainsMono Nerd Font", padding = 0, foreground = colors[0], background = colors[3]),
         widget.Systray(background = backgroundColor, icon_size = 20, padding = 4),
         widget.Sep(linewidth = 1, padding = 10, foreground = colors[5], background = backgroundColor),
-        widget.CurrentLayoutIcon(scale = 0.5, foreground = colors[6], background = colors[6]),
+        widget.CurrentLayoutIcon(scale = 0.5, foreground = colors[3], background = colors[3]),
     ]
 
     return widgets_list
@@ -281,8 +281,8 @@ widgets_list = init_widgets_list("1")
 secondary_widgets_list = init_secondary_widgets_list("2")
 
 screens = [
-    Screen(top=bar.Bar(widgets=widgets_list, size=24, background=backgroundColor, margin=0, opacity=0.8),),
-    Screen(top=bar.Bar(widgets=secondary_widgets_list, size=24, background=backgroundColor, margin=0, opacity=0.8),),
+    Screen(top=bar.Bar(widgets=widgets_list, size=32, background=backgroundColor, margin=0, opacity=0.9),),
+    Screen(top=bar.Bar(widgets=secondary_widgets_list, size=32, background=backgroundColor, margin=0, opacity=0.9),),
     ]
 
 # Drag floating layouts.
