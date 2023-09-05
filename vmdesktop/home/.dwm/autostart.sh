@@ -18,6 +18,7 @@ ssh-add &
 dunst &
 xset r rate 210 40 &
 xrandr --auto
-xrandr --output Virtual-1 --mode 1920x1080 &
+xrandr --output Virtual-1 --mode 1920x1080
 feh  --bg-fill $HOME/.local/wall/0001.jpg &
+dwmblocks &
 # picom --config $HOME/.config/picom/picom.conf --vsync &
