@@ -9,7 +9,7 @@ function run {
 setxkbmap -layout en -variant intl &
 #start sxhkd to replace Qtile native key-bindings
 flameshot &
-run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
+sxhkd -c ~/.config/sxhkd/sxhkdrc &
 conky -c $HOME/.config/conky/awesome/doom-one-01.conkyrc &
 lxsession &
 nm-applet &

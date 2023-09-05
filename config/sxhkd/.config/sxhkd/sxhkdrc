@@ -1,0 +1,26 @@
+# Application Keybindings
+XF86MonBrightnessDown
+  light -U 5
+XF86MonBrightnessUp
+  light -A 5
+
+XF86AudioRaiseVolume
+  pactl set-sink-volume 0 +5%
+
+XF86AudioLowerVolume
+  pactl set-sink-volume 0 -5%
+
+XF86AudioPlay
+  playerctl play-pause
+
+XF86AudioNext
+  playerctl next
+
+XF86AudioPrev
+  playerctl previous
+
+XF86AudioStop
+  playerctl stop
+
+super + b; {b,g,f}
+  {brave,google-chrome-stable,firefox}
