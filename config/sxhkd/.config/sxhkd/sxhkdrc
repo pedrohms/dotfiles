@@ -31,5 +31,5 @@ super + b; {b,g,f}
 super + a; {f,d}
   {pcmanfm,discord --use-gl=desktop}
 
-super + ctrl + s; {s}
-  {flameshot gui}
+super + ctrl + s; {s,f}
+  {flameshot gui,flameshot full --clipboard --path ~/Pictures}
