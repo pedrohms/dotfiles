@@ -5,10 +5,13 @@ XF86MonBrightnessUp
   light -A 5
 
 XF86AudioRaiseVolume
-  pactl set-sink-volume 0 +5%
+  wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+
 
 XF86AudioLowerVolume
-  pactl set-sink-volume 0 -5%
+  wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-
+
+XF86AudioMute
+  wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
 XF86AudioPlay
   playerctl play-pause
@@ -24,3 +27,9 @@ XF86AudioStop
 
 super + b; {b,g,f}
   {brave,google-chrome-stable,firefox}
+
+super + a; {f,d}
+  {pcmanfm,discord --use-gl=desktop}
+
+super + ctrl + s; {s}
+  {flameshot gui}
