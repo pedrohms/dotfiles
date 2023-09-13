@@ -103,7 +103,7 @@ return packer.startup(function(use)
     requires = "nvim-lua/plenary.nvim" })
   use({ "simrat39/symbols-outline.nvim", commit = "512791925d57a61c545bc303356e8a8f7869763c" })
   use({ "saadparwaiz1/cmp_luasnip", commit = "18095520391186d634a0045dacaa346291096566" })
-  use({ "goolord/alpha-nvim", commit = "e4fc5e29b731bdf55d204c5c6a11dc3be70f3b65" })
+  use({ "goolord/alpha-nvim" })
   use({ "tom-anders/telescope-vim-bookmarks.nvim", commit = "92498cbf7c127dea37c3d27117b60dd7ab9baef4" })
   use({ "MattesGroeger/vim-bookmarks", commit = "9cc5fa7ecc23b052bd524d07c85356c64b92aeef" })
   use({ "kyazdani42/nvim-tree.lua",
