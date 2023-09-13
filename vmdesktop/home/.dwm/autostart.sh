@@ -16,7 +16,7 @@ nm-applet &
 clipmenud &
 ssh-add &
 dunst &
-#xset r rate 210 40 &
+xset r rate 210 17 &
 xrandr --auto
 xrandr --output Virtual-1 --mode 1920x1080
 feh  --bg-fill $HOME/.local/wall/0001.jpg &
