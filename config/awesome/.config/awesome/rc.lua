@@ -877,6 +877,7 @@ else
 end
 awful.spawn.with_shell("xset r rate 210 40")
 awful.spawn.with_shell("feh  --bg-fill $HOME/.local/wall/0001.jpg")
+awful.spawn.with_shell("flameshot")
 -- awful.spawn.with_shell("xargs xwallpaper --stretch < ~/.cache/wall")
 --awful.spawn.with_shell("~/.fehbg") -- set last saved feh wallpaper
 --awful.spawn.with_shell("feh --randomize --bg-fill /usr/share/backgrounds/dtos-backgrounds/*") -- feh sets random wallpaper

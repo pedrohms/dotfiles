@@ -246,6 +246,26 @@ local cpu = lain.widget.cpu({
 local cpubg = wibox.container.background(cpu.widget, theme.bg_focus, gears.shape.rectangle)
 local cpuwidget = wibox.container.margin(cpubg, dpi(0), dpi(0), dpi(5), dpi(5))
 
+-- Memory
+local mem_icon = wibox.widget.imagebox(theme.cpu)
+local mem = lain.widget.mem({
+  settings = function()
+    local handle = os.execute(os.getenv("HOME") .. "/.local/bin/memory > " .. os.getenv("HOME") .. "/.config/.temp_mem")
+    if handle then
+      local file = io.open(os.getenv("HOME") .. "/.config/.temp_mem")
+      if file then
+        local mem = file:read("*a")
+        widget:set_markup(space3 .. mem .. markup.font("Roboto 5", " "))
+      end
+    else
+      widget:set_markup(space3 .. markup.font(theme.font, mem_now.used
+                        .. "/" .. mem_now.total .. " ") .. markup.font("Roboto 5", " "))
+    end
+  end
+})
+local membg = wibox.container.background(mem.widget, theme.bg_focus, gears.shape.rectangle)
+local memwidget = wibox.container.margin(membg, dpi(0), dpi(0), dpi(5), dpi(5))
+
 -- Net
 local netdown_icon = wibox.widget.imagebox(theme.net_down)
 local netup_icon = wibox.widget.imagebox(theme.net_up)
@@ -359,6 +379,8 @@ function theme.at_screen_connect(s)
             -- net,
             volumewidget,
             spr_left,
+            mem_icon,
+            memwidget,
             cpu_icon,
             cpuwidget,
             bottom_bar,
