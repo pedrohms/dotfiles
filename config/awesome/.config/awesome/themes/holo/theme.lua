@@ -208,7 +208,9 @@ local bat = lain.widget.bat({
         if bat_now.ac_status == 1 then
             bat_p = bat_p .. "Plugged "
         end
-        widget:set_markup(markup.font(theme.font, markup(blue, bat_header) .. bat_p))
+        if not ( os.getenv("USER") == "framework" ) then
+          widget:set_markup(markup.font(theme.font, markup(blue, bat_header) .. bat_p))
+        end
     end
 })
 
