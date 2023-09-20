@@ -122,7 +122,9 @@ awful.util.tagnames = { " 1", " 2", " 3", " 4", " 5", " 6", " 7", " 8", " 9" }
 awful.layout.suit.tile.left.mirror = true
 awful.layout.layouts = {
   awful.layout.suit.tile,
+  awful.layout.suit.max,
   awful.layout.suit.floating,
+  awful.layout.suit.magnifier,
   --awful.layout.suit.tile.left,
   --awful.layout.suit.tile.bottom,
   --awful.layout.suit.tile.top,
@@ -130,9 +132,7 @@ awful.layout.layouts = {
   --awful.layout.suit.fair.horizontal,
   --awful.layout.suit.spiral,
   --awful.layout.suit.spiral.dwindle,
-  awful.layout.suit.max,
   --awful.layout.suit.max.fullscreen,
-  awful.layout.suit.magnifier,
   --awful.layout.suit.corner.nw,
   --awful.layout.suit.corner.ne,
   --awful.layout.suit.corner.sw,
@@ -292,9 +292,12 @@ globalkeys = my_table.join(
     grabber = awful.keygrabber.run(
       function(_, key, event)
         if event == "release" then return end
-        if key == "s" then awful.spawn.with_shell("scrot -s ~/scrot/%Y-%m-%d-@%H-%M-%S-scrot.png -e 'xclip -selection clipboard -target image/png -i $f'")
-        elseif key == "w" then awful.spawn.with_shell("scrot -u ~/scrot/%Y-%m-%d-@%H-%M-%S-scrot.png -e 'xclip -selection clipboard -target image/png -i $f'")
+        if key == "s" then
+          awful.spawn.with_shell("flameshot gui")
         end
+        -- if key == "s" then awful.spawn.with_shell("scrot -s ~/scrot/%Y-%m-%d-@%H-%M-%S-scrot.png -e 'xclip -selection clipboard -target image/png -i $f'")
+        -- elseif key == "w" then awful.spawn.with_shell("scrot -u ~/scrot/%Y-%m-%d-@%H-%M-%S-scrot.png -e 'xclip -selection clipboard -target image/png -i $f'")
+        -- end
         awful.keygrabber.stop(grabber)
       end)
   end),

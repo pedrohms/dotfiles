@@ -252,17 +252,17 @@ local cpuwidget = wibox.container.margin(cpubg, dpi(0), dpi(0), dpi(5), dpi(5))
 local mem_icon = wibox.widget.imagebox(theme.cpu)
 local mem = lain.widget.mem({
   settings = function()
-    local handle = os.execute(os.getenv("HOME") .. "/.local/bin/memory > " .. os.getenv("HOME") .. "/.config/.temp_mem")
-    if handle then
-      local file = io.open(os.getenv("HOME") .. "/.config/.temp_mem")
-      if file then
-        local mem = file:read("*a")
-        widget:set_markup(space3 .. mem .. markup.font("Roboto 5", " "))
-      end
-    else
+    -- local handle = os.execute(os.getenv("HOME") .. "/.local/bin/memory > " .. os.getenv("HOME") .. "/.config/.temp_mem")
+    -- if handle then
+    --   local file = io.open(os.getenv("HOME") .. "/.config/.temp_mem")
+    --   if file then
+    --     local mem = file:read("*a")
+    --     widget:set_markup(space3 .. mem .. markup.font("Roboto 5", " "))
+    --   end
+    -- else
       widget:set_markup(space3 .. markup.font(theme.font, mem_now.used
                         .. "/" .. mem_now.total .. " ") .. markup.font("Roboto 5", " "))
-    end
+    -- end
   end
 })
 local membg = wibox.container.background(mem.widget, theme.bg_focus, gears.shape.rectangle)
