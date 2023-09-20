@@ -70,6 +70,7 @@ theme.layout_max                                = theme.icon_dir .. "/max.png"
 theme.layout_fullscreen                         = theme.icon_dir .. "/fullscreen.png"
 theme.layout_magnifier                          = theme.icon_dir .. "/magnifier.png"
 theme.layout_floating                           = theme.icon_dir .. "/floating.png"
+theme.nixos_logo                                = theme.icon_dir .. "/nixos_logo.png"
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
 theme.useless_gap                               = dpi(4)
@@ -237,6 +238,9 @@ theme.volume.bar.margins = dpi(5)
 local volumewidget = wibox.container.background(theme.volume.bar, theme.bg_focus, gears.shape.rectangle)
 volumewidget = wibox.container.margin(volumewidget, dpi(0), dpi(0), dpi(5), dpi(5))
 
+local logo_icon = wibox.widget.imagebox(theme.nixos_logo)
+logo_icon = wibox.container.margin(logo_icon, dpi(4), dpi(2), dpi(5), dpi(5))
+
 -- CPU
 local cpu_icon = wibox.widget.imagebox(theme.cpu)
 local cpu = lain.widget.cpu({
@@ -351,6 +355,7 @@ function theme.at_screen_connect(s)
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
+            logo_icon,
             layout = wibox.layout.fixed.horizontal,
             first,
             s.mytag,
