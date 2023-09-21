@@ -871,16 +871,17 @@ awful.spawn.with_shell("picom")
 awful.spawn.with_shell("nm-applet")
 awful.spawn.with_shell("volumeicon")
 awful.spawn.with_shell("conky -c $HOME/.config/conky/awesome/doom-one-01.conkyrc")
--- awful.spawn.with_shell("/usr/bin/emacs --daemon")
 awful.spawn.with_shell("LG3D")
-if os.getenv("USER") == "framework" then
-  awful.spawn.with_shell("setxkbmap -layout us -variant intl")
-else
-  awful.spawn.with_shell("setxkbmap -layout br -variant abnt2")
-end
 awful.spawn.with_shell("xset r rate 210 40")
-awful.spawn.with_shell("feh  --bg-fill $HOME/.local/wall/0001.jpg")
 awful.spawn.with_shell("flameshot")
+awful.spawn.with_shell("feh  --bg-fill $HOME/.local/wall/0001.jpg")
+
+-- awful.spawn.with_shell("/usr/bin/emacs --daemon")
+-- if os.getenv("USER") == "framework" then
+--   awful.spawn.with_shell("setxkbmap -layout us -variant intl")
+-- else
+--   awful.spawn.with_shell("setxkbmap -layout br -variant abnt2")
+-- end
 -- awful.spawn.with_shell("xargs xwallpaper --stretch < ~/.cache/wall")
 --awful.spawn.with_shell("~/.fehbg") -- set last saved feh wallpaper
 --awful.spawn.with_shell("feh --randomize --bg-fill /usr/share/backgrounds/dtos-backgrounds/*") -- feh sets random wallpaper
@@ -892,17 +893,10 @@ awful.spawn.with_shell("flameshot")
 --
 -- timer1:emit_signal("timeout")
 gears.timer {
-    timeout   = 5,
+    timeout   = 3,
     call_now  = true,
     autostart = false,
     callback  = function()
-        -- You should read it from `/sys/class/power_supply/` (on Linux)
-        -- instead of spawning a shell. This is only an example.
-      awful.spawn.easy_async("xrandr --auto", function()
-        awful.spawn.easy_async("xrandr --output HDMI-1-0 --off", function()
-          awful.spawn.with_shell("xrandr --output HDMI-1-0 --mode 1920x1080 --rate 60 --pos 1920x0 --output eDP-1 --primary --mode 1920x1080 --rate 120 --pos 0x0")
-          awful.spawn.with_shell("feh  --bg-fill $HOME/.local/wall/0001.jpg")
-        end)
-      end)
+      awful.spawn.with_shell("$HOME/.config/ph-autostart/awesome/autostart.sh")
     end
 }
