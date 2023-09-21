@@ -6,7 +6,7 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
-    "modules-left": ["wlr/workspaces", "hyprland/window" ], "modules-center": ["battery", "cpu", "memory", "disk"],
+    "modules-left": ["hyprland/workspaces", "hyprland/window" ], "modules-center": ["battery", "cpu", "memory", "disk"],
     "modules-right": ["tray","pulseaudio", "clock"],
     // Modules configuration
 	"clock": {
@@ -20,14 +20,14 @@
     "format": "{}"
   },
 
-	"wlr/workspaces": {
+	"hyprland/workspaces": {
     "active-only": false,
     "all-outputs": true,
     "disable-scroll": false,
     "on-scroll-up": "hyprctl dispatch workspace -1",
     "on-scroll-down": "hyprctl dispatch workspace +1",
 		"format": "{name}",
-		"on-click": "activate",
+		"on-click": "afalseate",
   },
 
 	"battery": {
