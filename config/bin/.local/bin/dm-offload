@@ -13,5 +13,5 @@
 set -euo pipefail
 
 export _JAVA_AWT_WM_NONREPARENTING=1
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/.local/bin2
 exec nvidia-offload $(dmenu_path | dmenu -l 20 -p 'nvidia-offload: ' "$@")
