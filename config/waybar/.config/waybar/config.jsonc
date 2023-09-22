@@ -17,11 +17,11 @@
 	},
 	
   "hyprland/window": {
-    "format": "{}"
+    "format": "{}",
   },
 
 	"hyprland/workspaces": {
-    "active-only": false,
+    "active-only": true,
     "all-outputs": true,
     "disable-scroll": false,
     "on-scroll-up": "hyprctl dispatch workspace -1",
