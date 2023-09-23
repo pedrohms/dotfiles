@@ -348,20 +348,14 @@ globalkeys = my_table.join(
         if event == "release" then return end
 
         if key == "h" then awful.spawn.with_shell("dm-hub")
-        elseif key == "a" then awful.spawn.with_shell("dm-sounds")
-        elseif key == "b" then awful.spawn.with_shell("dm-setbg")
-        elseif key == "c" then awful.spawn.with_shell("dtos-colorscheme")
-        elseif key == "e" then awful.spawn.with_shell("dm-confedit")
         elseif key == "i" then awful.spawn.with_shell("dm-maim")
         elseif key == "k" then awful.spawn.with_shell("dm-kill")
         elseif key == "m" then awful.spawn.with_shell("dm-man")
         elseif key == "n" then awful.spawn.with_shell("dm-note")
         elseif key == "o" then awful.spawn.with_shell("dm-bookman")
-        elseif key == "p" then awful.spawn.with_shell("passmenu -p \"Pass: \"")
+        elseif key == "p" then awful.spawn.with_shell("dm-offload")
         elseif key == "q" then awful.spawn.with_shell("dm-logout")
-        elseif key == "r" then awful.spawn.with_shell("dm-radio")
         elseif key == "s" then awful.spawn.with_shell("dm-websearch")
-        elseif key == "t" then awful.spawn.with_shell("dm-translate")
         end
         awful.keygrabber.stop(grabber)
       end
@@ -525,18 +519,18 @@ globalkeys = my_table.join(
   --awful.key({ ctrlkey }, "Up",
   awful.key({}, "XF86AudioRaiseVolume",
     function()
-      os.execute(string.format("amixer -q set %s 1%%+", beautiful.volume.channel))
+      os.execute(string.format("wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%%+", beautiful.volume.channel))
       beautiful.volume.update()
     end),
   --awful.key({ ctrlkey }, "Down",
   awful.key({}, "XF86AudioLowerVolume",
     function()
-      os.execute(string.format("amixer -q set %s 1%%-", beautiful.volume.channel))
+      os.execute(string.format("wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%%-", beautiful.volume.channel))
       beautiful.volume.update()
     end),
   awful.key({}, "XF86AudioMute",
     function()
-      os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
+      os.execute(string.format("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
       beautiful.volume.update()
     end),
   awful.key({ ctrlkey, "Shift" }, "m",
