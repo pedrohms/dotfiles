@@ -21,4 +21,4 @@ xrandr --auto
 xrandr --output HDMI-A-0 --mode 1920x1080 --rate 60 --pos 0x0 --primary --output DVI-D-0 --rate 60 --pos 1920x0
 feh  --bg-fill $HOME/.local/wall/0001.jpg &
 dwmblocks &
-# picom --config $HOME/.config/picom/picom.conf --vsync &
+picom --config $HOME/.config/picom/picom.conf --vsync &

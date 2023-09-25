@@ -15,7 +15,7 @@ local naughty                        = require("naughty")
 naughty.config.defaults['icon_size'] = 100
 
 local lain        = require("lain")
-local freedesktop = require("freedesktop")
+-- local freedesktop = require("freedesktop")
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -206,29 +206,29 @@ local myawesomemenu = {
   { "restart", awesome.restart },
 }
 
-awful.util.mymainmenu = freedesktop.menu.build({
-  icon_size = beautiful.menu_height or 16,
-  before = {
-    { "Awesome", myawesomemenu, beautiful.awesome_icon },
-    --{ "Atom", "atom" },
-    -- other triads can be put here
-  },
-  after = {
-    { "Terminal", terminal },
-    { "Log out", function() awesome.quit() end },
-    { "Sleep", "systemctl suspend" },
-    { "Restart", "systemctl reboot" },
-    { "Exit", "systemctl poweroff" },
-    -- other triads can be put here
-  }
-})
+-- awful.util.mymainmenu = freedesktop.menu.build({
+--   icon_size = beautiful.menu_height or 16,
+--   before = {
+--     { "Awesome", myawesomemenu, beautiful.awesome_icon },
+--     --{ "Atom", "atom" },
+--     -- other triads can be put here
+--   },
+--   after = {
+--     { "Terminal", terminal },
+--     { "Log out", function() awesome.quit() end },
+--     { "Sleep", "systemctl suspend" },
+--     { "Restart", "systemctl reboot" },
+--     { "Exit", "systemctl poweroff" },
+--     -- other triads can be put here
+--   }
+-- })
 --menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
 
-local soundDir = "/opt/dtos-sounds/" -- The directory that has the sound files
-
-local startupSound  = soundDir .. "startup-01.mp3"
-local shutdownSound = soundDir .. "shutdown-01.mp3"
-local dmenuSound    = soundDir .. "menu-01.mp3"
+-- local soundDir = "/opt/dtos-sounds/" -- The directory that has the sound files
+--
+-- local startupSound  = soundDir .. "startup-01.mp3"
+-- local shutdownSound = soundDir .. "shutdown-01.mp3"
+-- local dmenuSound    = soundDir .. "menu-01.mp3"
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", function(s)
@@ -691,28 +691,6 @@ awful.rules.rules = {
   -- Titlebars
   { rule_any = { type = { "dialog", "normal" } },
     properties = { titlebars_enabled = false } },
-
-  -- Set applications to always map on the tag 1 on screen 1.
-  -- find class or role via xprop command
-  --{ rule = { class = browser1 },
-  --properties = { screen = 1, tag = awful.util.tagnames[1] } },
-
-  --{ rule = { class = editorgui },
-  --properties = { screen = 1, tag = awful.util.tagnames[2] } },
-
-  --{ rule = { class = "Geany" },
-  --properties = { screen = 1, tag = awful.util.tagnames[2] } },
-
-  -- Set applications to always map on the tag 3 on screen 1.
-  --{ rule = { class = "Inkscape" },
-  --properties = { screen = 1, tag = awful.util.tagnames[3] } },
-
-  -- Set applications to always map on the tag 4 on screen 1.
-  --{ rule = { class = "Gimp" },
-  --properties = { screen = 1, tag = awful.util.tagnames[4] } },
-
-  -- Set applications to be maximized at startup.
-  -- find class or role via xprop command
 
   { rule = { class = "Gimp*", role = "gimp-image-window" },
     properties = { maximized = true } },
