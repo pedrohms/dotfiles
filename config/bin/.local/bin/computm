@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-wine explorer /desktop=teste,1600x900 /home/framework/.wine/drive_c/Compu\ Forte/CompuTM/CompuTM.exe
+wine explorer /desktop=teste,1900x1028 /home/framework/.wine/drive_c/Compu\ Forte/CompuTM/CompuTM.exe
