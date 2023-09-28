@@ -22,7 +22,7 @@ config.font = wezterm.font_with_fallback {
   -- 'Noto Sans CJK',
   'JetBrainsMono Nerd Font',
 }
-config.font_size = 16
+config.font_size = 13
 
 config.window_background_opacity = 0.9
 config.window_padding = {
