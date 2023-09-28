@@ -6,9 +6,9 @@ function run {
     $@&
   fi
 }
-setxkbmap -layout br -variant abnt2 &
+setxkbmap -layout us -variant intl &
 #start sxhkd to replace Qtile native key-bindings
-run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
+run sxhkd -c ~/.config/sxhkd/sxhkdrc &
 conky -c $HOME/.config/conky/awesome/doom-one-01.conkyrc &
 lxsession &
 nm-applet &
