@@ -248,6 +248,7 @@ def init_widgets_list(monitor_num):
             padding = 5
         ),
         widget.Sep(linewidth = 0, padding = 10),
+        widget.Sep(linewidth = 1, padding = 10, foreground = colors[5], background = backgroundColor),
         widget.TextBox(text = "󰍛", fontsize = 14, font = "JetBrainsMono Nerd Font", foreground = colors[3]),
         widget.Memory(
             font = "JetBrainsMonoNerdFont",
@@ -256,16 +257,16 @@ def init_widgets_list(monitor_num):
             measure_mem='G',
             padding = 5,
         ),
-        widget.Sep(linewidth = 0, padding = 10),
-        widget.Volume( foreground = colors[4], fmt = '🕫  Vol: {}',),
-        widget.Sep(linewidth = 0, padding = 10),
-        widget.TextBox(text = "", fontsize = 23, font = "JetBrainsMono Nerd Font", padding = 0, foreground = colors[3], background = colors[0]),
-        widget.TextBox(text = " ", fontsize = 14, font = "JetBrainsMono Nerd Font", foreground = colors[0], background = colors[3]),
-        widget.Clock(format='%I:%M %p', font = "JetBrainsMono Nerd Font", padding = 10, foreground = colors[0], background = colors[3]),
-        widget.TextBox(text = "", fontsize = 23, font = "JetBrainsMono Nerd Font", padding = 0, foreground = colors[0], background = colors[3]),
-        widget.Systray(background = backgroundColor, icon_size = 20, padding = 4),
         widget.Sep(linewidth = 1, padding = 10, foreground = colors[5], background = backgroundColor),
-        widget.CurrentLayoutIcon(scale = 0.5, foreground = colors[3], background = colors[3]),
+        widget.Sep(linewidth = 0, padding = 10),
+        widget.Volume( foreground = foregroundColor, fmt = '🕫  Vol: {}',),
+        widget.Sep(linewidth = 0, padding = 10),
+        widget.Sep(linewidth = 1, padding = 10, foreground = colors[5], background = backgroundColor),
+        widget.Clock(format='%I:%M %p', font = "JetBrainsMono Nerd Font", padding = 10, foreground = foregroundColor ),
+        widget.Sep(linewidth = 1, padding = 10, foreground = colors[5], background = backgroundColor),
+        widget.Systray(background = backgroundColor, icon_size = 20, padding = 4),
+        widget.Sep(linewidth = 1, padding = 10, foreground = backgroundColor, background = backgroundColor),
+        widget.CurrentLayoutIcon(scale = 0.5 ),
     ]
 
     return widgets_list

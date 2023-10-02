@@ -846,7 +846,7 @@ awful.spawn.with_shell("conky -c $HOME/.config/conky/awesome/doom-one-01.conkyrc
 awful.spawn.with_shell("LG3D")
 awful.spawn.with_shell("xset r rate 210 40")
 awful.spawn.with_shell("flameshot")
-awful.spawn.with_shell("feh  --bg-fill $HOME/.local/wall/0001.jpg")
+-- awful.spawn.with_shell("feh  --bg-fill $HOME/.local/wall/0001.jpg")
 
 -- awful.spawn.with_shell("/usr/bin/emacs --daemon")
 -- if os.getenv("USER") == "framework" then
@@ -864,11 +864,13 @@ awful.spawn.with_shell("feh  --bg-fill $HOME/.local/wall/0001.jpg")
 -- end)
 --
 -- timer1:emit_signal("timeout")
-gears.timer {
-    timeout   = 3,
-    call_now  = true,
-    autostart = false,
-    callback  = function()
-      awful.spawn.with_shell("$HOME/.config/ph-autostart/awesome/autostart.sh")
-    end
-}
+if os.getenv("PH_MACHINE") == "g15" then
+  gears.timer {
+      timeout   = 2,
+      call_now  = true,
+      autostart = false,
+      callback  = function()
+        awful.spawn.with_shell("$HOME/.config/ph-autostart/awesome/autostart.sh")
+      end
+  }
+end
