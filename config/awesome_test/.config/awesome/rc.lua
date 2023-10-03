@@ -29,3 +29,4 @@ require("keybinds")
 
 require("rules")
 
+require("startup")
