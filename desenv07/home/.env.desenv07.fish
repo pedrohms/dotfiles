@@ -1,4 +1,5 @@
 set -U fish_user_paths $fish_user_paths /home/framework/Applications/android-studio/bin /home/framework/go/bin
+set FlakeHub "$HOME/Projects/nix"
 alias personal="podman run --rm -it --name teste -v personal:/root -v $PWD:/data pedrohms/gpg /bin/sh"
 alias dpersonal="docker run --rm -it --name teste -v personal:/root -v $PWD:/data pedrohms/gpg /bin/sh"
 alias dev="nix develop github:pedrohms/flake-develop -c fish"
