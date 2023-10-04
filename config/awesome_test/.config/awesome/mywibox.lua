@@ -1,8 +1,34 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local gears = require("gears") --Utilities such as color parsing and objects
+local naughty  = require("naughty")
 
 local mywibox = {}
+
+
+local volumeWidget = {}
+volumeWidget.text = ""
+volumeWidget.update = function()
+  awful.spawn.easy_async_with_shell("ph-volume-status", function(out)
+    volumeWidget.text = "  󰕾 " .. out
+    volumeWidget.widget.text = volumeWidget.text
+  end)
+end
+volumeWidget.widget = wibox.widget {
+ text = volumeWidget.text,
+ widget = wibox.widget.textbox
+}
+
+volumeWidget.bar = function()
+  volumeWidget.text = " "
+  volumeWidget.widget.text = volumeWidget.text
+  return volumeWidget.widget
+end
+
+local mytimer = timer({ timeout = 0.2 })
+mytimer:connect_signal("timeout", function () volumeWidget.update() end)
+mytimer:start()
+
 mywibox.initializeWibox = function(s, theme)
 
 
@@ -74,7 +100,8 @@ mywibox.initializeWibox = function(s, theme)
       {               -- Right widgets
         layout = wibox.layout.fixed.horizontal,
         wibox.widget.systray(),
-        mytextclock,
+        volumeWidget.bar(),
+        wibox.widget.textclock(),
         s.mylayoutbox,
       },
     }

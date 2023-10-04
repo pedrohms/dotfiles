@@ -6,7 +6,18 @@ local spawnWithShell = function(cmd)
   awful.spawn.with_shell(cmd)
 end
 local keys = {
-  awful.key({ modkey, }, "p", function() awful.spawn.with_shell(os.getenv("HOME").."/.local/bin/dm-offload") end),
+  awful.key({ modkey, }, "p", function()
+    local grabber
+    grabber = awful.keygrabber.run(
+      function(_, key, event)
+        if event == "release" then return end
+        if key == "p" then awful.spawn.with_shell(os.getenv("HOME").."/.local/bin/dm-projects")
+        elseif key == "o" then awful.spawn.with_shell(os.getenv("HOME").."/.local/bin/dm-offload")
+        end
+        awful.keygrabber.stop(grabber)
+      end
+    )
+  end),
   awful.key({ modkey, "Shift" }, "a", function()
     local grabber
     grabber = awful.keygrabber.run(
