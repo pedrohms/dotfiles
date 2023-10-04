@@ -13,6 +13,7 @@ local keys = {
         if event == "release" then return end
         if key == "p" then awful.spawn.with_shell(os.getenv("HOME").."/.local/bin/dm-projects")
         elseif key == "o" then awful.spawn.with_shell(os.getenv("HOME").."/.local/bin/dm-offload")
+        elseif key == "b" then awful.spawn.with_shell(os.getenv("HOME").."/.local/bin/dm-bookmark")
         end
         awful.keygrabber.stop(grabber)
       end

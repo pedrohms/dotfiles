@@ -28,7 +28,7 @@ mkdir -p "${_cache_dir}"
 # A separator that will appear in between quickmarks, bookmarks and history URLs.
 _bookman_separator="----------"
 # Defining location of bookmarks file
-_bookmark_file="$HOME/.config/qutebrowser/bookmarks/urls"
+_bookmark_file="$HOME/.config/BraveSoftware/Brave-Browser/Default/Bookmarks"
 # Defining location of quickmarks file
 _quickmarks_file="$HOME/.config/qutebrowser/quickmarks"
 
