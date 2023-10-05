@@ -10,7 +10,7 @@ if status_ok then
       "nix", "prisma", "pug", "python", "rust", "scss", "sql", "ssh_config", "sxhkdrc",
       "toml", "tsx", "vue", "xml", "yaml"
     },
-    sync_install = true,
+    sync_install = false,
     ignore_install = { "phpdoc", "tflint", "markdown", "markdown_inline", "tla", "tla+", "tlaplus" },
     highlight = {
       enable = true,
