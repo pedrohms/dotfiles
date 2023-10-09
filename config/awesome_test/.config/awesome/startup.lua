@@ -20,11 +20,19 @@ if not is_restart then
 
   if os.getenv("PH_MACHINE") == "g15" then
     gears.timer {
-        timeout   = 2,
+        timeout   = 5,
         call_now  = true,
         autostart = false,
         callback  = function()
           awful.spawn.with_shell("$HOME/.config/ph-autostart/awesome/autostart.sh")
+          local clock = os.clock
+          function sleep(n)  -- seconds
+             local t0 = clock()
+             while clock() - t0 <= n do
+             end
+          end
+          sleep(2)
+          awful.spawn.with_shell("feh  --bg-fill $HOME/.local/wall/0001.jpg")
         end
     }
   end

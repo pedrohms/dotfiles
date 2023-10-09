@@ -24,4 +24,3 @@ picom --config $HOME/.config/picom/picom.conf --vsync &
 xset r rate 210 40 &
 flameshot &
 dwmblocks &
-nvidia-offload steam -silent &
