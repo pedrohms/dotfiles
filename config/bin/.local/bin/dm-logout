@@ -49,11 +49,11 @@ main() {
     )
 
     # look up what managers are used (makes it more dynamic)
-    declare -a MANAGERS
-    while IFS= read -r manager
-    do
-        MANAGERS+=("${manager,,}")
-    done < <(grep-desktop)
+    # declare -a MANAGERS
+    # while IFS= read -r manager
+    # do
+    #     MANAGERS+=("${manager,,}")
+    # done < <(grep-desktop)
     # Original code, used as a refrence and as backup
     # done < <(grep 'Name=' /usr/share/xsessions/*.desktop | cut -d'=' -f2)
 
@@ -65,10 +65,7 @@ main() {
     case $choice in
         'Logout')
             if [[ "$(echo -e "No\nYes" | ${DMENU} "${choice}?" "${@}" )" == "Yes" ]]; then
-              killall X
-                # for manager in "${MANAGERS[@]}"; do 
-                #     killall "${manager}" || output "Process ${manager} was not running."
-                # done
+              killall X || killall dwm || killall .awesome-wrapped || output "Process dwm was not running."
             else
                 output "User chose not to logout." && exit 1
             fi
