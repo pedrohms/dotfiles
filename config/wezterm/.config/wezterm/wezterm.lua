@@ -14,7 +14,8 @@ end
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
-config.color_scheme = '3024 (dark) (terminal.sexy)'
+-- config.color_scheme = '3024 (dark) (terminal.sexy)'
+-- config.color_scheme = 'DoomOne'
 config.enable_tab_bar = false
 
 config.font = wezterm.font 'IosevkaTerm Nerd Font'

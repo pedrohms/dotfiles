@@ -6,8 +6,8 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
-    "modules-left": ["hyprland/workspaces", "hyprland/window" ], "modules-center": ["battery", "cpu", "memory", "disk"],
-    "modules-right": ["tray","pulseaudio", "clock"],
+    "modules-left": ["hyprland/workspaces"  ], "modules-center": ["hyprland/window" ],
+    "modules-right": ["custom/hyprpicker", "battery", "cpu", "memory", "disk", "pulseaudio", "clock", "tray"],
     // Modules configuration
 	"clock": {
 		"format": "󰥔  {:%H:%M}",

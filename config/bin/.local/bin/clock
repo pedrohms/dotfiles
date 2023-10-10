@@ -1,4 +1,4 @@
 #! /usr/bin/env bash
 
-dte="$(date +"%a, %B %d %l:%M%p"| sed 's/  / /g')"
+dte="$(date +"%d/%m %H:%M%p"| sed 's/  / /g')"
 echo -e "$dte"
