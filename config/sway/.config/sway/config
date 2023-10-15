@@ -1,0 +1,249 @@
+#    _____  _       __   ___   __  __
+#   / ___/ | |     / /  /   |  \ \/ /
+#   \__ \  | | /| / /  / /| |   \  /
+#  ___/ /  | |/ |/ /  / ___ |   / /
+# /____/   |__/|__/  /_/  |_|  /_/
+
+include $HOME/.cache/wal/colors-sway
+
+set $mod Mod4
+set $opacity 0.95
+set $term alacritty -e tmux
+#set $menu wofi --show run
+set $menu bemenu_launcher.sh
+
+include $HOME/.cache/sway_internal_display
+include $HOME/.cache/sway_external_display
+
+# Home row direction keys, like vim
+set $left  j
+set $down  l
+set $up    h
+set $right k
+
+# Input configuration
+input type:keyboard {
+    xkb_layout br
+    xkb_variant abnt2
+    repeat_delay 210
+    repeat_rate 40
+    xkb_options ctrl:nocaps
+}
+
+input type:touchpad {
+    events disabled
+}
+
+input type:pointer {
+    pointer_accel 0.1
+}
+
+#     __            __      ___        ____          __
+#    / /___  ____  / /__   ( _ )      / __/__  ___  / /
+#   / / __ \/ __ \/ //_/  / __ \/|   / /_/ _ \/ _ \/ /
+#  / / /_/ / /_/ / ,<    / /_/  <   / __/  __/  __/ /
+# /_/\____/\____/_/|_|   \____/\/  /_/  \___/\___/_/
+
+# xwayland disable
+default_border pixel 1
+default_floating_border pixel 1
+# floating_maximum_size 1000 x 1000
+titlebar_border_thickness 1
+# gaps outer 0
+# gaps inner 0
+mouse_warping container
+focus_follows_mouse yes
+smart_borders on
+Seat * hide_cursor 2000
+
+# Wallpaper
+output * bg $HOME/.local/wall/0001.jpg fill
+
+# output LVDS-1 disable
+# output DP-1 pos 0 0 res 3440x1440
+
+# (3440 - 1920) / 2 = 1037 Needed to arange DP-3 in the middle of DP-1
+# output DP-3 pos 760 1441 res 1920x1080
+
+# Container border colors.
+
+workspace 1 output $output-external
+workspace 2 output $output-external
+workspace 3 output $output-external
+workspace 4 output $output-external
+workspace 5 output $output-internal
+workspace 6 output $output-internal
+
+#
+# Run software.
+#
+exec nm-applet
+exec $HOME/.config/sway/scripts/autostart.sh
+
+#
+# Assign Software to Workspaces.
+#
+
+for_window [app_id="Alacritty"] opacity $opacity
+# Hacky way to reproduce fibonnaci layout.
+for_window [app_id=".*"] split toggle
+
+assign [app_id="firefox"] 2
+assign [app_id="pavucontrol"] 4
+assign [app_id="org.telegram.desktop.desktop"] 5
+
+assign [class="Mumble"] 5
+assign [class="OWASP ZAP"] 3
+assign [class="burp.*"] 3
+
+#     __              __    _           ___
+#    / /_____  __  __/ /_  (_)___  ____/ (_)___  ____ ______
+#   / //_/ _ \/ / / / __ \/ / __ \/ __  / / __ \/ __ `/ ___/
+#  / ,< /  __/ /_/ / /_/ / / / / / /_/ / / / / / /_/ (__  )
+# /_/|_|\___/\__, /_.___/_/_/ /_/\__,_/_/_/ /_/\__, /____/
+#           /____/                            /____/
+
+# Start a terminal
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec $HOME/.config/rofi/launchers/type-6/launcher.sh
+
+# Kill focused window
+bindsym $mod+Shift+c exec swaymsg kill
+
+# Lock screen and go to sleep.
+# bindsym $mod+Shift+q exec wofi_promt.sh -m "Lock screen and sleep?" -c "grim /tmp/screen_lock.png && convert /tmp/screen_lock.png -blur 0x9 /tmp/screen_lock_blurred.png && rm /tmp/screen_lock.png && swaylock --image /tmp/screen_lock_blurred.png --daemonize"
+
+# Reload the configuration file
+bindsym $mod+Shift+r reload
+
+# Exit sway (logs you out of your Wayland session).
+bindsym $mod+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
+# Start launcher.
+bindsym $mod+Space exec $menu
+
+# Floating modifier.
+floating_modifier $mod normal
+
+# Screenshotk
+bindsym $mod+p exec grim -g "$(slurp -d)" "$HOME/Pictures/$(date +%Y%m%d%H%M%S).png"
+bindsym Print grimblast copysave output
+bindsym $mod+Shift+s exec grimblast copysave area
+
+bindsym $mod+Ctrl+f exec pcmanfm
+# Movement bindings.
+#
+
+# Switch to container.
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Move focused container.
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+
+bindsym $mod+Tab workspace back_and_forth
+
+#
+# Layout bindings.
+#
+# Split direction.
+bindsym $mod+minus splitv
+bindsym $mod+v splith
+
+# Switch the current container between different layout styles.
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+exec swaymsg layout toggle split
+
+# workspace_layout tabbed
+
+# Make the current focus fullscreen.
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode.
+bindsym $mod+Shift+f floating toggle
+
+# Toggle focus from focus/tilling to the other one
+bindsym $mod+t focus mode_toggle
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+
+#
+# Resizing bindings.
+#
+bindsym $mod+Ctrl+$left resize shrink width 10px
+bindsym $mod+Ctrl+$down resize grow height 10px
+bindsym $mod+Ctrl+$up resize shrink height 10px
+bindsym $mod+Ctrl+$right resize grow width 10px
+# mode "resize" {
+#     # left will shrink the containers width
+#     # right will grow the containers width
+#     # up will shrink the containers height
+#     # down will grow the containers height
+#     bindsym $left resize shrink width 10px
+#     bindsym $down resize grow height 10px
+#     bindsym $up resize shrink height 10px
+#     bindsym $right resize grow width 10px
+#
+#     # Return to default mode
+#     bindsym Return mode "default"
+#     bindsym Escape mode "default"
+# }
+# bindsym $mod+r mode "resize"
+
+# Media keys.
+# Refresh tmux because volume is displayed in tmux bar.
+bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+
+# Brightness control.
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
+
+# Launch empty Firefox window
+bindsym $mod+b exec --no-startup-id brave
+
+# client.focused $color4 $color0 $color4 $color4 $color4
+# client.focused_inactive $color8 $color0 $color8 $color8 $color8
+# client.unfocused $color8 $color0 $color8 $color8 $color8
+client.urgent $color1 $color0 $color1 $color1 $color1
+
+bar {
+  position top
+  # mode overlay
+  status_command while ~/.local/bin/volume ; date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+  workspace_buttons yes
+  colors {
+      statusline #ffffff
+      background #323232
+      # Transparent bar
+      # background #ffffff10
+      inactive_workspace #32323200 #32323200 #5c5c5c
+  }
+}
+

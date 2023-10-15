@@ -80,7 +80,11 @@ local keys = {
   awful.key({ modkey, "Shift" }, "q", function() spawnWithShell("dm-logout") end,
     { description = "quit awesome", group = "awesome" }),
 
-
+  -- Brightness
+  awful.key({}, "XF86MonBrightnessUp", function() os.execute("xbacklight -inc 10") end,
+    { description = "+10%", group = "hotkeys" }),
+  awful.key({}, "XF86MonBrightnessDown", function() os.execute("xbacklight -dec 10") end,
+    { description = "-10%", group = "hotkeys" }),
   -- ALSA volume control
   --awful.key({ ctrlkey }, "Up",
   awful.key({}, "XF86AudioRaiseVolume",

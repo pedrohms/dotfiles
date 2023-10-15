@@ -104,6 +104,7 @@ return lazy.setup({
 
   { "lewis6991/gitsigns.nvim" },
   { "sainnhe/gruvbox-material" },
+  { "nvim-treesitter/nvim-treesitter-context" },
   -- Colorschemes
   -- { "folke/tokyonight.nvim" },
   -- { "ziontee113/color-picker.nvim" },
@@ -123,7 +124,7 @@ return lazy.setup({
   -- { "akinsho/bufferline.nvim" },
   { "akinsho/toggleterm.nvim" },
   -- { "tamago324/nlsp-settings.nvim" },    -- language server settings defined in json for
-  -- { "jose-elias-alvarez/null-ls.nvim" }, -- for formatters and linters
+  { "nvimtools/none-ls.nvim" }, -- for formatters and linters
   -- { "mhartington/formatter.nvim" },
   -- { "lukas-reineke/indent-blankline.nvim" },
   -- use({ "pedrohms/surround.nvim", commit = "master" })

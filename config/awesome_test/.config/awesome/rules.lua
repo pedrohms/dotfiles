@@ -21,7 +21,13 @@ local clientbuttons = gears.table.join(
   end)
 )
 
+
+
 awful.rules.rules = {
+
+  { rule_any = {floating = true},
+    properties = {placement = awful.placement.centered}
+  },
   -- All clients will match this rule.
   { rule = {},
     properties = { border_width = beautiful.border_width,
