@@ -26,9 +26,13 @@ vim.opt.cmdheight = 1
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 vim.opt.cursorline = true
--- vim.opt.fileencoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
 vim.opt.isfname:append("@-@")
 vim.opt.shortmess:append("c")
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
 if os.getenv("OS") == "Windows_NT" then
   -- vim.o.shell = "pwsh.exe -NoLogo"

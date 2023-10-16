@@ -26,7 +26,7 @@ local servers = {
   "dockerls",
   "rust_analyzer",
   "solidity",
-  "intelephense"
+  "intelephense",
 }
 
 local mason_packages = {
@@ -86,6 +86,10 @@ local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_cmp_ok then
   return
 end
+
+local outside_config = {
+  "dartls"
+}
 
 for _, server in pairs(servers) do
   local capabilities_temp = vim.lsp.protocol.make_client_capabilities()
@@ -182,4 +186,33 @@ for _, server in pairs(servers) do
   if server ~= "jdtls" then
     lspconfig[server].setup(opts)
   end
+end
+
+for _, server in pairs(outside_config) do
+  local capabilities_temp = vim.lsp.protocol.make_client_capabilities()
+  capabilities_temp = cmp_nvim_lsp.default_capabilities(capabilities_temp)
+  capabilities_temp.textDocument.completion.completionItem.snippetSupport = true
+
+  opts = {
+    on_attach = require("user.lsp.handlers").on_attach,
+    on_init = require("user.lsp.handlers").on_init,
+    capabilities = capabilities_temp,
+  }
+
+  if server == "dartls" then
+    local dart_opts = {
+      settings = {
+        dart = {
+          analysisExcludedFolders = {
+            vim.fn.expand("$HOME/.pub-cache"),
+            vim.fn.expand("$HOME/tools/flutter/"),
+            vim.fn.expand("$HOME/AppData/Local/Pub/Cache")
+          },
+        },
+      },
+    }
+    vim.tbl_deep_extend("force", dart_opts, opts)
+  end
+
+  lspconfig[server].setup(opts)
 end

@@ -26,6 +26,12 @@ window {
   color: @color2;
 }
 
+#workspaces button.active {
+    color: #ffffff;
+    background-color: transparent;
+    border-radius: 16px;
+}
+
 @keyframes critical {
   to {
   color: @color1;

@@ -1,0 +1,8 @@
+#!/bin/sh
+# distrobox_binary
+# name: ubuntu
+if [ -z "${CONTAINER_ID}" ]; then
+	exec /home/framework/.nix-profile/bin/distrobox-enter  -n ubuntu -- 		 /home/framework/Applications/ubuntu/flutter/bin/flutter  "$@"
+else
+	exec /home/framework/Applications/ubuntu/flutter/bin/flutter "$@"
+fi

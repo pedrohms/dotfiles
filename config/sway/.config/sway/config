@@ -21,14 +21,7 @@ set $down  l
 set $up    h
 set $right k
 
-# Input configuration
-input type:keyboard {
-    xkb_layout br
-    xkb_variant abnt2
-    repeat_delay 210
-    repeat_rate 40
-    xkb_options ctrl:nocaps
-}
+include $HOME/.config/sway-env/config
 
 input type:touchpad {
     events disabled
@@ -79,7 +72,7 @@ workspace 6 output $output-internal
 #
 exec nm-applet
 exec $HOME/.config/sway/scripts/autostart.sh
-
+# exec waybar
 #
 # Assign Software to Workspaces.
 #
@@ -217,8 +210,8 @@ bindsym $mod+Ctrl+$right resize grow width 10px
 
 # Media keys.
 # Refresh tmux because volume is displayed in tmux bar.
-bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+
-bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+
 bindsym XF86AudioMute exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
 # Brightness control.
@@ -231,12 +224,13 @@ bindsym $mod+b exec --no-startup-id brave
 # client.focused $color4 $color0 $color4 $color4 $color4
 # client.focused_inactive $color8 $color0 $color8 $color8 $color8
 # client.unfocused $color8 $color0 $color8 $color8 $color8
-client.urgent $color1 $color0 $color1 $color1 $color1
+# client.urgent $color1 $color0 $color1 $color1 $color1
 
 bar {
   position top
   # mode overlay
-  status_command while ~/.local/bin/volume ; date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+  # status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+  status_command while $HOME/.config/sway/status.sh; do sleep 1; done
   workspace_buttons yes
   colors {
       statusline #ffffff

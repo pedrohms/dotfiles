@@ -11,9 +11,11 @@
 # your path gets massive and fish becomes very slow.
 set -e fish_user_paths
 
-set ANDROID_SDK "$HOME/Applications/Android/Sdk"
-set ANDROID_SDK_ROOT "$HOME/Applications/Android/Sdk"
-set ANDROID_HOME "$HOME/Applications/Android/Sdk"
+if [ -z $NIX_USER_PROFILE_DIR ];
+  set ANDROID_SDK "$HOME/Applications/Android/Sdk"
+  set ANDROID_SDK_ROOT "$HOME/Applications/Android/Sdk"
+  set ANDROID_HOME "$HOME/Applications/Android/Sdk"
+end
 
 set -U fish_user_paths /usr/local/bin $HOME/.local/bin $HOME/.local/bin2 $HOME/Applications $fish_user_paths
 # set -U fish_user_paths $ANDROID_HOME/emulator $ANDROID_HOME/tools $ANDROID_HOME/tools/bin $ANDROID_HOME/platform-tools
