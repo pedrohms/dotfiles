@@ -42,6 +42,8 @@ keymap.nnoremap("<leader>qq", ":qa<CR>")
 keymap.nnoremap("<leader>qa", ":qa!<CR>")
 keymap.nnoremap("<leader>qw", ":wqa<CR>")
 keymap.nnoremap("<C-s>", ":w<CR>")
+
+keymap.inoremap("<C-s>", "<Esc>:w<CR>a")
 -- Better window navigation
 keymap.nnoremap("<C-h>", "<C-w>h")
 keymap.nnoremap("<C-j>", "<C-w>j")
@@ -51,6 +53,11 @@ keymap.nnoremap("<C-Up>", ":resize -2<CR>")
 keymap.nnoremap("<C-Down>", ":resize +2<CR>")
 keymap.nnoremap("<C-Left>", ":vertical resize -2<CR>")
 keymap.nnoremap("<C-Right>", ":vertical resize +2<CR>")
+
+keymap.nnoremap("<C-A-k>", ":resize -2<CR>")
+keymap.nnoremap("<C-A-j>", ":resize +2<CR>")
+keymap.nnoremap("<C-A-h>", ":vertical resize -2<CR>")
+keymap.nnoremap("<C-A-l>", ":vertical resize +2<CR>")
 
 keymap.inoremap("jk", "<Esc>")
 keymap.inoremap("<A-j>", "<Esc>:m .+1<CR>==$A")

@@ -104,6 +104,7 @@ M.on_init = function(client)
     ::jump_disable::
   end
 end
+M.navic_attached = false
 M.on_attach = function(client, bufnr)
   local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
   if not status_cmp_ok then
@@ -130,6 +131,7 @@ M.on_attach = function(client, bufnr)
     local navic_ok, navic = pcall(require, 'nvim-navic')
     if navic_ok then
       navic.attach(client, bufnr)
+      M.navic_attached = true
     end
   end
 end
