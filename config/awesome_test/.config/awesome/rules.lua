@@ -63,6 +63,9 @@ awful.rules.rules = {
   { rule = { class = "Xfce4-settings-manager" },
     properties = { floating = false } },
 
+  { rule = { class = "scratch"},
+    properties = { floating = true, placement = awful.placement.centered } },
+
   -- { rule = { class = "scratchpad", role = "scratchpad" },
   --   properties = { floating = true } },
 

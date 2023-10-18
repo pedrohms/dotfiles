@@ -8,7 +8,8 @@ include $HOME/.cache/wal/colors-sway
 
 set $mod Mod4
 set $opacity 0.95
-set $term alacritty -e tmux
+set $term wezterm start tmux
+# set $term alacritty -e tmux
 #set $menu wofi --show run
 set $menu bemenu_launcher.sh
 
@@ -40,6 +41,7 @@ input type:pointer {
 # xwayland disable
 default_border pixel 1
 default_floating_border pixel 1
+default_orientation vertical
 # floating_maximum_size 1000 x 1000
 titlebar_border_thickness 1
 # gaps outer 0
@@ -71,7 +73,7 @@ workspace 6 output $output-internal
 # Run software.
 #
 exec nm-applet
-exec $HOME/.config/sway/scripts/autostart.sh
+exec $HOME/.config/sway-env/autostart.sh
 # exec waybar
 #
 # Assign Software to Workspaces.
@@ -80,6 +82,10 @@ exec $HOME/.config/sway/scripts/autostart.sh
 for_window [app_id="Alacritty"] opacity $opacity
 # Hacky way to reproduce fibonnaci layout.
 for_window [app_id=".*"] split toggle
+for_window [title="Android Emulator - *"] {
+  floating enable
+  border normal
+}
 
 assign [app_id="firefox"] 2
 assign [app_id="pavucontrol"] 4
@@ -88,7 +94,6 @@ assign [app_id="org.telegram.desktop.desktop"] 5
 assign [class="Mumble"] 5
 assign [class="OWASP ZAP"] 3
 assign [class="burp.*"] 3
-
 #     __              __    _           ___
 #    / /_____  __  __/ /_  (_)___  ____/ (_)___  ____ ______
 #   / //_/ _ \/ / / / __ \/ / __ \/ __  / / __ \/ __ `/ ___/
@@ -169,7 +174,6 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-exec swaymsg layout toggle split
 
 # workspace_layout tabbed
 
@@ -226,6 +230,9 @@ bindsym $mod+b exec --no-startup-id brave
 # client.unfocused $color8 $color0 $color8 $color8 $color8
 # client.urgent $color1 $color0 $color1 $color1 $color1
 
+# bar {
+#   swaybar_command waybar -c /home/framework/temp/sway/waybar/config
+# }
 bar {
   position top
   # mode overlay
@@ -241,3 +248,4 @@ bar {
   }
 }
 
+exec swaymsg layout toggle split

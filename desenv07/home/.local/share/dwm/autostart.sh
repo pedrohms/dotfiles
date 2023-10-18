@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+PH_AUTOSTART="$HOME/.config/ph-autostart/autostart.sh"
 function run {
   if ! pgrep $1 ;
   then
@@ -22,3 +23,6 @@ xrandr --output HDMI-A-0 --mode 1920x1080 --rate 60 --pos 0x0 --primary --output
 feh  --bg-fill $HOME/.local/wall/0001.jpg &
 dwmblocks &
 picom --config $HOME/.config/picom/picom.conf --vsync &
+if [[ -f $PH_AUTOSTART ]]; then
+  sh $PH_AUTOSTART
+fi

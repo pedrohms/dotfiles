@@ -2,10 +2,26 @@ local awful = require("awful")
 local browser = "brave"
 local chrome = "google-chrome-stable"
 local terminal = "alacritty"
+local scratch = require("lib.scratch")
+local naughty = require("naughty")
+local utils = require("lib.utils")
+
+local notify = function(text)
+  naughty.notification {
+    title = "autostart",
+    text = text,
+    timeout = 2
+  }
+end
 local spawnWithShell = function(cmd)
   awful.spawn.with_shell(cmd)
 end
+
+countt = 0
+
 local keys = {
+  awful.key({ modkey, }, "[", function() scratch.toggle("alacritty --class scratch2,scratch2", utils.scratchRule("scratch2")) end),
+  awful.key({ modkey, }, "]", function() scratch.toggle("alacritty --class scratch,scratch", utils.scratchRule("scratch")) end),
   awful.key({ modkey, }, "p", function()
     local grabber
     grabber = awful.keygrabber.run(

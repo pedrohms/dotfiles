@@ -1,8 +1,31 @@
 local awful = require("awful")
 local gears = require("gears")
-local is_restart
+local naughty = require("naughty")
+local restart_detected
 
-if not is_restart then
+local notify = function(text)
+  naughty.notification {
+    title = "autostart",
+    text = text,
+    timeout = 2
+  }
+end
+
+local is_restart = function()
+  if restart_detected ~= nil then
+    return restart_detected
+  end
+
+  awesome.register_xproperty("awesome_restart_check", "boolean")
+  restart_detected = awesome.get_xproperty("awesome_restart_check") ~= nil
+  awesome.set_xproperty("awesome_restart_check", true)
+  return restart_detected
+end
+
+
+
+if not is_restart() then
+  notify "autostart.sh executed"
   awful.spawn.with_shell("lxsession")
   awful.spawn.with_shell("picom")
   awful.spawn.with_shell("nm-applet")
@@ -11,6 +34,7 @@ if not is_restart then
   awful.spawn.with_shell("LG3D")
   awful.spawn.with_shell("xset r rate 210 40")
   awful.spawn.with_shell("flameshot")
+  awful.spawn.with_shell("$HOME/.config/ph-autostart/autostart.sh")
 
   if os.getenv("USER") == "framework" then
     awful.spawn.with_shell("setxkbmap -layout us -variant intl")
@@ -39,16 +63,3 @@ if not is_restart then
 end
 
 
-do
-  local restart_detected
-  is_restart = function()
-    if restart_detected ~= nil then
-      return restart_detected
-    end
-
-    awesome.register_xproperty("awesome_restart_check", "boolean")
-    restart_detected = awesome.get_xproperty("awesome_restart_check") ~= nil
-    awesome.set_xproperty("awesome_restart_check", true)
-    return restart_detected
-  end
-end
