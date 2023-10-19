@@ -37,7 +37,7 @@ M.setup = function()
   mason_config.setup()
 
   require "core.lsp.dap"
-  -- require "user.lsp.null-ls"
+  -- require "core.lsp.null-ls"
   -- require "user.lsp.formatter"
 end
 
@@ -47,6 +47,8 @@ M.installer = function()
     return
   end
 
+  table.insert(M.servers, "lua_ls")
+  table.insert(M.servers, "emmet_ls")
 
   local settings = {
     ensure_installed = M.servers,

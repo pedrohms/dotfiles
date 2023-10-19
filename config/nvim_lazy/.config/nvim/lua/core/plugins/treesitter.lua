@@ -15,7 +15,7 @@ local M = {
       sync_install = false,
       ignore_install = { "phpdoc", "tflint", "markdown", "markdown_inline", "tla", "tla+", "tlaplus" },
       highlight = {
-        enable = true,
+        enable = false,
         additional_vim_regex_highlighting = true,
       },
       indent = {

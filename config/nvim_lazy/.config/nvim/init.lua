@@ -57,3 +57,8 @@ if os.getenv("NVIM_JAVA") == "1" then
 end
 
 require "minimal"
+
+local lsp = require "core.lsp"
+lsp.setup()
+lsp.installer()
+lsp.setupHandler()
