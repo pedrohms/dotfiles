@@ -6,7 +6,10 @@
 --   onedarker.load()
 -- else
 vim.o.background = "dark" -- or "light" for light mode
-vim.cmd [[ colorscheme catppuccin ]]
+local catppuccin_ok, _ = pcall( require, "catppuccin")
+if catppuccin_ok then
+  vim.cmd [[ colorscheme catppuccin ]]
+end
 -- vim.cmd("let g:gruvbox_material_background= 'hard'")
 -- vim.cmd("let g:gruvbox_material_transparent_background=0")
 -- vim.cmd([[colorscheme gruvbox-material]]) -- Set color scheme
@@ -17,10 +20,12 @@ if status_ok then
   comment.setup()
 end
 
-local telescope = require("telescope")
-local notify_ok, notify = pcall(require, "notify")
-if notify_ok then
-  telescope.load_extension("notify")
+local telescope_ok, telescope = pcall( require, "telescope")
+if telescope_ok then
+  local notify_ok, _ = pcall(require, "notify")
+  if notify_ok then
+    telescope.load_extension("notify")
+  end
 end
 
 vim.api.nvim_set_hl(0, 'EyelinerPrimary', { fg = '#ff00ff', bold = true, underline = false })

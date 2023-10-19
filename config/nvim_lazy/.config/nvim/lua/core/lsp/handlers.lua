@@ -51,12 +51,15 @@ M.setup = function()
 end
 
 local function lsp_keymaps(client, bufnr)
-  local Remap = require("user.keymap")
+  local Remap = require("core.utils.keymap")
   local nnoremap = Remap.nnoremap
   local inoremap = Remap.inoremap
   local vnoremap = Remap.vnoremap
   if client.name == "jdtls" then
-    nnoremap("<leader>lpc", function() require("jdtls").update_project_config() end)
+    nnoremap("<leader>lpc", function()
+      local jdtls_ok, jdtls = pcall(require, "jdtls")
+      if jdtls_ok then jdtls.update_project_config() end
+    end)
   end
   nnoremap("gd", function() vim.lsp.buf.definition() end)
   nnoremap("K", function() vim.lsp.buf.hover() end)
@@ -69,12 +72,15 @@ local function lsp_keymaps(client, bufnr)
   nnoremap("<leader>lrn", function() vim.lsp.buf.rename() end)
   inoremap("<C-h>", function() vim.lsp.buf.signature_help() end)
   inoremap("<C-K>", function() vim.lsp.buf.hover() end)
-  nnoremap("<leader>lsf", function()
-    require("telescope.builtin").lsp_document_symbols(require("telescope.themes")
-      .get_dropdown { previewer = false })
-  end)
   nnoremap("<leader>lf", function() vim.lsp.buf.format { async = true } end)
   vnoremap("<leader>lrf", function() vim.lsp.buf.range_formatting() end)
+  local telescope_ok, _ = pcall(require, "telescope")
+  if telescope_ok then
+    nnoremap("<leader>lsf", function()
+      require("telescope.builtin").lsp_document_symbols(require("telescope.themes")
+        .get_dropdown { previewer = false })
+    end)
+  end
 end
 
 local disable_format = function(c)
@@ -90,7 +96,7 @@ local exclude_nullls = {
 }
 M.on_init = function(client)
   if client.name == "jdtls" then
-    local java_config = require("user.lsp.settings.java_config")
+    local java_config = require("core.lsp.settings.java_config")
     client.config.settings = java_config.settings
     client.config.cmd = java_config.cmd
     disable_format(client)
@@ -114,10 +120,17 @@ M.on_attach = function(client, bufnr)
   lsp_keymaps(client, bufnr)
 
   if client.name == "jdtls" then
-    vim.lsp.codelens.refresh()
-    require("jdtls").setup_dap { hotcodereplace = "auto" }
-    require("jdtls.dap").setup_dap_main_class_configs()
+    local jdtls_ok, jdtls = pcall( require, "jdtls")
+    if jdtls_ok then
+      vim.lsp.codelens.refresh()
+      jdtls.setup_dap { hotcodereplace = "auto" }
+      require("jdtls.dap").setup_dap_main_class_configs()
+    end
   end
+
+  -- if client.server_capabilities.signatureHelpProvider then
+  --   client.server_capabilities.signatureHelpProvider = true
+  -- end
 
   M.capabilities = vim.lsp.protocol.make_client_capabilities()
   M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)

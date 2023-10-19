@@ -256,6 +256,14 @@ alias .5='cd ../../../../..'
 
 # vim and emacs
 alias v="nvim"
+alias fv="NVIM_FULL=1 nvim"
+alias c_v="NVIM_CLANGD=1 nvim"
+alias p_v="NVIM_PHP=1 nvim"
+alias j_v="NVIM_JAVA=1 nvim"
+alias n_v="NVIM_NODE=1 nvim"
+alias h_v="NVIM_HTML=1 nvim"
+
+
 #alias vim='nvim'
 alias em='/usr/bin/emacs -nw'
 alias emacs="emacsclient -c -a 'emacs'"

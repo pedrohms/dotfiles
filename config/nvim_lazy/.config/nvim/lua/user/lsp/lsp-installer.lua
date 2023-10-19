@@ -35,13 +35,13 @@ local mason_packages = {
   "go-debug-adapter",
   "java-debug-adapter",
   "java-test",
+  "google-java-format",
   "js-debug-adapter",
   "node-debug2-adapter",
   "php-debug-adapter",
   "php-cs-fixer",
   "prettier",
   "blade-formatter",
-  "google-java-format"
 }
 
 local settings = {

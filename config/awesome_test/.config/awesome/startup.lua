@@ -36,12 +36,12 @@ if not is_restart() then
   awful.spawn.with_shell("flameshot")
   awful.spawn.with_shell("$HOME/.config/ph-autostart/autostart.sh")
 
-  if os.getenv("USER") == "framework" then
-    awful.spawn.with_shell("setxkbmap -layout us -variant intl")
-  else
+  -- if os.getenv("USER") == "framework" then
+  --   awful.spawn.with_shell("setxkbmap -layout us -variant intl")
+  -- else
     awful.spawn.with_shell("setxkbmap -layout br -variant abnt2")
-  end
-
+  -- end
+  --
   if os.getenv("PH_MACHINE") == "g15" then
     gears.timer {
         timeout   = 5,
