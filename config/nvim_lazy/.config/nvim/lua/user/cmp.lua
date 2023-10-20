@@ -17,10 +17,13 @@ local snippets_paths = function()
   local plugins = { "friendly-snippets" }
   local paths = {}
   local path
-  local root_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/"
+  local root_path = vim.fn.stdpath "data" .. "/lazy/"
+  require"user.log.log".println(vim.inspect(root_path))
   for _, plug in ipairs(plugins) do
-    path = root_path .. plug
+    path = root_path .. plug .. "/snippets"
+    require"user.log.log".println(vim.inspect(path))
     if vim.fn.isdirectory(path) ~= 0 then
+      require"user.log.log".println(vim.inspect(path))
       table.insert(paths, path)
     end
   end
@@ -28,7 +31,7 @@ local snippets_paths = function()
 end
 
 luasnip_vscode.lazy_load({
-  paths = snippets_paths(),
+  -- paths = snippets_paths(),
   include = nil, -- Load all languages
   exclude = { "pug" },
 })

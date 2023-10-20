@@ -86,8 +86,14 @@ return lazy.setup({
   { "SmiteshP/nvim-navic" },
   { "mfussenegger/nvim-jdtls" },
   { "moll/vim-bbye" },
+  {
+    "mfussenegger/nvim-lint",
+  },
   -- snippets
-  { "L3MON4D3/LuaSnip" },
+  {
+    "L3MON4D3/LuaSnip",
+    dependencies = { "rafamadriz/friendly-snippets" },
+  },
   -- DAP
   { "mfussenegger/nvim-dap" },
   { "theHamsta/nvim-dap-virtual-text" },
@@ -97,13 +103,16 @@ return lazy.setup({
   -- END OF DAP
   --
   { "rcarriga/nvim-notify" },
-  { "catppuccin/nvim",              as = "catppuccin" },
+  { "catppuccin/nvim",                as = "catppuccin" },
   -- { "kyazdani42/nvim-web-devicons"},
   { "nvim-tree/nvim-web-devicons" },
   { "nvim-lualine/lualine.nvim", },
   { "gruvbox-community/gruvbox" },
   { "lewis6991/gitsigns.nvim" },
   -- { "sainnhe/gruvbox-material" },
+  {
+    'wittyjudge/gruvbox-material.nvim', priority = 1000, config = true
+  },
   { "nvim-treesitter/nvim-treesitter-context" },
   -- Colorschemes
   -- { "folke/tokyonight.nvim" },
@@ -133,7 +142,7 @@ return lazy.setup({
   -- { "tpope/vim-surround" },
 
   -- snippets
-  -- use({ "rafamadriz/friendly-snippets" })    -- a bunch of snippets to use
+  { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
   -- { "ThePrimeagen/harpoon" },
 
 
@@ -183,6 +192,6 @@ return lazy.setup({
   --     require("telescope").load_extension "laravel"
   --   end,
   -- },
- -- { "ellisonleao/gruvbox.nvim" }
- -- {"jwalton512/vim-blade"}
+  -- { "ellisonleao/gruvbox.nvim" }
+  -- {"jwalton512/vim-blade"}
 })

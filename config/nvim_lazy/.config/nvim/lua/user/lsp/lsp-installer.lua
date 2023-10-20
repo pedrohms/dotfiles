@@ -42,6 +42,7 @@ local mason_packages = {
   "php-cs-fixer",
   "prettier",
   "blade-formatter",
+  "black",
 }
 
 local settings = {

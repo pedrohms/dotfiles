@@ -20,5 +20,7 @@ return {
     "hbs",
     "handlebars",
     "vue",
+    "php",
+    "blade"
   },
 }

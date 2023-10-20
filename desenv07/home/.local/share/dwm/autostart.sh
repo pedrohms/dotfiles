@@ -20,7 +20,7 @@ dunst &
 xset r rate 240 40 &
 xrandr --auto
 xrandr --output HDMI-A-0 --mode 1920x1080 --rate 60 --pos 0x0 --primary --output DVI-D-0 --rate 60 --pos 1920x0
-feh  --bg-fill $HOME/.local/wall/0001.jpg &
+feh  --bg-fill $HOME/.local/wall/0003.png &
 dwmblocks &
 picom --config $HOME/.config/picom/picom.conf --vsync &
 if [[ -f $PH_AUTOSTART ]]; then
