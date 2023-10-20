@@ -43,12 +43,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
--- vim.api.nvim_create_autocmd({ "FileType" }, {
---   pattern = { "*" },
---   callback = function()
---     vim.cmd [[ TSEnable highlight ]]
---   end,
--- })
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "*" },
+  callback = function()
+    vim.cmd [[ TSEnable highlight ]]
+  end,
+})
 
 vim.cmd "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif"
 -- vim.api.nvim_create_autocmd({ "BufEnter" }, {

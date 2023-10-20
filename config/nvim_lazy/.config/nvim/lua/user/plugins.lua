@@ -183,5 +183,6 @@ return lazy.setup({
   --     require("telescope").load_extension "laravel"
   --   end,
   -- },
-  -- {"jwalton512/vim-blade"}
+ { "ellisonleao/gruvbox.nvim" }
+ -- {"jwalton512/vim-blade"}
 })

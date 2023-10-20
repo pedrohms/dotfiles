@@ -128,9 +128,6 @@ M.on_attach = function(client, bufnr)
     end
   end
 
-  -- if client.server_capabilities.signatureHelpProvider then
-  --   client.server_capabilities.signatureHelpProvider = true
-  -- end
 
   M.capabilities = vim.lsp.protocol.make_client_capabilities()
   M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
