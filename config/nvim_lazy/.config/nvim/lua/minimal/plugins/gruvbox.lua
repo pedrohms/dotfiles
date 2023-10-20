@@ -1,5 +1,9 @@
+-- local M = {
+--  "gruvbox-community/gruvbox"
+-- }
+
 local M = {
-  "gruvbox-community/gruvbox"
+  'wittyjudge/gruvbox-material.nvim', priority = 1000, config = true
 }
 -- local M = {
 --   "ellisonleao/gruvbox.nvim", priority = 1000, config = true

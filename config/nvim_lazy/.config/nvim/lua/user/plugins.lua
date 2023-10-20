@@ -101,9 +101,9 @@ return lazy.setup({
   -- { "kyazdani42/nvim-web-devicons"},
   { "nvim-tree/nvim-web-devicons" },
   { "nvim-lualine/lualine.nvim", },
-
+  { "gruvbox-community/gruvbox" },
   { "lewis6991/gitsigns.nvim" },
-  { "sainnhe/gruvbox-material" },
+  -- { "sainnhe/gruvbox-material" },
   { "nvim-treesitter/nvim-treesitter-context" },
   -- Colorschemes
   -- { "folke/tokyonight.nvim" },
@@ -183,6 +183,6 @@ return lazy.setup({
   --     require("telescope").load_extension "laravel"
   --   end,
   -- },
- { "ellisonleao/gruvbox.nvim" }
+ -- { "ellisonleao/gruvbox.nvim" }
  -- {"jwalton512/vim-blade"}
 })

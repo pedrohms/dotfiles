@@ -1,5 +1,6 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
-
+import:
+ - ~/.config/alacritty/themes/themes/gruvbox_material_medium_dark.yaml
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
@@ -579,7 +580,7 @@ schemes:
 # *SolarizedDark
 # *TomorrowNight
 
-colors: *DoomOne
+#colors: *Gruvbox
 
 #######################################
 ##       END OF COLOR SCHEMES        ##

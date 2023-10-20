@@ -15,7 +15,8 @@ end
 
 -- For example, changing the color scheme:
 -- config.color_scheme = '3024 (dark) (terminal.sexy)'
-config.color_scheme = 'DoomOne'
+-- config.color_scheme = 'Gruvbox Dark (Gogh)'
+config.color_scheme =  'GruvboxDarkHard'
 config.enable_tab_bar = false
 
 config.font = wezterm.font 'IosevkaTerm Nerd Font'
@@ -24,7 +25,7 @@ config.font = wezterm.font_with_fallback {
   'JetBrainsMono Nerd Font',
 }
 config.font_size = 13
-
+config.front_end = "OpenGL"
 config.window_background_opacity = 0.9
 config.window_padding = {
   top = 12,

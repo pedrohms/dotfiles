@@ -1,11 +1,12 @@
 local awesome, client, mouse, screen, tag = awesome, client, mouse, screen, tag
 local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, table, tostring, tonumber, type
 
-local gears = require("gears") --Utilities such as color parsing and objects
+local utils = require("lib.utils")
 local awful = require("awful") --Everything related to window managment
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
+local gears = require("gears") --Utilities such as color parsing and objects
 
 -- Theme handling library
 local beautiful = require("beautiful")
@@ -15,6 +16,8 @@ local naughty                        = require("naughty")
 naughty.config.defaults['icon_size'] = 100
 
 local lain        = require("lain")
+
+local scratch = require("lib.scratch")
 -- local freedesktop = require("freedesktop")
 
 -- Enable hotkeys help widget for VIM and other apps
@@ -73,7 +76,6 @@ local chrome      = "google-chrome-stable"
 -- local browser     = "nvidia-offload vivaldi"
 local editor      = "nvim"
 local mediaplayer = "mpv"
-local soundplayer = "ffplay -nodisp -autoexit " -- The program that will play system sounds
 
 
 -- local anim_y = rubato.timed {
@@ -190,38 +192,6 @@ lain.layout.cascade.tile.ncol          = 2
 
 beautiful.init(string.format(gears.filesystem.get_configuration_dir() .. "/themes/%s/theme.lua", chosen_theme))
 
-local myawesomemenu = {
-  { "hotkeys", function() return false, hotkeys_popup.show_help end },
-  { "manual", terminal .. " -e 'man awesome'" },
-  { "edit config", "emacsclient -c -a emacs ~/.config/awesome/rc.lua" },
-  { "arandr", "arandr" },
-  { "restart", awesome.restart },
-}
-
--- awful.util.mymainmenu = freedesktop.menu.build({
---   icon_size = beautiful.menu_height or 16,
---   before = {
---     { "Awesome", myawesomemenu, beautiful.awesome_icon },
---     --{ "Atom", "atom" },
---     -- other triads can be put here
---   },
---   after = {
---     { "Terminal", terminal },
---     { "Log out", function() awesome.quit() end },
---     { "Sleep", "systemctl suspend" },
---     { "Restart", "systemctl reboot" },
---     { "Exit", "systemctl poweroff" },
---     -- other triads can be put here
---   }
--- })
---menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
-
--- local soundDir = "/opt/dtos-sounds/" -- The directory that has the sound files
---
--- local startupSound  = soundDir .. "startup-01.mp3"
--- local shutdownSound = soundDir .. "shutdown-01.mp3"
--- local dmenuSound    = soundDir .. "menu-01.mp3"
-
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", function(s)
   -- Wallpaper
@@ -245,6 +215,8 @@ root.buttons(my_table.join(
 
 globalkeys = my_table.join(
 
+  awful.key({ modkey, }, "[", function() scratch.toggle("alacritty --class scratch2,scratch2", utils.scratchRule("scratch2")) end),
+  awful.key({ modkey, }, "]", function() scratch.toggle("alacritty --class scratch,scratch", utils.scratchRule("scratch")) end),
 -- {{{ Personal keybindings
   -- awful.key({ modkey, ctrlkey }, "Return", function() if Term_scratch then Term_scratch:toggle() end end),
   -- awful.key({ modkey, "Shift" }, "w",
@@ -339,14 +311,12 @@ globalkeys = my_table.join(
       function(_, key, event)
         if event == "release" then return end
 
-        if key == "h" then awful.spawn.with_shell("dm-hub")
-        elseif key == "i" then awful.spawn.with_shell("dm-maim")
+        if key == "i" then awful.spawn.with_shell("dm-maim")
         elseif key == "k" then awful.spawn.with_shell("dm-kill")
         elseif key == "m" then awful.spawn.with_shell("dm-man")
         elseif key == "n" then awful.spawn.with_shell("dm-note")
         elseif key == "o" then awful.spawn.with_shell("dm-bookman")
         elseif key == "p" then awful.spawn.with_shell("dm-offload")
-        elseif key == "q" then awful.spawn.with_shell("dm-logout")
         elseif key == "s" then awful.spawn.with_shell("dm-websearch")
         end
         awful.keygrabber.stop(grabber)
@@ -705,8 +675,8 @@ awful.rules.rules = {
   { rule = { class = "Xfce4-settings-manager" },
     properties = { floating = false } },
 
-  -- { rule = { class = "scratchpad", role = "scratchpad" },
-  --   properties = { floating = true } },
+  { rule = { class = "scratch"},
+    properties = { floating = true, placement = awful.placement.centered } },
 
 
   -- Floating clients.
@@ -829,40 +799,4 @@ client.connect_signal("focus", border_adjust)
 client.connect_signal("property::maximized", border_adjust)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
--- awful.spawn.with_shell(soundplayer .. startupSound)
-awful.spawn.with_shell("lxsession")
-awful.spawn.with_shell("picom")
-awful.spawn.with_shell("nm-applet")
-awful.spawn.with_shell("volumeicon")
-awful.spawn.with_shell("conky -c $HOME/.config/conky/awesome/doom-one-01.conkyrc")
-awful.spawn.with_shell("LG3D")
-awful.spawn.with_shell("xset r rate 210 40")
-awful.spawn.with_shell("flameshot")
--- awful.spawn.with_shell("feh  --bg-fill $HOME/.local/wall/0001.jpg")
-
--- awful.spawn.with_shell("/usr/bin/emacs --daemon")
--- if os.getenv("USER") == "framework" then
---   awful.spawn.with_shell("setxkbmap -layout us -variant intl")
--- else
---   awful.spawn.with_shell("setxkbmap -layout br -variant abnt2")
--- end
--- awful.spawn.with_shell("xargs xwallpaper --stretch < ~/.cache/wall")
---awful.spawn.with_shell("~/.fehbg") -- set last saved feh wallpaper
---awful.spawn.with_shell("feh --randomize --bg-fill /usr/share/backgrounds/dtos-backgrounds/*") -- feh sets random wallpaper
---awful.spawn.with_shell("nitrogen --restore") -- if you prefer nitrogen to feh/xwallpaper
-
--- local timer1 = gears.start_new(1, function()
---     return false
--- end)
---
--- timer1:emit_signal("timeout")
-if os.getenv("PH_MACHINE") == "g15" then
-  gears.timer {
-      timeout   = 2,
-      call_now  = true,
-      autostart = false,
-      callback  = function()
-        awful.spawn.with_shell("$HOME/.config/ph-autostart/awesome/autostart.sh")
-      end
-  }
-end
+require("startup")

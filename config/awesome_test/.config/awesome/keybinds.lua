@@ -1,7 +1,7 @@
 local awful = require("awful")
 local browser = "brave"
 local chrome = "google-chrome-stable"
-local terminal = "alacritty"
+local terminal = "wezterm start tmux"
 local scratch = require("lib.scratch")
 local naughty = require("naughty")
 local utils = require("lib.utils")
@@ -86,10 +86,10 @@ local keys = {
 
   awful.key({ modkey, }, ".", function() awful.screen.focus_relative(1) end),
   awful.key({ modkey, }, ",", function() awful.screen.focus_relative(-1) end),
-  awful.key({ modkey, }, "Return", function() spawnWithShell(terminal .. " -e tmux") end,
+  awful.key({ modkey, }, "Return", function() spawnWithShell(terminal) end,
     { description = "open a terminal", group = "launcher" }),
   awful.key({ modkey, "Shift" }, "Return", function() spawnWithShell("dm-run") end,
-    { description = "open a terminal", group = "launcher" }),
+    { description = "open a dmenu", group = "launcher" }),
 
   awful.key({ modkey, "Shift" }, "r", awesome.restart,
     { description = "reload awesome", group = "awesome" }),
