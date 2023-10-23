@@ -7,7 +7,7 @@ function run {
     $@&
   fi
 }
-setxkbmap -layout en -variant intl &
+setxkbmap -layout br -variant abnt2 &
 #start sxhkd to replace Qtile native key-bindings
 flameshot &
 sxhkd -c ~/.config/sxhkd/sxhkdrc &
