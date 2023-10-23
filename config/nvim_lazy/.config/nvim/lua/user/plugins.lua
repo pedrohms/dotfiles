@@ -160,7 +160,7 @@ return lazy.setup({
   -- use({ "pedrohms/surround.nvim", commit = "master" })
   -- { "windwp/nvim-ts-autotag" },
   { "windwp/nvim-autopairs" },
-  -- { "tpope/vim-surround" },
+  { "tpope/vim-surround" },
 
   -- snippets
   { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
