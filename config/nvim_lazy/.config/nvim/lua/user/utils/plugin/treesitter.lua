@@ -5,7 +5,7 @@ if status_ok then
     sync_install = false,
     ignore_install = { "phpdoc", "tflint", "markdown", "markdown_inline", "tla", "tla+", "tlaplus" },
     highlight = {
-      enable = false,
+      enable = true,
       additional_vim_regex_highlighting = true,
     },
     indent = {
