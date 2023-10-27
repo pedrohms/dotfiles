@@ -78,29 +78,31 @@ local function lsp_keymaps(client, bufnr)
 end
 
 local initFlutterTools = function()
-  local flutter_path = os.getenv("FLUTTER_PATH") .. "/bin/flutter" or ""
-  require("core.log.log").println(flutter_path)
-  require("flutter-tools").setup {
-    debugger = {
-      enabled = true,
-      run_via_dap = true,
-      exception_breakpoints = {},
-      register_configurations = function(_)
-        require("dap").configurations.dart = {
-          {
-            name = "flutter_project",
-            request = "launch",
-            type = "dart"
+  local flutter_ok, flutter = pcall(require, "flutter-tools")
+  if flutter_ok then
+    local flutter_path = os.getenv("FLUTTER_PATH") .. "/bin/flutter" or ""
+    flutter.setup {
+      debugger = {
+        enabled = true,
+        run_via_dap = true,
+        exception_breakpoints = {},
+        register_configurations = function(_)
+          require("dap").configurations.dart = {
+            {
+              name = "flutter_project",
+              request = "launch",
+              type = "dart"
+            }
           }
-        }
-      end,
-    },
-    flutter_path = flutter_path,
-    widget_guides = {
-      enabled = true,
-    },
-  }
-  require("telescope").load_extension("flutter")
+        end,
+      },
+      flutter_path = flutter_path,
+      widget_guides = {
+        enabled = true,
+      },
+    }
+    require("telescope").load_extension("flutter")
+  end
 end
 local disable_format = function(c)
   if c["server_capatilities"] ~= nil then
