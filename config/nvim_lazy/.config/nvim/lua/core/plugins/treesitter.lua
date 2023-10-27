@@ -27,7 +27,7 @@ local M = {
       },
       autotag = {
         enable = true,
-        disable = { "xml" },
+        disable = { "xml", "blade", "php" },
       },
       rainbow = {
         enable = true,

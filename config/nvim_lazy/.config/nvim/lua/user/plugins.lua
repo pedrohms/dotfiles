@@ -117,17 +117,17 @@ return lazy.setup({
     "nvim-treesitter/nvim-treesitter-context",
     init = function()
       require 'treesitter-context'.setup {
-        enable = true,         -- Enable this plugin (Can be enabled/disabled later via commands)
-        max_lines = 5,         -- How many lines the window should span. Values <= 0 mean no limit.
-        min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+        enable = true,           -- Enable this plugin (Can be enabled/disabled later via commands)
+        max_lines = 5,           -- How many lines the window should span. Values <= 0 mean no limit.
+        min_window_height = 0,   -- Minimum editor window height to enable context. Values <= 0 mean no limit.
         line_numbers = true,
         multiline_threshold = 5, -- Maximum number of lines to show for a single context
-        trim_scope = 'outer',  -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-        mode = 'cursor',       -- Line used to calculate context. Choices: 'cursor', 'topline'
+        trim_scope = 'outer',    -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+        mode = 'cursor',         -- Line used to calculate context. Choices: 'cursor', 'topline'
         -- Separator between context and content. Should be a single character string, like '-'.
         -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
         separator = nil,
-        zindex = 20,   -- The Z-index of the context window
+        zindex = 20,     -- The Z-index of the context window
         on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
       }
       vim.keymap.set("n", "[c", function()
@@ -149,8 +149,56 @@ return lazy.setup({
   -- { "onsails/lspkind-nvim" },
   -- { "lvimuser/lsp-inlayhints.nvim" },
   -- { "glepnir/lspsaga.nvim" },
-  -- { "akinsho/flutter-tools.nvim" },
-  -- { "simrat39/symbols-outline.nvim" },
+  {
+    'akinsho/flutter-tools.nvim',
+    lazy = false,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'stevearc/dressing.nvim', -- optional for vim.ui.select
+    },
+    init = function()
+      -- require("flutter-tools").setup {
+      --   debugger = {
+      --     enabled = true,
+      --     run_via_dap = true,
+      --     exception_breakpoints = {},
+      --     register_configurations = function(_)
+      --       require("dap").configurations.dart = {
+      --         {
+      --           name = "flutter_project",
+      --           request = "launch",
+      --           type = "dart"
+      --         }
+      --       }
+      --     end,
+      --   },
+      --   widget_guides = {
+      --     enabled = true,
+      --   },
+      --   dev_tools = {
+      --     autostart = true,          -- autostart devtools server if not detected
+      --     auto_open_browser = false, -- Automatically opens devtools in the browser
+      --   },
+      -- }
+      -- require("telescope").load_extension("flutter")
+    end,
+    config = true,
+  },
+  -- {
+  --   "simrat39/symbols-outline.nvim",
+  --   init = function()
+  --     require("symbols-outline").setup()
+  --   end
+  -- },
+  {
+    'stevearc/aerial.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
+  },
   -- { "akinsho/bufferline.nvim" },
   { "akinsho/toggleterm.nvim" },
   -- { "tamago324/nlsp-settings.nvim" },    -- language server settings defined in json for
@@ -158,10 +206,23 @@ return lazy.setup({
   -- { "mhartington/formatter.nvim" },
   -- { "lukas-reineke/indent-blankline.nvim" },
   -- use({ "pedrohms/surround.nvim", commit = "master" })
-  -- { "windwp/nvim-ts-autotag" },
-  { "windwp/nvim-autopairs" },
-  { "tpope/vim-surround" },
-
+  { "windwp/nvim-ts-autotag" },
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {} -- this is equalent to setup({}) function
+  },
+  -- { "tpope/vim-surround" },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  },
   -- snippets
   { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
   -- { "ThePrimeagen/harpoon" },

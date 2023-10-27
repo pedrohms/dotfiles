@@ -32,6 +32,19 @@ vim.diagnostic.config({
   virtual_text = true
 })
 
+local arerial_ok, aerial = pcall(require, "aerial")
+if arerial_ok then
+  aerial.setup({
+    -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+    on_attach = function(bufnr)
+      -- Jump forwards/backwards with '{' and '}'
+      vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+      vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+    end,
+  })
+  -- You probably also want to set a keymap to toggle aerial
+  vim.keymap.set("n", "<leader>lo", "<cmd>AerialToggle!<CR>")
+end
 -- local l_status_ok, lsp_lines = pcall(require, "lsp_lines")
 -- if not l_status_ok then
 --   return

@@ -77,6 +77,31 @@ local function lsp_keymaps(client, bufnr)
   vnoremap("<leader>lrf", function() vim.lsp.buf.range_formatting() end)
 end
 
+local initFlutterTools = function()
+  local flutter_path = os.getenv("FLUTTER_PATH") .. "/bin/flutter" or ""
+  require("core.log.log").println(flutter_path)
+  require("flutter-tools").setup {
+    debugger = {
+      enabled = true,
+      run_via_dap = true,
+      exception_breakpoints = {},
+      register_configurations = function(_)
+        require("dap").configurations.dart = {
+          {
+            name = "flutter_project",
+            request = "launch",
+            type = "dart"
+          }
+        }
+      end,
+    },
+    flutter_path = flutter_path,
+    widget_guides = {
+      enabled = true,
+    },
+  }
+  require("telescope").load_extension("flutter")
+end
 local disable_format = function(c)
   if c["server_capatilities"] ~= nil then
     c.server_capabilities.document_formatting = false
@@ -119,6 +144,10 @@ M.on_attach = function(client, bufnr)
     require("jdtls.dap").setup_dap_main_class_configs()
   end
 
+  if client.name == "dartls" then
+    initFlutterTools()
+  end
+
   M.capabilities = vim.lsp.protocol.make_client_capabilities()
   M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
   M.capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -131,5 +160,6 @@ M.on_attach = function(client, bufnr)
     end
   end
 end
+
 
 return M

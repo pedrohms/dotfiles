@@ -17,7 +17,13 @@ if status_ok then
     },
     autotag = {
       enable = true,
-      disable = { "xml" },
+      filetypes = {
+        'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx',
+        'rescript',
+        'xml',
+        'markdown',
+        'astro', 'glimmer', 'handlebars', 'hbs'
+      },
     }
   }
 end

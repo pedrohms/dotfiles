@@ -26,6 +26,7 @@ local servers = {
   "dockerls",
   "rust_analyzer",
   "solidity",
+  -- "phpactor",
   "intelephense",
 }
 
@@ -124,6 +125,13 @@ for _, server in pairs(servers) do
     end
   end
 
+  if server == "phpactor" then
+    if os.getenv("PHPACTOR_PATH") ~= nil then
+      local phpactor_cmd = { cmd = { os.getenv("PHPACTOR_PATH") .. "/bin/phpactor", "language-server" } }
+      opts = vim.tbl_deep_extend("force", phpactor_cmd, opts)
+    end
+  end
+
   if server == "lua_ls" then
     local sumneko_opts = require "user.lsp.settings.lua_ls"
     if os.getenv("NIX_USER_PROFILE_DIR") ~= nil then
@@ -213,6 +221,15 @@ for _, server in pairs(outside_config) do
       },
     }
     vim.tbl_deep_extend("force", dart_opts, opts)
+
+    if os.getenv("NIX_PATH") ~= nil then
+      if os.getenv("DART_PATH") ~= nil then
+        local dart_cmd_opts = {
+          cmd = { os.getenv("DART_PATH") .. "/bin/dart", "language-server", "--protocol=lsp" },
+        }
+        vim.tbl_deep_extend("force", dart_cmd_opts, opts)
+      end
+    end
   end
 
   lspconfig[server].setup(opts)
