@@ -1,1 +1,1 @@
-vim.cmd [[ autocmd BufRead,BufEnter *.blade.php set filetype=php ]]
+vim.cmd [[ autocmd BufRead,BufEnter *.blade.php set filetype=blade ]]

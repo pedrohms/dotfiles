@@ -26,8 +26,8 @@ local servers = {
   "dockerls",
   "rust_analyzer",
   "solidity",
-  -- "phpactor",
-  "intelephense",
+  "phpactor",
+  -- "intelephense",
 }
 
 local mason_packages = {

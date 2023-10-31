@@ -58,6 +58,27 @@ end
 require("user.custom_dap.node")
 require("user.custom_dap.go_delve")
 
+if os.getenv("LLDB_PATH") then
+  dap.adapters.lldb = {
+    type = "executable",
+    command = os.getenv("LLDB_PATH") .. "/codelldb",
+    name = "lldb"
+  }
+  dap.configurations.c = {
+    {
+      name = "Launch",
+      type = "lldb",
+      request = "launch",
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      end,
+      cwd = "${workspaceFolder}",
+    },
+  }
+end
+
+dap.configurations.cpp = dap.configurations.c
+
 nnoremap("<leader>1", function()
   dapui.toggle(1)
 end)
