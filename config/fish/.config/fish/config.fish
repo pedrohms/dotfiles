@@ -330,6 +330,7 @@ alias push='git push origin'
 alias tag='git tag'
 alias newtag='git tag -a'
 alias gstatus='git status -s'
+alias gtree='git log --graph --pretty=oneline'
 
 # get error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
