@@ -31,7 +31,7 @@ local snippets_paths = function()
 end
 
 luasnip_vscode.lazy_load({
-  paths = snippets_paths(),
+  -- paths = snippets_paths(),
   include = nil, -- Load all languages
   exclude = { "pug" },
 })
