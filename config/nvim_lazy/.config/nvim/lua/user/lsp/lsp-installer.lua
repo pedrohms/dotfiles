@@ -170,6 +170,15 @@ for _, server in pairs(servers) do
     opts = vim.tbl_deep_extend("force", intelephense_opts, opts)
   end
 
+  if server == "kotlin_language_server" then
+    if os.getenv("KOTLIN_LSP_HOME") ~= nil then
+      local kotlin_opts = {
+        cmd = { os.getenv("KOTLIN_LSP_HOME") .. "/bin/kotlin-language-server" }
+      }
+      opts = vim.tbl_deep_extend("force", kotlin_opts, opts)
+    end
+  end
+
   -- if server == "jdtls" then
   --   local function on_language_status(_, result)
   --     -- local command = vim.api.nvim_command
