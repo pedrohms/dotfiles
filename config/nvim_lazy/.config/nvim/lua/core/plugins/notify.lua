@@ -30,6 +30,8 @@ return {
       -- Minimum width for notification windows
       minimum_width = 10,
 
+      level = vim.log.levels.ERROR,
+
       -- Icons for the different levels
       icons = {
         ERROR = icons.diagnostics.Error,

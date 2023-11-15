@@ -38,32 +38,69 @@ local check_backspace = function()
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
+local source_icons = {
+  nvim_lsp = "[lsp]",
+  nvim_lua = "[lua]",
+  luasnip = "[luasnip]",
+  buffer = "[buffer]",
+  path = "[path]",
+  emoji = "[emoji]",
+}
+
+-- local kind_icons = {
+--   Text = "",
+--   Method = "",
+--   Function = "",
+--   Constructor = "",
+--   Field = "",
+--   Variable = "",
+--   Class = "",
+--   Interface = "",
+--   Module = "",
+--   Property = "",
+--   Unit = "",
+--   Value = "",
+--   Enum = "",
+--   Keyword = "",
+--   Snippet = "",
+--   Color = "",
+--   File = "",
+--   Reference = "",
+--   Folder = "",
+--   EnumMember = "",
+--   Constant = "",
+--   Struct = "",
+--   Event = "",
+--   Operator = "",
+--   TypeParameter = "",
+-- }
+
 local kind_icons = {
-  Text = "",
-  Method = "",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "",
-  Interface = "",
-  Module = "",
-  Property = "",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
+  Text = "Text",
+  Method = "Method",
+  Function = "Function",
+  Constructor = "Constructor",
+  Field = "Field",
+  Variable = "Variable",
+  Class = "Class",
+  Interface = "Interface",
+  Module = "Module",
+  Property = "Property",
+  Unit = "Unit",
+  Value = "Value",
+  Enum = "Enum",
+  Keyword = "Keyword",
+  Snippet = "Snippet",
+  Color = "Color",
+  File = "File",
+  Reference = "Reference",
+  Folder = "Folder",
+  EnumMember = "EnumMember",
+  Constant = "Constant",
+  Struct = "Struct",
+  Event = "Event",
+  Operator = "Operator",
+  TypeParameter = "TypeParametr",
 }
 
 cmp.setup({
@@ -116,18 +153,21 @@ cmp.setup({
 }),
   }),
   formatting = {
-    fields = { "kind", "abbr", "menu" },
+    -- fields = { "kind", "abbr", "menu" },
+    fields = { "abbr", "menu", "kind" },
     format = function(entry, vim_item)
-      vim_item.kind = kind_icons[vim_item.kind]
-      vim_item.menu = ({
-        nvim_lsp = "",
-        nvim_lua = "",
-        luasnip = "",
-        buffer = "",
-        path = "",
-        emoji = "",
-      })[entry.source.name]
-      vim_item.abbr = string.sub(vim_item.abbr, 1, 80)
+    --   vim_item.kind = kind_icons[vim_item.kind]
+    --   vim_item.menu = ({
+    --     nvim_lsp = "",
+    --     nvim_lua = "",
+    --     luasnip = "",
+    --     buffer = "",
+    --     path = "",
+    --     emoji = "",
+    --   })[entry.source.name]
+      vim_item.kind = source_icons[entry.source.name] .. " " .. kind_icons[vim_item.kind] .. " "
+      vim_item.menu = ""
+      vim_item.abbr = string.sub(vim_item.abbr, 1, 50)
       return vim_item
     end,
   },
@@ -156,8 +196,8 @@ cmp.setup({
     select = false,
   },
   window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
   },
   experimental = {
     ghost_text = true,

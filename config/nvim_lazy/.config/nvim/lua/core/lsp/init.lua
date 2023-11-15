@@ -1,6 +1,46 @@
 local M = {}
-M.servers = {}
-M.mason_packages = {}
+M.servers = {
+  "emmet_ls",
+  -- "eslint",
+  "cssls",
+  "html",
+  "jdtls",
+  "solc",
+  "lua_ls",
+  "tsserver",
+  "pyright",
+  "yamlls",
+  "bashls",
+  "clangd",
+  "gopls",
+  "volar",
+  "svelte",
+  "tailwindcss",
+  "kotlin_language_server",
+  "lemminx",
+  "astro",
+  "dockerls",
+  "rust_analyzer",
+  "solidity",
+  "phpactor",
+  -- "intelephense",
+}
+M.mason_packages = {
+  "solidity-ls",
+  "delve",
+  "go-debug-adapter",
+  "java-debug-adapter",
+  "java-test",
+  "google-java-format",
+  "js-debug-adapter",
+  "node-debug2-adapter",
+  "php-debug-adapter",
+  "php-cs-fixer",
+  "prettier",
+  "blade-formatter",
+  "black",
+}
+
 M.initCmp = function()
   require("core.lsp.cmp")
 end
@@ -127,7 +167,7 @@ M.installer = function()
     end
 
     if server == "pyright" then
-      local pyright_opts = require "code.lsp.settings.pyright"
+      local pyright_opts = require "core.lsp.settings.pyright"
       opts = vim.tbl_deep_extend("force", pyright_opts, opts)
     end
 

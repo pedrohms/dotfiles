@@ -256,7 +256,8 @@ alias .5='cd ../../../../..'
 
 # vim and emacs
 alias v="nvim"
-alias vv="NVIM_FULL=1 nvim"
+alias vv="nvim"
+alias vfull="NVIM_FULL=1 nvim"
 alias vc="NVIM_CLANGD=1 nvim"
 alias p_v="NVIM_PHP=1 nvim"
 alias vj="NVIM_JAVA=1 nvim"

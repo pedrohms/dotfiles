@@ -48,7 +48,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 --   callback = function()
 --     vim.cmd [[ TSEnable highlight ]]
 --   end,
--- })
 
 vim.cmd "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif"
 -- vim.api.nvim_create_autocmd({ "BufEnter" }, {
@@ -98,10 +97,14 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
   end,
 })
 
--- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
---   pattern = { "*" },
---   callback = function()
---     vim.lsp.buf.format { async = false }
---     vim.cmd(":w")
---   end
--- })
+local status_winbar, winbar = pcall(require, "user.winbar")
+if status_winbar then
+  vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost" }, {
+    callback = function(bf)
+      if string.match(bf.file, ".md") or string.match(bf.file, ".conf") or string.match(bf.file, ".html") or string.match(bf.file, ".blade.php") then
+        return
+      end
+      winbar.get_winbar()
+    end,
+  })
+end
