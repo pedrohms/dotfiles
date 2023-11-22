@@ -35,8 +35,8 @@ lsp.servers = {
   "dockerls",
   "rust_analyzer",
   "solidity",
-  "phpactor",
-  -- "intelephense",
+  -- "phpactor",
+  "intelephense",
 }
 lsp.mason_packages = {
   "solidity-ls",
