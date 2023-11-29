@@ -230,22 +230,23 @@ bindsym $mod+b exec --no-startup-id brave
 # client.unfocused $color8 $color0 $color8 $color8 $color8
 # client.urgent $color1 $color0 $color1 $color1 $color1
 
+exec_always waybar -c $HOME/.config/waybar/sway/config.jsonc
 # bar {
-#   swaybar_command waybar -c /home/framework/temp/sway/waybar/config
+#   swaybar_command waybar -c $HOME/.config/waybar/sway/config
 # }
-bar {
-  position top
-  # mode overlay
-  # status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-  status_command while $HOME/.config/sway/status.sh; do sleep 1; done
-  workspace_buttons yes
-  colors {
-      statusline #ffffff
-      background #323232
-      # Transparent bar
-      # background #ffffff10
-      inactive_workspace #32323200 #32323200 #5c5c5c
-  }
-}
+# bar {
+#   position top
+#   # mode overlay
+#   # status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+#   status_command while $HOME/.config/sway/status.sh; do sleep 1; done
+#   workspace_buttons yes
+#   colors {
+#       statusline #ffffff
+#       background #323232
+#       # Transparent bar
+#       # background #ffffff10
+#       inactive_workspace #32323200 #32323200 #5c5c5c
+#   }
+# }
 
-exec swaymsg layout toggle split
+# exec swaymsg layout toggle split

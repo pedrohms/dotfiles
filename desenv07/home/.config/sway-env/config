@@ -1,7 +1,7 @@
 # Input configuration
 input type:keyboard {
-    xkb_layout us
-    xkb_variant intl
+    xkb_layout br
+    xkb_variant abnt2
     repeat_delay 210
     repeat_rate 40
     xkb_options ctrl:nocaps

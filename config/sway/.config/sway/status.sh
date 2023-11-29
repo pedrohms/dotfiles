@@ -10,7 +10,7 @@ memory=$($HOME/.local/bin/memory)
 
 # The abbreviated weekday (e.g., "Sat"), followed by the ISO-formatted date
 # like 2018-10-06 and the time (e.g., 14:01)
-date_formatted=$(date "+%a %F %H:%M:%S")
+date_formatted=$(date +"%d/%m %H:%M%p"| sed 's/  / /g')
 
 # Get the Linux version but remove the "-1-ARCH" part
 linux_version=$(uname -r | cut -d '-' -f1)
