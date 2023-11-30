@@ -11,3 +11,4 @@ config/fish/.config/fish/fundle
 config/fish/.config/fish/functions
 config/fish/.config/fish/conf.d
 config/fish/.config/fish/completions
+fishd.tmp.*

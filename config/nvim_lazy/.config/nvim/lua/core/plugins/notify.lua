@@ -1,3 +1,7 @@
+local lvl = vim.log.levels.ERROR
+if os.getenv("DISABLE_LEVEL") ~= nil then
+  lvl = vim.log.levels.OFF
+end
 return {
   "rcarriga/nvim-notify",
   init = function()
@@ -30,7 +34,7 @@ return {
       -- Minimum width for notification windows
       minimum_width = 10,
 
-      level = vim.log.levels.ERROR,
+      level = lvl,
 
       -- Icons for the different levels
       icons = {
