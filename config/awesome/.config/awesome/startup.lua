@@ -54,7 +54,6 @@ if not is_restart() then
              end
           end
           sleep(2)
-          awful.spawn.with_shell("feh  --bg-fill $HOME/.local/wall/0001.jpg")
         end
     }
   end
