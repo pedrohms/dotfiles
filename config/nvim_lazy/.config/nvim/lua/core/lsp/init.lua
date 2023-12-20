@@ -152,8 +152,8 @@ M.installer = function()
 
     if server == "clangd" then
       if os.getenv("NIX_USER_PROFILE_DIR") ~= nil then
-        local sumneko_cmd = { cmd = { os.getenv("HOME") .. "/.nix-profile/bin/clangd" } }
-        opts = vim.tbl_deep_extend("force", sumneko_cmd, opts)
+        local clangd_cmd = { cmd = { os.getenv("HOME") .. "/.nix-profile/bin/clangd" } }
+        opts = vim.tbl_deep_extend("force", clangd_cmd, opts)
       end
     end
 

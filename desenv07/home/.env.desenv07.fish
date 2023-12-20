@@ -15,6 +15,6 @@ alias pd=podman
 alias pdc=podman-compose
 alias albiononline="flatpak run com.albiononline.AlbionOnline"
 alias jump="cd (ghq list -p | fzf -1 -e)"
-alias runescape="flatpak run com.jagex.RuneScape"
+# alias runescape="flatpak run com.jagex.RuneScape"
 alias oldrunescape="flatpak run dev.hdos.HDOS"
 alias runelite="flatpak run net.runelite.RuneLite"
