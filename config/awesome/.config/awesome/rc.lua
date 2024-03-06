@@ -675,6 +675,9 @@ awful.rules.rules = {
   { rule = { class = "Xfce4-settings-manager" },
     properties = { floating = false } },
 
+  { rule = { name = "Picture in Picture" },
+    properties = { floating = true } },
+
   { rule = { class = "scratch"},
     properties = { floating = true, placement = awful.placement.centered } },
 
