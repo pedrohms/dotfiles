@@ -18,8 +18,8 @@ local theme                                     = {}
 theme.default_dir                               = require("awful.util").get_themes_dir() .. "default"
 theme.icon_dir                                  = os.getenv("HOME") .. "/.config/awesome/themes/holo/icons"
 theme.wallpaper                                 = os.getenv("HOME") .. "/.local/wall/0003.png"
-theme.font                                      = "Roboto Bold 10"
-theme.taglist_font                              = "Roboto Condensed Regular 8"
+theme.font                                      = "Roboto Bold 12"
+theme.taglist_font                              = "Roboto Condensed Regular 10"
 theme.fg_normal                                 = "#FFFFFF"
 theme.fg_focus                                  = "#0099CC"
 theme.bg_focus                                  = "#303030"
@@ -73,7 +73,7 @@ theme.layout_floating                           = theme.icon_dir .. "/floating.p
 theme.nixos_logo                                = theme.icon_dir .. "/nixos_logo.png"
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
-theme.useless_gap                               = dpi(4)
+theme.useless_gap                               = dpi(0)
 theme.titlebar_close_button_normal              = theme.default_dir.."/titlebar/close_normal.png"
 theme.titlebar_close_button_focus               = theme.default_dir.."/titlebar/close_focus.png"
 theme.titlebar_minimize_button_normal           = theme.default_dir.."/titlebar/minimize_normal.png"
@@ -351,7 +351,7 @@ function theme.at_screen_connect(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons, { bg_focus = theme.bg_focus, shape = gears.shape.rectangle, shape_border_width = 5, shape_border_color = theme.tasklist_bg_normal, align = "center" })
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(28) })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(36) })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
