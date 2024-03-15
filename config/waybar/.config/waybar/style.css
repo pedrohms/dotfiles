@@ -11,13 +11,13 @@
 window#waybar {
     /* background: rgba(30, 30, 46, 1); */
     /* background: rgba(30, 30, 46, 0.8); */
-    background: #282828;
-    border-bottom: 1px solid #282828;
+    background: #242424;
+    border-bottom: 1px solid #242424;
     color: #f4d9e1
 }
 
 #workspaces {
-	background: #282828;
+	background: #242424;
 	margin: 5px 5px 5px 5px;
   padding: 0px 5px 0px 5px;
 	border-radius: 16px;
@@ -67,7 +67,7 @@ window#waybar {
 }
 
 #tray {
-    background: #282828;
+    background: #242424;
     margin: 5px 5px 5px 5px;
     border-radius: 16px;
     padding: 0px 5px;
@@ -76,7 +76,7 @@ window#waybar {
 
 #clock {
     color: #E6B9C6;
-    background-color: #282828;
+    background-color: #242424;
     border-radius: 0px 0px 0px 24px;
     padding-left: 13px;
     padding-right: 15px;
@@ -140,7 +140,7 @@ window#waybar {
 
 #custom-launcher {
     color: #e5809e;
-    background-color: #282828;
+    background-color: #242424;
     border-radius: 0px 24px 0px 0px;
     margin: 0px 0px 0px 0px;
     padding: 0 20px 0 13px;
@@ -157,7 +157,7 @@ window#waybar {
 }
 
 #custom-playerctl {
-	background: #282828;
+	background: #242424;
 	padding-left: 15px;
   padding-right: 14px;
 	border-radius: 16px;
@@ -185,7 +185,7 @@ window#waybar {
 }
 
 #window {
-    background: #282828;
+    background: #242424;
     padding-left: 15px;
     padding-right: 15px;
     border-radius: 16px;
@@ -204,7 +204,7 @@ window#waybar {
 }
 
 #cpu {
-    background-color: #282828;
+    background-color: #242424;
     /*color: #FABD2D;*/
     border-radius: 16px;
     margin: 5px;
@@ -215,7 +215,7 @@ window#waybar {
 }
 
 #memory {
-    background-color: #282828;
+    background-color: #242424;
     /*color: #83A598;*/
     border-radius: 16px;
     margin: 5px;
@@ -226,7 +226,7 @@ window#waybar {
 }
 
 #disk {
-    background-color: #282828;
+    background-color: #242424;
     /*color: #8EC07C;*/
     border-radius: 16px;
     margin: 5px;
@@ -237,7 +237,7 @@ window#waybar {
 }
 
 #custom-hyprpicker {
-    background-color: #282828;
+    background-color: #242424;
     /*color: #8EC07C;*/
     border-radius: 16px;
     margin: 5px;

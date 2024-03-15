@@ -20,8 +20,8 @@ ssh-add &
 blueman-applet &
 dunst &
 feh  --bg-fill $HOME/.local/wall/0003.png &
-#picom --config $HOME/.config/picom/picom.conf --vsync &
+picom --config $HOME/.config/picom/picom.conf &
 xset r rate 210 40 &
 flameshot &
 dwmblocks &
-sh $HOME/.config/ph-autostart/verify_monitor.sh
+# sh $HOME/.config/ph-autostart/verify_monitor.sh
