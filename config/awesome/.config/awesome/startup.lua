@@ -56,5 +56,7 @@ if not is_restart() then
           sleep(2)
         end
     }
+  else
+    awful.spawn.with_shell("conky -c $HOME/.config/conky/awesome/doom-one-01.conkyrc")
   end
 end

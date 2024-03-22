@@ -24,3 +24,4 @@ function initializeContainers {
 }
 
 # initializeContainers
+sh $HOME/.config/ph-autostart/awesome/autostart.sh

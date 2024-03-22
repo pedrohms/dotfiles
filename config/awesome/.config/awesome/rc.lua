@@ -785,7 +785,8 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 client.connect_signal("mouse::enter", function(c)
-  c:emit_signal("request::activate", "mouse_enter", { raise = true })
+  c:emit_signal("request::activate", "mouse_enter", {  })
+  -- c:emit_signal("request::activate", "mouse_enter", { raise = true })
 end)
 
 -- No border for maximized clients
