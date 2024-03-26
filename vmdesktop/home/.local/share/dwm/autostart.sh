@@ -6,7 +6,8 @@ function run {
     $@&
   fi
 }
-setxkbmap -layout en -variant intl &
+# setxkbmap -layout br -variant abnt2 &
+setxkbmap -layout us -variant intl &
 #start sxhkd to replace Qtile native key-bindings
 flameshot &
 sxhkd -c ~/.config/sxhkd/sxhkdrc &
@@ -18,7 +19,7 @@ ssh-add &
 dunst &
 xset r rate 210 17 &
 xrandr --auto
-xrandr --output Virtual-1 --mode 1920x1080
+xrandr --output Virtual-1 --mode 1920x1200
 feh  --bg-fill $HOME/.local/wall/0001.jpg &
 dwmblocks &
-picom --config $HOME/.config/picom/picom.conf --vsync &
+#picom --config $HOME/.config/picom/picom.conf &

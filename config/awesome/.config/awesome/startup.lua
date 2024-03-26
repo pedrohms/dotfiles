@@ -31,12 +31,12 @@ if not is_restart() then
   awful.spawn.with_shell("LG3D")
   awful.spawn.with_shell("xset r rate 210 40")
   awful.spawn.with_shell("flameshot")
-  awful.spawn.with_shell("$HOME/.config/ph-autostart/autostart.sh")
+  awful.spawn.with_shell("setxkbmap -layout br -variant abnt2")
+  awful.spawn.with_shell("$HOME/.config/ph-autostart/awesome/autostart.sh")
 
   -- if os.getenv("USER") == "framework" then
   --   awful.spawn.with_shell("setxkbmap -layout us -variant intl")
   -- else
-    awful.spawn.with_shell("setxkbmap -layout br -variant abnt2")
   -- end
   --
   if os.getenv("PH_MACHINE") == "predator" then
