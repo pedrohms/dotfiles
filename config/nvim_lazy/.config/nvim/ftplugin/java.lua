@@ -160,6 +160,8 @@ inoremap("<C-K>", function() vim.lsp.buf.hover() end)
 nnoremap("<leader>lsf", function() require("telescope.builtin").lsp_document_symbols(require("telescope.themes")
     .get_dropdown { previewer = false })
 end)
+nnoremap("<leader>lsr", require("telescope.builtin").lsp_references)
+nnoremap("<leader>lst", require("telescope.builtin").lsp_type_definitions)
 -- if vim.lsp.buf["format"] == nil then
 --   nnoremap("<leader>lf", function() vim.lsp.buf.formatting() end)
 -- else

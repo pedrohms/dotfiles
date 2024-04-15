@@ -87,6 +87,10 @@ if telescope_ok then
     require("telescope.builtin").find_files(
       { find_command = { "rg", "--ignore", "--hidden", "--files", "-L" }, previewer = false })
   end)
+  keymap.nnoremap("<leader>sF", function()
+    require("telescope.builtin").git_files(
+      { find_command = { "rg", "--ignore", "--hidden", "--files", "-L" }, previewer = false })
+  end)
   keymap.nnoremap("<leader>sp", "<cmd>Telescope projects<CR>")
   keymap.nnoremap("<leader>sg", function() 
     require("telescope.builtin").live_grep({ find_command = { "rg", "--ignore", "--hidden", "--text", "-L" } })
