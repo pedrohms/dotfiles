@@ -18,6 +18,8 @@
 	
   "hyprland/window": {
     "format": "{}",
+    "separate-outputs": true,
+    "icon": true,
   },
 
 	"hyprland/workspaces": {
@@ -28,6 +30,10 @@
     "on-scroll-down": "hyprctl dispatch workspace +1",
 		"format": "{name}",
 		"on-click": "afalseate",
+    "persistent-workspace": {
+      "DVI-D-1": 1,
+      "HDMI-A-1": 2,
+    },
   },
 
 	"battery": {
