@@ -6,3 +6,10 @@ if os.getenv("NVIM_FULL") == "1" then
 end
 
 require "minimal"
+
+vim.cmd [[autocmd FileType markdown setlocal wrap spell]]
+vim.cmd [[autocmd FileType markdown setlocal spell]]
+vim.cmd [[autocmd FileType markdown setlocal spell spelllang=pt_br]]
+vim.cmd [[autocmd FileType org setlocal wrap spell]]
+vim.cmd [[autocmd FileType org setlocal spell]]
+vim.cmd [[autocmd FileType org setlocal spell spelllang=pt_br]]

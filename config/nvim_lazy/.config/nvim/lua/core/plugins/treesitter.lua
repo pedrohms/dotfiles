@@ -5,7 +5,7 @@ local ensure_installed = {
   "gitignore", "go", "gomod", "gosum", "gowork", "gpg", "haskell", "html",
   "http", "ini", "java", "json", "jsdoc", "jq", "luadoc", "make", "ninja",
   "nix", "prisma", "pug", "python", "rust", "scss", "sql", "ssh_config", "sxhkdrc",
-  "toml", "tsx", "vue", "xml", "yaml"
+  "toml", "tsx", "vue", "xml", "yaml", "markdown"
 }
 local M = {
   'nvim-treesitter/nvim-treesitter',
@@ -13,7 +13,7 @@ local M = {
     require 'nvim-treesitter.configs'.setup {
       ensure_installed = ensure_installed,
       sync_install = false,
-      ignore_install = { "phpdoc", "tflint", "markdown", "markdown_inline", "tla", "tla+", "tlaplus" },
+      ignore_install = { "phpdoc", "tflint",  "tla", "tla+", "tlaplus" },
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = true,

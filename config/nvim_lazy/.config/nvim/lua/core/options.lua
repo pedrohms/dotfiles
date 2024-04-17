@@ -33,6 +33,8 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.spell = false
+vim.opt.spelllang = "en_us"
 
 if os.getenv("OS") == "Windows_NT" then
   -- vim.o.shell = "pwsh.exe -NoLogo"

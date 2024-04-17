@@ -10,6 +10,7 @@ vim.o.background = "dark" -- or "light" for light mode
 -- vim.cmd("let g:gruvbox_material_transparent_background=0")
 -- vim.cmd([[colorscheme gruvbox-material]])   -- Set color scheme
 vim.cmd([[colorscheme catppuccin-mocha]])
+vim.g.remember_window_size = true
 
 local lsp = require "core.lsp"
 

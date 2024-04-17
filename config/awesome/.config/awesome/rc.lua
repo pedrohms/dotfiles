@@ -460,8 +460,10 @@ globalkeys = my_table.join(
     { description = "restore minimized", group = "client" }),
 
   -- Dropdown application
-  awful.key({ modkey, }, "F12", function() awful.spawn.with_shell(terminal .. " -e " .. editor) end,
-    { description = "Open Neovide", group = "super" }),
+
+  -- awful.key({ modkey, }, "F12", function() awful.spawn.with_shell(terminal .. " -e " .. editor) end,
+  -- { description = "Open Neovide", group = "super" }),
+  awful.key({ modkey, }, "F12", function() scratch.toggle("neovide --x11-wm-class scratch3 --x11-wm-class-instance scratch3 " .. os.getenv("HOME") .. "/.scratch.md", utils.scratchRule("scratch3")) end),
 
   -- Widgets popups
   -- awful.key({ altkey, }, "c", function () lain.widget.cal.show(7) end,
