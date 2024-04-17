@@ -31,8 +31,8 @@
 		"format": "{name}",
 		"on-click": "afalseate",
     "persistent-workspace": {
-      "DVI-D-1": 1,
-      "HDMI-A-1": 2,
+      "DVI-D-1": 2,
+      "HDMI-A-1": 1,
     },
   },
 

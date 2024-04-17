@@ -188,6 +188,27 @@ M.installer = function()
       opts = vim.tbl_deep_extend("force", powershell_opts, opts)
     end
 
+
+    if server == "tsserver" then
+      local tsserver_opts = {
+        init_options = {
+          plugins = {
+            {
+              name = "@vue/typescript-plugin",
+              location = "/home/framework/.local/share/npm/dependencies/node_modules/@vue/typescript-plugin",
+              languages = { "javascript", "typescript", "vue" },
+            },
+          },
+        },
+        filetypes = {
+          "javascript",
+          "typescript",
+          "vue",
+        },
+      }
+      opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
+    end
+
     if server == "intelephense" then
       local intelephense_opts = {
         filetypes = { "php", "blade", "blade.php" },
