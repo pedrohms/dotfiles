@@ -61,7 +61,7 @@ local function lsp_keymaps(client, bufnr)
       if jdtls_ok then jdtls.update_project_config() end
     end)
   end
-  nnoremap("gd", function() vim.lsp.buf.definition() end)
+  nnoremap("gd", require("telescope.builtin").lsp_definitions)
   nnoremap("K", function() vim.lsp.buf.hover() end)
   nnoremap("<leader>lws", function() vim.lsp.buf.workspace_symbol() end)
   nnoremap("<leader>ld", function() vim.diagnostic.open_float() end)

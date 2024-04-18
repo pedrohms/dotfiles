@@ -97,14 +97,14 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
   end,
 })
 
-local status_winbar, winbar = pcall(require, "user.winbar")
-if status_winbar then
-  vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost" }, {
-    callback = function(bf)
-      if string.match(bf.file, ".md") or string.match(bf.file, ".conf") or string.match(bf.file, ".html") or string.match(bf.file, ".blade.php") then
-        return
-      end
-      winbar.get_winbar()
-    end,
-  })
-end
+-- local status_winbar, winbar = pcall(require, "user.winbar")
+-- if status_winbar then
+--   vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost" }, {
+--     callback = function(bf)
+--       if string.match(bf.file, ".md") or string.match(bf.file, ".conf") or string.match(bf.file, ".html") or string.match(bf.file, ".blade.php") then
+--         return
+--       end
+--       winbar.get_winbar()
+--     end,
+--   })
+-- end

@@ -1,8 +1,8 @@
 {
 		"layer": "top",
-		"modules-left": ["hyprland/workspaces", "temperature", "hyprland/window"],
-		/*"modules-center": ["hyprland/window"],*/
-		"modules-right": ["tray", "custom/hyprpicker", "custom/subs", "cpu", "memory", "idle_inhibitor", "clock", "pulseaudio", "bluetooth"],
+		"modules-left": ["clock", "hyprland/window"],
+		"modules-center": ["hyprland/workspaces"],
+		"modules-right": ["tray", "custom/subs", "cpu", "temperature", "memory", "idle_inhibitor", "pulseaudio", "bluetooth", "backlight", "battery"],
 
   "hyprland/window": {
 	    "format": "{title}",
@@ -10,7 +10,7 @@
 	    "seperate-outputs": true
   },
   "clock": {
-	"format": "<span foreground='#282828'> </span><span>{:%d/%m %H:%M%p}</span>",
+	"format": "<span foreground='#E69875'> </span><span>{:%I:%M %a %d}</span>",
 	"tooltip-format": "{calendar}",
 	  "calendar": {
 		"mode"          : "month",
@@ -33,10 +33,10 @@
 	/*"format-alt": "<span foreground='#89dceb'> </span><span>{:%H:%M}</span>"*/
 },
   "cpu": {
-		  "format": "<span foreground='#b8bb26'>󰯳</span> {usage}%"
+		  "format": "<span foreground='#DBBC7F'>󰯳</span> {usage}%"
   },
   "memory": {
-		  "format": "<span foreground='#d65d9e'>󰍛</span> {}%",
+		  "format": "<span foreground='#88C096'>󰍛</span> {}%",
 		  "interval": 1
   },
   "custom/gpu-util": {
@@ -52,30 +52,16 @@
   "temperature": {
 		  "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
 		  "critical-threshold": 80,
-		  "format": "<span foreground='#83a598'></span> {temperatureC}°C",
+		  "format": "<span foreground='#D699B6'></span> {temperatureC}°C",
 		  "interval": 1
   },
  "hyprland/workspaces": {
-    "format": "{icon}",
+    "format": "{name}",
 	"active-only": false,
-	"sort-by-number": false,
+	"sort-by-number": true,
 	"on-click": "activate",
-	"all-outputs": false,
-	"format-icons": {
-    "1": "1",
-    "2": "2",
-    "3": "3",
-    "4": "4",
-    "5": "5",
-    "6": "6",
-    "7": "7",
-    "8": "8",
-    "9": "9",
-    "10": "10",
-    "11": "11",
-    "12": "12",
-		},
- },
+	"all-outputs": false
+},
    "network": {
 		  "format": "󰤭 Off",
 		  "format-wifi": "{essid} ({signalStrength}%)",
@@ -87,8 +73,8 @@
 		  "tooltip-format-disconnected": "Disconnected"
   },
   "pulseaudio": {
-	"format": "<span foreground='#cc241d'>{icon}</span> {volume}%  {format_source}",
-	"format-bluetooth": "<span foreground='#b16286'>{icon}</span> {volume}%  {format_source}",
+	"format": "<span foreground='#A2C8C3'>{icon}</span> {volume}%  {format_source}",
+	"format-bluetooth": "<span foreground='#DBBC7F'>{icon}</span> {volume}%  {format_source}",
 	"format-bluetooth-muted": "<span foreground='#D699B6'>󰖁</span>  {format_source}",
 	"format-muted": "<span foreground='#7A8478'>󰖁</span>  {format_source}",
 	"format-source": "<span foreground='#E67E80'></span> {volume}%",
@@ -131,28 +117,10 @@
  },
 
  "custom/subs": {
-	"format": "<span foreground='#fbf1c7'>󰗃 </span> {}",
+	"format": "<span foreground='#272E32'>󰗃 </span> {}",
     "exec": "/usr/local/bin/subsfile.sh",
     "on-click": "vivaldi-stable https://youtube.com/thelinuxcast",
-    "restart-interval": 1
-  },
- "wlr/taskbar": {
-    "format": "{name}",
-    "icon-size": 14,
-    "icon-theme": "Numix-Circle",
-    "tooltip-format": "{title}",
-    "on-click": "activate",
-    "on-click-middle": "close",
-    "ignore-list": [
-       "Alacritty"
-    ],
-    "app_ids-mapping": {
-      "firefoxdeveloperedition": "firefox-developer-edition"
-    },
-    "rewrite": {
-        "Firefox Web Browser": "Firefox",
-        "Foot Server": "Terminal"
-    }
+    "restart-interval": 1,
 },
   "bluetooth": {
 		  "on-click": "./scripts/bluetooth-control",
@@ -167,11 +135,5 @@
 				  "connected": ""
 		  },
 		  "tooltip-format": "{device_alias} {status}"
-  },
-
-  "custom/hyprpicker": {
-    "format": " 󰈋 ",
-    "on-click": "hyprpicker -a -f hex",
-    "on-click-right": "hyprpicker -a -f rgb"
   }
 }
