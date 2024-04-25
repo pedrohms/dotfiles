@@ -77,7 +77,7 @@ local function lsp_keymaps(client, bufnr)
   local telescope_ok, _ = pcall(require, "telescope")
   if telescope_ok then
     nnoremap("<leader>lsf", function()
-      require("telescope.builtin").lsp_document_symkols(require("telescope.themes")
+      require("telescope.builtin").lsp_document_symbols(require("telescope.themes")
         .get_dropdown { previewer = false })
     end)
     nnoremap("<leader>lsr", require("telescope.builtin").lsp_references)

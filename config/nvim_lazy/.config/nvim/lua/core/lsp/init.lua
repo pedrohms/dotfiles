@@ -202,7 +202,9 @@ M.installer = function()
         },
         filetypes = {
           "javascript",
+          "javascriptreact",
           "typescript",
+          "typescriptreact",
           "vue",
         },
       }

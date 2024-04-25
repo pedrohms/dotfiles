@@ -12,9 +12,9 @@
 set -e fish_user_paths
 
 if [ -z $NIX_USER_PROFILE_DIR ];
-  set ANDROID_SDK "$HOME/Applications/Android/Sdk"
-  set ANDROID_SDK_ROOT "$HOME/Applications/Android/Sdk"
-  set ANDROID_HOME "$HOME/Applications/Android/Sdk"
+  set ANDROID_SDK "$HOME/Android/Sdk"
+  set ANDROID_SDK_ROOT "$HOME/Android/Sdk"
+  set ANDROID_HOME "$HOME/Android/Sdk"
 end
 
 set -U fish_user_paths /usr/local/bin $HOME/.local/bin $HOME/.local/bin2 $HOME/Applications $fish_user_paths
