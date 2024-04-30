@@ -22,8 +22,8 @@ M.servers = {
   "dockerls",
   "rust_analyzer",
   "solidity",
-  "phpactor",
-  -- "intelephense",
+  -- "phpactor",
+  "intelephense",
 }
 M.mason_packages = {
   "solidity-ls",
@@ -38,6 +38,7 @@ M.mason_packages = {
   "php-cs-fixer",
   "prettier",
   "blade-formatter",
+  "intelephense",
   "black",
 }
 
@@ -213,7 +214,11 @@ M.installer = function()
 
     if server == "intelephense" then
       local intelephense_opts = {
-        filetypes = { "php", "blade", "blade.php" },
+        filetypes = { "php", "blade" },
+        files = {
+          associations = { "*.php", "*.blade.php" },     -- Associating .blade.php files as well
+          maxSize = 5000000,
+        },
       }
       opts = vim.tbl_deep_extend("force", intelephense_opts, opts)
     end
