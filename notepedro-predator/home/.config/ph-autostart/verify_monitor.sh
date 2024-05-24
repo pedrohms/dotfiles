@@ -28,7 +28,7 @@ else
       xrandr --output DP-1 --mode 1920x1080 --dpi 96 --rate 60 --pos 1920x0 --output eDP-1 --primary --mode 1920x1080 --rate 120 --pos 0x0
     else
       # xrandr --output DP-1-1 --off
-      xrandr --output DP-1-1 --mode 1920x1080 --dpi 96 --rate 60 --pos 1920x0 --output eDP-1-1 --primary --mode 1920x1080 --rate 120 --pos 0x0
+      xrandr --output DP-1-2 --mode 1920x1080 --dpi 96 --rate 60 --pos 1920x0 --output eDP-1-2 --primary --mode 1920x1080 --rate 120 --pos 0x0
     fi
   fi
 fi
