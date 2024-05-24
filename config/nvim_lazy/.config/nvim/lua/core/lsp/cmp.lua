@@ -122,7 +122,12 @@ cmp.setup({
     }),
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<C-y>"] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+      },
+      { "i", "c"}
+    ),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -136,35 +141,35 @@ cmp.setup({
         fallback()
       end
     end, {
-    "i",
-    "s",
-  }),
-  ["<S-Tab>"] = cmp.mapping(function(fallback)
-    if cmp.visible() then
-      cmp.select_prev_item()
-    elseif luasnip.jumpable(-1) then
-      luasnip.jump(-1)
-    else
-      fallback()
-    end
-  end, {
-  "i",
-  "s",
-}),
+      "i",
+      "s",
+    }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
   }),
   formatting = {
     -- fields = { "kind", "abbr", "menu" },
     fields = { "abbr", "menu", "kind" },
     format = function(entry, vim_item)
-    --   vim_item.kind = kind_icons[vim_item.kind]
-    --   vim_item.menu = ({
-    --     nvim_lsp = "",
-    --     nvim_lua = "",
-    --     luasnip = "",
-    --     buffer = "",
-    --     path = "",
-    --     emoji = "",
-    --   })[entry.source.name]
+      --   vim_item.kind = kind_icons[vim_item.kind]
+      --   vim_item.menu = ({
+      --     nvim_lsp = "",
+      --     nvim_lua = "",
+      --     luasnip = "",
+      --     buffer = "",
+      --     path = "",
+      --     emoji = "",
+      --   })[entry.source.name]
       vim_item.kind = source_icons[entry.source.name] .. " " .. kind_icons[vim_item.kind] .. " "
       vim_item.menu = ""
       vim_item.abbr = string.sub(vim_item.abbr, 1, 50)
