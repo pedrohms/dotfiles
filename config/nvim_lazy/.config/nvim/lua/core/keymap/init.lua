@@ -74,6 +74,8 @@ keymap.vnoremap(">", ">gv")
 
 keymap.nnoremap("<S-l>", ":bnext<CR>")
 keymap.nnoremap("<S-h>", ":bprevious<CR>")
+keymap.nnoremap("<C-t>l", ":tabnext<CR>")
+keymap.nnoremap("<C-t>h", ":tabprevious<CR>")
 
 keymap.nnoremap("<leader>bc", "<cmd>Bdelete!<CR>")
 keymap.nnoremap("<leader>sh", "<cmd>nohlsearch<cr>")
