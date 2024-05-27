@@ -2,7 +2,7 @@
 		"layer": "top",
 		"modules-left": ["hyprland/workspaces", "temperature", "hyprland/window"],
 		/*"modules-center": ["hyprland/window"],*/
-		"modules-right": ["tray", "custom/hyprpicker", "custom/subs", "cpu", "memory", "idle_inhibitor", "clock", "pulseaudio", "bluetooth"],
+		"modules-right": ["tray", "custom/hyprpicker", "custom/subs", "cpu", "memory", "battery", "clock", "pulseaudio", "bluetooth"],
 
   "hyprland/window": {
 	    "format": "{title}",
@@ -173,5 +173,17 @@
     "format": " 󰈋 ",
     "on-click": "hyprpicker -a -f hex",
     "on-click-right": "hyprpicker -a -f rgb"
+  },
+  "battery": {
+    "interval": 3,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}%  ",
+    "format-plugged": "{capacity}%  ",
+    "format-alt": "{time} {icon}",
+    "format-icons": [" "," "," "," "," "],
   }
 }

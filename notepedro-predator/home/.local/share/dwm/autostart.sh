@@ -24,4 +24,4 @@ picom --config $HOME/.config/picom/picom.conf &
 xset r rate 210 40 &
 flameshot &
 dwmblocks &
-# sh $HOME/.config/ph-autostart/verify_monitor.sh
+sh $HOME/.config/ph-autostart/verify_monitor.sh
