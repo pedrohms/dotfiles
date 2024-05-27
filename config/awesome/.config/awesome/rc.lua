@@ -71,8 +71,10 @@ local modkey      = "Mod4"
 local altkey      = "Mod1"
 local ctrlkey     = "Control"
 local terminal    = "alacritty"
-local browser     = "brave --high-dpi-support=1 --force-device-scale-factor=1.1"
-local chrome      = "google-chrome-stable --high-dpi-support=1 --force-device-scale-factor=1.1"
+local browser     = "$HOME/.config/ph-autostart/script/brave"
+local chrome      = "$HOME/.config/ph-autostart/script/chrome"
+-- local browser     = "brave --high-dpi-support=1 --force-device-scale-factor=1.1"
+-- local chrome      = "google-chrome-stable --high-dpi-support=1 --force-device-scale-factor=1.1"
 -- local browser     = "nvidia-offload vivaldi"
 local editor      = "nvim"
 local mediaplayer = "mpv"
@@ -273,8 +275,8 @@ globalkeys = my_table.join(
     grabber = awful.keygrabber.run(
       function(_, key, event)
         if event == "release" then return end
-        if key == "b" then awful.spawn(browser)
-        elseif key == "c" then awful.spawn(chrome)
+        if key == "b" then awful.spawn.with_shell(browser)
+        elseif key == "c" then awful.spawn.with_shell(chrome)
         end
         awful.keygrabber.stop(grabber)
       end)
@@ -651,7 +653,6 @@ awful.rules.rules = {
       size_hints_honor = false
     }
   },
-
   -- Titlebars
   { rule_any = { type = { "dialog", "normal" } },
     properties = { titlebars_enabled = false } },
