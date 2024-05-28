@@ -305,7 +305,7 @@ globalkeys = my_table.join(
     { description = "Run launcher", group = "hotkeys" }),
 
   -- Dmscripts (Super + p followed by KEY)
-  awful.key({ modkey }, "p", function()
+  awful.key({ modkey }, "d", function()
     local grabber
     grabber = awful.keygrabber.run(
       function(_, key, event)
@@ -317,7 +317,6 @@ globalkeys = my_table.join(
         elseif key == "n" then awful.spawn.with_shell("dm-note")
         elseif key == "o" then awful.spawn.with_shell("dm-bookman")
         elseif key == "p" then awful.spawn.with_shell("dm-offload")
-        elseif key == "s" then awful.spawn.with_shell("dm-websearch")
         end
         awful.keygrabber.stop(grabber)
       end
@@ -326,7 +325,25 @@ globalkeys = my_table.join(
     { description = "followed by KEY", group = "Dmscripts" }
   ),
 
-  -- Emacs (Super + e followed by KEY)
+  -- Power profile
+  awful.key({ modkey }, "p", function()
+    local grabber
+    grabber = awful.keygrabber.run(
+      function(_, key, event)
+        if event == "release" then return end
+
+        if key == "b" then awful.spawn.with_shell("powerprofilesctl set balanced")
+        elseif key == "s" then awful.spawn.with_shell("powerprofilesctl set power-saver")
+        elseif key == "p" then awful.spawn.with_shell("powerprofilesctl set performance")
+        end
+        awful.keygrabber.stop(grabber)
+      end
+    )
+  end,
+    { description = "followed by KEY", group = "Power profile" }
+  ),
+
+  -- Editors (Super + e followed by KEY)
   awful.key({ modkey }, "e", function()
     local grabber
     grabber = awful.keygrabber.run(
