@@ -24,6 +24,9 @@ set -U fish_user_paths $fish_user_paths $HOME/Applications/flutter/bin $HOME/App
 set -U fish_user_paths $fish_user_paths /var/lib/flatpak/exports/share $HOME/.local/share/flatpak/exports/share
 set -U fish_user_paths $fish_user_paths $HOME/.cargo/bin
 set -U fish_user_paths $fish_user_paths $HOME/Applications/go/bin
+set -U fish_user_paths $fish_user_paths $HOME/Applications/android-studio/bin
+set -U fish_user_paths $fish_user_paths $HOME/Applications/flutter/bin
+set -U fish_user_paths $fish_user_paths $HOME/Applications/idea-IU-241.17011.79/bin
 
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message
