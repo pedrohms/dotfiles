@@ -28,6 +28,7 @@ if not is_restart() then
   awful.spawn.with_shell("picom")
   awful.spawn.with_shell("nm-applet")
   awful.spawn.with_shell("volumeicon")
+  awful.spawn.with_shell("blueman")
   awful.spawn.with_shell("LG3D")
   awful.spawn.with_shell("xset r rate 210 40")
   awful.spawn.with_shell("flameshot")
@@ -39,24 +40,24 @@ if not is_restart() then
   -- else
   -- end
   --
-  if os.getenv("PH_MACHINE") == "predator" then
-    gears.timer {
-        timeout   = 5,
-        call_now  = true,
-        autostart = false,
-        callback  = function()
-          awful.spawn.with_shell("$HOME/.config/ph-autostart/awesome/autostart.sh")
-          awful.spawn.with_shell("conky -c $HOME/.config/conky/awesome/doom-one-01.conkyrc")
-          local clock = os.clock
-          function sleep(n)  -- seconds
-             local t0 = clock()
-             while clock() - t0 <= n do
-             end
-          end
-          sleep(2)
-        end
-    }
-  else
+  -- if os.getenv("PH_MACHINE") == "predator" then
+  --   gears.timer {
+  --       timeout   = 5,
+  --       call_now  = true,
+  --       autostart = false,
+  --       callback  = function()
+  --         awful.spawn.with_shell("$HOME/.config/ph-autostart/awesome/autostart.sh")
+  --         awful.spawn.with_shell("conky -c $HOME/.config/conky/awesome/doom-one-01.conkyrc")
+  --         local clock = os.clock
+  --         function sleep(n)  -- seconds
+  --            local t0 = clock()
+  --            while clock() - t0 <= n do
+  --            end
+  --         end
+  --         sleep(2)
+  --       end
+  --   }
+  -- else
     awful.spawn.with_shell("conky -c $HOME/.config/conky/awesome/doom-one-01.conkyrc")
-  end
+  -- end
 end

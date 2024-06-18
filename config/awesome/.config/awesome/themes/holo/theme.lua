@@ -14,7 +14,7 @@ local dpi   = require("beautiful.xresources").apply_dpi
 local string, os = string, os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
-awful.screen.set_auto_dpi_enabled( true )
+-- awful.screen.set_auto_dpi_enabled( true )
 
 local theme                                     = {}
 theme.default_dir                               = require("awful.util").get_themes_dir() .. "default"
@@ -75,7 +75,7 @@ theme.layout_floating                           = theme.icon_dir .. "/floating.p
 theme.nixos_logo                                = theme.icon_dir .. "/nixos_logo.png"
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
-theme.useless_gap                               = dpi(0)
+theme.useless_gap                               = 0
 theme.titlebar_close_button_normal              = theme.default_dir.."/titlebar/close_normal.png"
 theme.titlebar_close_button_focus               = theme.default_dir.."/titlebar/close_focus.png"
 theme.titlebar_minimize_button_normal           = theme.default_dir.."/titlebar/minimize_normal.png"
@@ -207,11 +207,12 @@ end)))
 local bat = lain.widget.bat({
     notify = "off",
     settings = function()
-        bat_header = " Bat "
-        bat_p      = bat_now.perc .. " "
         if bat_now.ac_status == 1 then
-            bat_p = bat_p .. "Plugged "
+          bat_header = " 󰂅 "
+        else
+          bat_header = " 󰂂 "
         end
+        bat_p      = bat_now.perc .. " "
         if not ( os.getenv("USER") == "framework" ) then
           widget:set_markup(markup.font(theme.font, markup(blue, bat_header) .. bat_p))
         end
@@ -267,8 +268,8 @@ local mem = lain.widget.mem({
     --     widget:set_markup(space3 .. mem .. markup.font("Roboto 5", " "))
     --   end
     -- else
-      widget:set_markup(space3 .. markup.font(theme.font, mem_now.used
-                        .. "/" .. mem_now.total .. " ") .. markup.font("Roboto 5", " "))
+      widget:set_markup(space3 .. markup.font(theme.font, "MEM " .. mem_now.perc
+                        .. "% ") .. markup.font("Roboto 5", " "))
     -- end
   end
 })
@@ -351,7 +352,7 @@ function theme.at_screen_connect(s)
     s.mySystray = wibox.container.margin(wibox.widget.systray(), dpi(0), dpi(0), dpi(5), dpi(5))
 
     -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons, { bg_focus = theme.bg_focus, shape = gears.shape.rectangle, shape_border_width = 5, shape_border_color = theme.tasklist_bg_normal, align = "center" })
+    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons, { font = "Roboto Bold 10" , bg_focus = theme.bg_focus, shape = gears.shape.rectangle, shape_border_width = 5, shape_border_color = theme.tasklist_bg_normal, align = "center" })
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(36) })
@@ -392,8 +393,8 @@ function theme.at_screen_connect(s)
             volumewidget,
             spr_left,
             -- mem_icon,
-            -- memwidget,
-            cpu_icon,
+            memwidget,
+            -- cpu_icon,
             cpuwidget,
             bottom_bar,
             calendar_icon,

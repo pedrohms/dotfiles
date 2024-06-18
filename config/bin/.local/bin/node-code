@@ -1,0 +1,2 @@
+#$/usr/bin/env bash
+nom develop $HOME/Projects/nix/flake-develop#nodejs --command code $@
