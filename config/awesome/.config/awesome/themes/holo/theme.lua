@@ -19,7 +19,11 @@ awful.screen.set_auto_dpi_enabled( true )
 local theme                                     = {}
 theme.default_dir                               = require("awful.util").get_themes_dir() .. "default"
 theme.icon_dir                                  = os.getenv("HOME") .. "/.config/awesome/themes/holo/icons"
-theme.wallpaper                                 = os.getenv("HOME") .. "/.local/wall/0003.png"
+if os.getenv("USER") == "framework" then
+  theme.wallpaper                                 = os.getenv("HOME") .. "/.local/wall/fedora.jpg"
+else
+  theme.wallpaper                                 = os.getenv("HOME") .. "/.local/wall/0003.png"
+end
 theme.font                                      = "Roboto Bold " .. dpi(10)
 theme.taglist_font                              = "Roboto Condensed Regular " .. dpi(10)
 theme.fg_normal                                 = "#FFFFFF"

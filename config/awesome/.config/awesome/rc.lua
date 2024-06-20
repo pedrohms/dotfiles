@@ -72,6 +72,9 @@ local altkey      = "Mod1"
 local ctrlkey     = "Control"
 local terminal    = "alacritty"
 local browser     = "brave"
+if os.getenv("USER") == "framework" then
+  browser = "brave-browser"
+end
 local chrome      = "google-chrome-stable"
 -- local browser     = "nvidia-offload vivaldi"
 local editor      = "nvim"

@@ -1,4 +1,5 @@
 set -U fish_user_paths $fish_user_paths /home/framework/Applications/android-studio/bin /home/framework/go/bin
+# set JAVA_HOME "/usr/lib/jvm/java-21-openjdk-21.0.3.0.9-1.fc40.x86_64"
 set FlakeHub "$HOME/Projects/nix"
 alias personal="podman run --rm -it --name teste -v personal:/root -v $PWD:/data pedrohms/gpg /bin/sh"
 alias dpersonal="docker run --rm -it --name teste -v personal:/root -v $PWD:/data pedrohms/gpg /bin/sh"

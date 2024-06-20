@@ -3,13 +3,13 @@ local gears = require("gears")
 local naughty = require("naughty")
 local restart_detected
 
-local notify = function(text)
-  naughty.notification {
-    title = "autostart",
-    text = text,
-    timeout = 2
-  }
-end
+-- local notify = function(text)
+--   naughty.notification {
+--     title = "autostart",
+--     text = text,
+--     timeout = 2
+--   }
+-- end
 
 local is_restart = function()
   if restart_detected ~= nil then
@@ -23,8 +23,8 @@ local is_restart = function()
 end
 
 if not is_restart() then
-  notify "autostart.sh executed"
-  awful.spawn.with_shell("lxsession")
+  -- notify "autostart.sh executed"
+  -- awful.spawn.with_shell("lxsession")
   awful.spawn.with_shell("picom")
   awful.spawn.with_shell("nm-applet")
   awful.spawn.with_shell("volumeicon")

@@ -26,7 +26,7 @@ XF86AudioStop
   playerctl stop
 
 super + b; {b,g,f}
-  {brave,google-chrome-stable,firefox}
+  {brave-browser,google-chrome-stable,firefox}
 
 super + a; {f,d}
   {pcmanfm,discord --use-gl=desktop}
