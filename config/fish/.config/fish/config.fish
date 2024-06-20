@@ -15,6 +15,9 @@ if [ -z $NIX_USER_PROFILE_DIR ];
   set ANDROID_SDK "$HOME/Android/Sdk"
   set ANDROID_SDK_ROOT "$HOME/Android/Sdk"
   set ANDROID_HOME "$HOME/Android/Sdk"
+  set -U fish_user_paths $fish_user_paths $HOME/Applications/android-studio/bin
+  set -U fish_user_paths $fish_user_paths $HOME/Applications/flutter/bin
+  set -U fish_user_paths $fish_user_paths $HOME/Applications/idea-IU-241.17011.79/bin
 end
 
 set -U fish_user_paths /usr/local/bin $HOME/.local/bin $HOME/.local/bin2 $HOME/Applications $fish_user_paths
@@ -24,9 +27,7 @@ set -U fish_user_paths $fish_user_paths $HOME/Applications/flutter/bin $HOME/App
 set -U fish_user_paths $fish_user_paths /var/lib/flatpak/exports/share $HOME/.local/share/flatpak/exports/share
 set -U fish_user_paths $fish_user_paths $HOME/.cargo/bin
 set -U fish_user_paths $fish_user_paths $HOME/Applications/go/bin
-set -U fish_user_paths $fish_user_paths $HOME/Applications/android-studio/bin
-set -U fish_user_paths $fish_user_paths $HOME/Applications/flutter/bin
-set -U fish_user_paths $fish_user_paths $HOME/Applications/idea-IU-241.17011.79/bin
+set -U fish_user_paths $fish_user_paths $HOME/.pub-cache/bin
 
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message

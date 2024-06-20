@@ -80,6 +80,10 @@ local chrome      = "google-chrome-stable"
 local editor      = "nvim"
 local mediaplayer = "mpv"
 
+if os.getenv("PH_NVIDIA") == "2" then
+  browser = "nvidia-offload brave"
+  chrome  = "nvidia-offload google-chrome-stable"
+end
 
 -- local anim_y = rubato.timed {
 --     pos = 1090,
@@ -499,6 +503,21 @@ globalkeys = my_table.join(
   awful.key({}, "XF86MonBrightnessDown", function() os.execute("light -U 10") end,
     { description = "-10%", group = "hotkeys" }),
 
+  -- Media controller
+  awful.key({}, "XF86AudioPlay",
+    function()
+      os.execute("playerctl play-pause")
+    end),
+
+  awful.key({}, "XF86AudioNext",
+    function()
+      os.execute("playerctl next")
+    end),
+
+  awful.key({}, "XF86AudioPrev",
+    function()
+      os.execute("playerctl previous")
+    end),
   -- ALSA volume control
   --awful.key({ ctrlkey }, "Up",
   awful.key({}, "XF86AudioRaiseVolume",
@@ -674,6 +693,9 @@ awful.rules.rules = {
   -- Titlebars
   { rule_any = { type = { "dialog", "normal" } },
     properties = { titlebars_enabled = false } },
+
+  { rule = { class = "gnome-calculator"},
+    properties = { floating = true, placement = awful.placement.centered }},
 
   { rule = { class = "Gimp*", role = "gimp-image-window" },
     properties = { maximized = true } },
