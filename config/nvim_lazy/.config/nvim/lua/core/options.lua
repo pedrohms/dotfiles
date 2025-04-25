@@ -35,6 +35,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.spell = false
 vim.opt.spelllang = "en_us"
+vim.opt.pumheight = 18
 
 if os.getenv("OS") == "Windows_NT" then
   -- vim.o.shell = "pwsh.exe -NoLogo"

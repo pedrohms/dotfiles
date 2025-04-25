@@ -7,7 +7,7 @@ M.servers = {
   "jdtls",
   "solc",
   "lua_ls",
-  "tsserver",
+  "typescript-language-server",
   "pyright",
   "yamlls",
   "bashls",
