@@ -39,6 +39,12 @@ return {
         delay = 1000,
         ignore_whitespace = false,
       },
+<<<<<<< HEAD
+=======
+      -- current_line_blame_formatter_opts = {
+      --   relative_time = false,
+      -- },
+>>>>>>> 854cee8 (Fixed some deprecated configs)
       sign_priority = 6,
       update_debounce = 100,
       status_formatter = nil, -- Use default
@@ -51,6 +57,12 @@ return {
         row = 0,
         col = 1,
       },
+<<<<<<< HEAD
+=======
+      -- yadm = {
+      --   enable = false,
+      -- },
+>>>>>>> 854cee8 (Fixed some deprecated configs)
     }
   end
 }
