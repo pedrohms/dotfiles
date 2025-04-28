@@ -85,6 +85,12 @@ if os.getenv("PH_NVIDIA") == "2" then
   chrome  = "nvidia-offload google-chrome-stable"
 end
 
+-- Example: Toggle between default sink and speakers
+local device1 = "pactl set-default-sink alsa_output.pci-0000_01_00.1.hdmi-stereo"
+local device2 = "pactl set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Speaker__sink; \
+                 pactl set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Headphones__sink"
+--local deviceHeadphone = "pactl set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Headphones__sink"
+
 -- local anim_y = rubato.timed {
 --     pos = 1090,
 --     rate = 60,
@@ -275,6 +281,27 @@ globalkeys = my_table.join(
   -- Awesome keybindings
   awful.key({ modkey, }, "Return", function() awful.spawn.with_shell(terminal .. " -e tmux") end,
     { description = "Launch terminal", group = "awesome" }),
+
+  awful.key({ modkey, "Shift" }, "F1", function ()
+    os.execute(device1)
+  end, { description = "Change audio device", group = "awesome" }),
+  awful.key({ modkey, "Shift" }, "F2", function ()
+    os.execute(device2)
+  end, { description = "Change audio device", group = "awesome" }),
+  awful.key({ modkey, "Shift" }, "F3", function ()
+    os.execute(deviceHeadphone)
+  end, { description = "Change audio device to headphone", group = "awesome" }),
+  awful.key({ modkey, "Shift" }, "k", function()
+    local grabber
+    grabber = awful.keygrabber.run(
+      function(_, key, event)
+        if event == "release" then return end
+        if key == "u" then awful.spawn.with_shell("setxkbmap -layout us -variant intl &")
+        elseif key == "b" then awful.spawn.with_shell("setxkbmap -layout br -variant abnt2 &")
+        end
+        awful.keygrabber.stop(grabber)
+      end)
+  end , { description = "Change keyboard layout", group = "awesome" }),
   awful.key({ modkey, }, "b", function()
     local grabber
     grabber = awful.keygrabber.run(

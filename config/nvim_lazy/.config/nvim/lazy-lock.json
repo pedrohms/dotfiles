@@ -13,7 +13,7 @@
   "eyeliner.nvim": { "branch": "main", "commit": "8f197eb30cecdf4c2cc9988a5eecc6bc34c0c7d6" },
   "gitsigns.nvim": { "branch": "main", "commit": "9b36d497495436c135659902054ee637e0ba6021" },
   "gruvbox-material.nvim": { "branch": "master", "commit": "5de287d8fff70ee73a706c3c95a82f2060741b3e" },
-  "lazy.nvim": { "branch": "main", "commit": "7e6c863bc7563efbdd757a310d17ebc95166cef3" },
+  "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "lsp_signature.nvim": { "branch": "master", "commit": "5b64964ed02098c85613ee3d20f96bed1dfb64cc" },
   "lualine.nvim": { "branch": "master", "commit": "2a5bae925481f999263d6f5ed8361baef8df4f83" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "f75e877f5266e87523eb5a18fcde2081820d087b" },
