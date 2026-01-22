@@ -259,7 +259,7 @@ alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
 # vim and emacs
-alias v="nvim"
+alias v="GEMINI_API_KEY=$GEMINI_API nvim"
 alias vv="nvim"
 alias vfull="NVIM_FULL=1 nvim"
 alias vc="NVIM_CLANGD=1 nvim"
@@ -405,3 +405,6 @@ starship init fish | source
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+# opencode
+fish_add_path /home/framework/.opencode/bin

@@ -189,8 +189,8 @@ M.installer = function()
       opts = vim.tbl_deep_extend("force", powershell_opts, opts)
     end
 
-
     if server == "tsserver" then
+      require("core.log.log").println(server)
       local tsserver_opts = {
         init_options = {
           plugins = {

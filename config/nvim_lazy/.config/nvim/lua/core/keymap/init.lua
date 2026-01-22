@@ -133,3 +133,21 @@ keymap.nnoremap("<leader>gtc", "<cmd>Telescope git_commits<CR>")
 keymap.nnoremap("<leader>gtb", "<cmd>Telescope git_branches<CR>")
 keymap.nnoremap("<leader>gdv", "<cmd>DiffviewFileHistory<CR>")
 keymap.nnoremap("<leader>gdc", "<cmd>DiffviewClose<CR>")
+
+
+local todoCommentsOk, todoComments = pcall(require, "todo-comments")
+if todoCommentsOk then
+  keymap.nnoremap("<leader>jn", function() todoComments.jump_next() end)
+  keymap.nnoremap("<leader>jp", function() todoComments.jump_prev() end)
+  keymap.nnoremap("<leader>jla", "<cmd>TodoTelescope<CR>")
+  keymap.nnoremap("<leader>jlt", "<cmd>TodoTelescope keywords=TODO<CR>")
+  keymap.nnoremap("<leader>jln", "<cmd>TodoTelescope keywords=NOTE<CR>")
+  keymap.nnoremap("<leader>jlf", "<cmd>TodoTelescope keywords=FIX<CR>")
+end
+
+local spectreOk, _ = pcall(require, "spectre")
+if spectreOk then
+  keymap.nnoremap("<leader>srr", "<cmd>lua require('spectre').toggle()<CR>")
+  keymap.nnoremap("<leader>srw", "<cmd>lua require('spectre').open_visual({select_word=true})<CR>")
+  keymap.vnoremap("<leader>srw", "<esc><cmd>lua require('spectre').open_visual()<CR>")
+end

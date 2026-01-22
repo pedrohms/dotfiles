@@ -18,5 +18,6 @@ alias jump="cd (ghq list -p | fzf -1 -e)"
 # alias runescape="flatpak run com.jagex.RuneScape"
 alias oldrunescape="flatpak run dev.hdos.HDOS"
 alias runelite="flatpak run net.runelite.RuneLite"
-alias docker="podman"
-alias docker-compose="podman-compose"
+alias ta="tmux a"
+alias td="tmux detach"
+source $HOME/.config/env.fish
