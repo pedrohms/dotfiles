@@ -1,7 +1,7 @@
-local lvl = vim.log.levels.ERROR
-if os.getenv("DISABLE_LEVEL") ~= nil then
-  lvl = vim.log.levels.OFF
-end
+-- local lvl = vim.log.levels.ERROR
+-- if os.getenv("DISABLE_LEVEL") ~= nil then
+--   lvl = vim.log.levels.OFF
+-- end
 return {
   "rcarriga/nvim-notify",
   init = function()

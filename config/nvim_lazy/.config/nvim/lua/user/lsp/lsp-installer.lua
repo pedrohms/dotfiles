@@ -11,13 +11,13 @@ local servers = {
   "jdtls",
   "solc",
   "lua_ls",
-  "tsserver",
+  "ts_ls",
   "pyright",
   "yamlls",
   "bashls",
   "clangd",
   "gopls",
-  "volar",
+  "vue_ls",
   "svelte",
   "tailwindcss",
   "kotlin_language_server",
@@ -77,7 +77,7 @@ end
 
 lsp_installer.setup(settings)
 
-local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
+local lspconfig_status_ok, lspconfig = pcall(require, "vim.lsp.config")
 if not lspconfig_status_ok then
   return
 end
@@ -178,28 +178,6 @@ for _, server in pairs(servers) do
       opts = vim.tbl_deep_extend("force", kotlin_opts, opts)
     end
   end
-
-  -- if server == "jdtls" then
-  --   local function on_language_status(_, result)
-  --     -- local command = vim.api.nvim_command
-  --     -- command 'echohl ModeMsg'
-  --     -- command(string.format('echo "%s"', result.message))
-  --     -- command 'echohl None'
-  --   end
-  --
-  --   local java_config = require("user.lsp.settings.java_config")
-  --
-  --   java_config.handlers = {
-  --       ['$/progress'] = vim.schedule_wrap(on_language_status),
-  --   }
-  --
-  --   opts = vim.tbl_deep_extend("force", java_config, opts)
-  -- end
-
-  -- if server == "volar" then
-  --   local volar_config = require("user.lsp.settings.volar")
-  --   opts = vim.tbl_deep_extend("force", volar_config, opts)
-  -- end
 
   if server ~= "jdtls" then
     lspconfig[server].setup(opts)

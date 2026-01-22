@@ -13,7 +13,7 @@ M.servers = {
   "bashls",
   "clangd",
   "gopls",
-  "volar",
+  "vue_ls",
   "svelte",
   "tailwindcss",
   "kotlin_language_server",
@@ -55,15 +55,19 @@ M.setupHandler = function()
   M.initCmp()
 end
 M.setup = function()
-  local status_ok, _ = pcall(require, "lspconfig")
-  if not status_ok then
-    return
-  end
 
   local status_ok_mason, mason = pcall(require, "mason")
   if not status_ok_mason then
     return
   end
+
+  mason.setup()
+
+  local status_ok, _ = pcall(require, "vim.lsp.config")
+  if not status_ok then
+    return
+  end
+
 
   local status_ok_mason_config, mason_config = pcall(require, "mason-lspconfig")
   if not status_ok_mason_config then
@@ -74,7 +78,6 @@ M.setup = function()
 
   -- require("user.lsp.lsp-signature")
 
-  mason.setup()
   mason_config.setup()
 
   require "core.lsp.dap"
@@ -124,7 +127,7 @@ M.installer = function()
   lsp_installer.setup(settings)
 
 
-  local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
+  local lspconfig_status_ok, lspconfig = pcall(require, "vim.lsp.config")
   if not lspconfig_status_ok then
     return
   end
@@ -189,7 +192,7 @@ M.installer = function()
       opts = vim.tbl_deep_extend("force", powershell_opts, opts)
     end
 
-    if server == "tsserver" then
+    if server == "ts_ls" then
       require("core.log.log").println(server)
       local tsserver_opts = {
         init_options = {
