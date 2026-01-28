@@ -179,6 +179,19 @@ for _, server in pairs(servers) do
     end
   end
 
+  if server == "vue_ls" then
+    local vueOpts = {
+      init_options = {
+        typescript = {
+          tsdk = vim.fn.stdpath("data")
+            .. "/mason/packages/typescript-language-server/node_modules/typescript/lib"
+        }
+      }
+    }
+    opts = vim.tbl_deep_extend("force", vueOpts, opts)
+  end
+
+  require("core.log.log").println(server .. ' user/lsp-installer')
   if server ~= "jdtls" then
     lspconfig[server].setup(opts)
   end

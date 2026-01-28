@@ -7,7 +7,7 @@ M.servers = {
   "jdtls",
   "solc",
   "lua_ls",
-  "typescript-language-server",
+  "ts_ls",
   "pyright",
   "yamlls",
   "bashls",
@@ -63,10 +63,15 @@ M.setup = function()
 
   mason.setup()
 
-  local status_ok, _ = pcall(require, "vim.lsp.config")
+  local vue_ls_config, ts_ls_config = require("core.lsp.settings.vue_ls")
+
+  local status_ok, vimLspConfig = pcall(require, "vim.lsp.config")
   if not status_ok then
     return
   end
+
+  vimLspConfig.vue_ls.setup(vue_ls_config)
+  vimLspConfig.ts_ls.setup(ts_ls_config)
 
 
   local status_ok_mason_config, mason_config = pcall(require, "mason-lspconfig")
@@ -193,7 +198,6 @@ M.installer = function()
     end
 
     if server == "ts_ls" then
-      require("core.log.log").println(server)
       local tsserver_opts = {
         init_options = {
           plugins = {
@@ -226,6 +230,7 @@ M.installer = function()
       opts = vim.tbl_deep_extend("force", intelephense_opts, opts)
     end
 
+    require("core.log.log").println(server .. ' core/lsp-installer')
     if server ~= "jdtls" then
       lspconfig[server].setup(opts)
     end

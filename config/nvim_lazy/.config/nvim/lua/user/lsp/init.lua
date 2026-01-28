@@ -13,14 +13,18 @@ if not status_ok_mason_config then
   return
 end
 
+require("core.log.log").println('debug 1')
 require("user.lsp.download_packages")
-
+require("core.log.log").println('debug 2')
 require("user.lsp.lsp-signature")
-
-mason.setup()
-mason_config.setup()
-
+require("core.log.log").println('debug 3')
 require "user.lsp.lsp-installer"
+require("core.log.log").println('debug 4')
+mason.setup()
+require("core.log.log").println('debug 5')
+mason_config.setup()
+require("core.log.log").println('debug 6')
+
 
 require("user.lsp.handlers").setup()
 
