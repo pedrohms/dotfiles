@@ -48,7 +48,7 @@ lsp.mason_packages = {
   "java-test",
   "google-java-format",
   "js-debug-adapter",
-  "node-debug2-adapter",
+--  "node-debug2-adapter",
   "php-debug-adapter",
   "php-cs-fixer",
   "prettier",

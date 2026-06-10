@@ -408,7 +408,3 @@ set --export PATH $BUN_INSTALL/bin $PATH
 
 # opencode
 fish_add_path /home/framework/.opencode/bin
-
-# >>> grok installer >>>
-fish_add_path $HOME/.grok/bin
-# <<< grok installer <<<

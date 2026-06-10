@@ -65,14 +65,6 @@ M.setup = function()
 
   local vue_ls_config, ts_ls_config = require("core.lsp.settings.vue_ls")
 
-  local status_ok, vimLspConfig = pcall(require, "vim.lsp.config")
-  if not status_ok then
-    return
-  end
-
-  vimLspConfig.vue_ls.setup(vue_ls_config)
-  vimLspConfig.ts_ls.setup(ts_ls_config)
-
 
   local status_ok_mason_config, mason_config = pcall(require, "mason-lspconfig")
   if not status_ok_mason_config then
@@ -96,9 +88,6 @@ M.installer = function()
     return
   end
 
-  table.insert(M.servers, "lua_ls")
-  table.insert(M.servers, "emmet_ls")
-
   local settings = {
     ensure_installed = M.servers,
     ui = {
@@ -118,7 +107,6 @@ M.installer = function()
   }
 
 
-
   local status_ok_mason_registry, mason_registry = pcall(require, "mason-registry")
   if status_ok_mason_registry then
     for _, packageName in pairs(M.mason_packages) do
@@ -131,11 +119,6 @@ M.installer = function()
 
   lsp_installer.setup(settings)
 
-
-  local lspconfig_status_ok, lspconfig = pcall(require, "vim.lsp.config")
-  if not lspconfig_status_ok then
-    return
-  end
 
   local opts = {}
 
@@ -167,12 +150,8 @@ M.installer = function()
     end
 
     if server == "lua_ls" then
-      local sumneko_opts = require "core.lsp.settings.lua_ls"
-      if os.getenv("NIX_USER_PROFILE_DIR") ~= nil then
-        local sumneko_cmd = { cmd = { os.getenv("HOME") .. "/.nix-profile/bin/lua-language-server" } }
-        opts = vim.tbl_deep_extend("force", sumneko_cmd, opts)
-      end
-      opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+      local lua_ls_opts = require "core.lsp.settings.lua_ls"
+      opts = vim.tbl_deep_extend("force", lua_ls_opts, opts)
     end
 
     if server == "pyright" then
@@ -230,9 +209,8 @@ M.installer = function()
       opts = vim.tbl_deep_extend("force", intelephense_opts, opts)
     end
 
-    require("core.log.log").println(server .. ' core/lsp-installer')
     if server ~= "jdtls" then
-      lspconfig[server].setup(opts)
+      vim.lsp.config(server, opts)
     end
   end
 
@@ -262,8 +240,9 @@ M.installer = function()
       vim.tbl_deep_extend("force", dart_opts, opts)
     end
 
-    lspconfig[server].setup(opts)
+    vim.lsp.config(server, opts)
   end
+  vim.lsp.enable(M.servers)
 end
 
 return M
