@@ -14,13 +14,11 @@ if not status_ok_mason_config then
 end
 
 require("user.lsp.download_packages")
-
 require("user.lsp.lsp-signature")
-
+require "user.lsp.lsp-installer"
 mason.setup()
 mason_config.setup()
 
-require "user.lsp.lsp-installer"
 
 require("user.lsp.handlers").setup()
 

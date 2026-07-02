@@ -71,13 +71,6 @@ return lazy.setup({
   { "MattesGroeger/vim-bookmarks" },
   { "kyazdani42/nvim-tree.lua" },
   {
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require("project_nvim").setup {
-      }
-    end
-  },
-  {
     "numToStr/Comment.nvim",
     config = function()
       require("Comment").setup()

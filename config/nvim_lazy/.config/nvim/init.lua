@@ -1,11 +1,12 @@
 if os.getenv("NVIM_FULL") == "1" then
-  require "user"
-  require "core.keymap"
-  require "user.utils.plugin.gitsigns"
+require "user"
+require "core.keymap"
+require "user.utils.plugin.gitsigns"
   return
+else
+  require "minimal"
 end
 
-require "minimal"
 
 vim.cmd [[autocmd FileType markdown setlocal wrap spell]]
 vim.cmd [[autocmd FileType markdown setlocal spell]]

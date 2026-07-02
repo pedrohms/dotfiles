@@ -1,3 +1,8 @@
+local status_ok_mason, mason = pcall(require, "mason")
+if not status_ok_mason then
+  return
+end
+mason.setup()
 local status_ok, lsp_installer = pcall(require, "mason-lspconfig")
 if not status_ok then
   return
@@ -11,13 +16,13 @@ local servers = {
   "jdtls",
   "solc",
   "lua_ls",
-  "tsserver",
+  "ts_ls",
   "pyright",
   "yamlls",
   "bashls",
   "clangd",
   "gopls",
-  "volar",
+  "vue_ls",
   "svelte",
   "tailwindcss",
   "kotlin_language_server",
@@ -38,7 +43,7 @@ local mason_packages = {
   "java-test",
   "google-java-format",
   "js-debug-adapter",
-  "node-debug2-adapter",
+  -- "node-debug2-adapter",
   "php-debug-adapter",
   "php-cs-fixer",
   "prettier",
@@ -77,7 +82,7 @@ end
 
 lsp_installer.setup(settings)
 
-local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
+local lspconfig_status_ok, lspconfig = pcall(require, "vim.lsp.config")
 if not lspconfig_status_ok then
   return
 end
@@ -179,28 +184,19 @@ for _, server in pairs(servers) do
     end
   end
 
-  -- if server == "jdtls" then
-  --   local function on_language_status(_, result)
-  --     -- local command = vim.api.nvim_command
-  --     -- command 'echohl ModeMsg'
-  --     -- command(string.format('echo "%s"', result.message))
-  --     -- command 'echohl None'
-  --   end
-  --
-  --   local java_config = require("user.lsp.settings.java_config")
-  --
-  --   java_config.handlers = {
-  --       ['$/progress'] = vim.schedule_wrap(on_language_status),
-  --   }
-  --
-  --   opts = vim.tbl_deep_extend("force", java_config, opts)
-  -- end
+  if server == "vue_ls" then
+    local vueOpts = {
+      init_options = {
+        typescript = {
+          tsdk = vim.fn.stdpath("data")
+            .. "/mason/packages/typescript-language-server/node_modules/typescript/lib"
+        }
+      }
+    }
+    opts = vim.tbl_deep_extend("force", vueOpts, opts)
+  end
 
-  -- if server == "volar" then
-  --   local volar_config = require("user.lsp.settings.volar")
-  --   opts = vim.tbl_deep_extend("force", volar_config, opts)
-  -- end
-
+  require("core.log.log").println(server .. ' user/lsp-installer')
   if server ~= "jdtls" then
     lspconfig[server].setup(opts)
   end

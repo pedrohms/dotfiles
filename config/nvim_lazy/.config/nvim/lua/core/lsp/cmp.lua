@@ -109,7 +109,6 @@ cmp.setup({
       luasnip.lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
-
   mapping = cmp.mapping.preset.insert({
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-j>"] = cmp.mapping.select_next_item(),
@@ -181,20 +180,28 @@ cmp.setup({
       name = "nvim_lsp",
       async = true,
       max_view_entries = 60,
+      priority = 1000,
     },
     { name = "nvim_lua" },
-    { name = "luasnip" },
+    {
+      name = "luasnip",
+      priority = 750,
+    },
     {
       name = "buffer",
       async = true,
+      priority = 250,
       max_view_entries = 600,
     },
-    { name = "path" }
+    {
+      name = "path",
+      priority = 500,
+    },
     -- { name = "copilot"}
   },
   performance = {
     async_budget = 100000,
-    fetching_timeout = 50,
+    fetching_timeout = 500,
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
@@ -205,7 +212,7 @@ cmp.setup({
     -- documentation = cmp.config.window.bordered(),
   },
   experimental = {
-    ghost_text = true,
+    ghost_text = false,
   },
   completion = {
     completeopt = "menu,menuone,preview,noselect",

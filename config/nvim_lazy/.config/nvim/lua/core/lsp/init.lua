@@ -7,13 +7,13 @@ M.servers = {
   "jdtls",
   "solc",
   "lua_ls",
-  "typescript-language-server",
+  "ts_ls",
   "pyright",
   "yamlls",
   "bashls",
   "clangd",
   "gopls",
-  "volar",
+  "vue_ls",
   "svelte",
   "tailwindcss",
   "kotlin_language_server",
@@ -55,15 +55,16 @@ M.setupHandler = function()
   M.initCmp()
 end
 M.setup = function()
-  local status_ok, _ = pcall(require, "lspconfig")
-  if not status_ok then
-    return
-  end
 
   local status_ok_mason, mason = pcall(require, "mason")
   if not status_ok_mason then
     return
   end
+
+  mason.setup()
+
+  local vue_ls_config, ts_ls_config = require("core.lsp.settings.vue_ls")
+
 
   local status_ok_mason_config, mason_config = pcall(require, "mason-lspconfig")
   if not status_ok_mason_config then
@@ -74,7 +75,6 @@ M.setup = function()
 
   -- require("user.lsp.lsp-signature")
 
-  mason.setup()
   mason_config.setup()
 
   require "core.lsp.dap"
@@ -87,9 +87,6 @@ M.installer = function()
   if not status_ok then
     return
   end
-
-  table.insert(M.servers, "lua_ls")
-  table.insert(M.servers, "emmet_ls")
 
   local settings = {
     ensure_installed = M.servers,
@@ -110,7 +107,6 @@ M.installer = function()
   }
 
 
-
   local status_ok_mason_registry, mason_registry = pcall(require, "mason-registry")
   if status_ok_mason_registry then
     for _, packageName in pairs(M.mason_packages) do
@@ -123,11 +119,6 @@ M.installer = function()
 
   lsp_installer.setup(settings)
 
-
-  local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-  if not lspconfig_status_ok then
-    return
-  end
 
   local opts = {}
 
@@ -159,7 +150,7 @@ M.installer = function()
     end
 
     if server == "lua_ls" then
-      local sumneko_opts = require "core.lsp.settings.lua_ls"
+      local sumneko_opts = require "user.lsp.settings.lua_ls"
       if os.getenv("NIX_USER_PROFILE_DIR") ~= nil then
         local sumneko_cmd = { cmd = { os.getenv("HOME") .. "/.nix-profile/bin/lua-language-server" } }
         opts = vim.tbl_deep_extend("force", sumneko_cmd, opts)
@@ -189,27 +180,46 @@ M.installer = function()
       opts = vim.tbl_deep_extend("force", powershell_opts, opts)
     end
 
-
-    if server == "tsserver" then
+    if server == "ts_ls" then
       local tsserver_opts = {
         init_options = {
           plugins = {
             {
               name = "@vue/typescript-plugin",
-              location = "/home/framework/.local/share/npm/dependencies/node_modules/@vue/typescript-plugin",
+              location = os.getenv("HOME").."/.local/share/npm/dependencies/node_modules/@vue/typescript-plugin",
               languages = { "javascript", "typescript", "vue" },
             },
           },
         },
+        preferences = {
+          includeCompletionsForModuleExports = true,
+          includeCompletionsForImportStatements = true,
+          includePackageJsonAutoImports = "on",
+          importModuleSpecifierPreference = "non-relative",
+        },
         filetypes = {
           "javascript",
           "javascriptreact",
+          "javascript.jsx",
           "typescript",
           "typescriptreact",
+          "typescript.tsx",
           "vue",
         },
+        settings = {
+          typescript = {
+            completions = {
+              completeFunctionCalls = true,
+            },
+          },
+          javascript = {
+            completions = {
+              completeFunctionCalls = true,
+            },
+          },
+        },
       }
-      opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
+      opts = vim.tbl_deep_extend("force", opts, tsserver_opts)
     end
 
     if server == "intelephense" then
@@ -224,7 +234,7 @@ M.installer = function()
     end
 
     if server ~= "jdtls" then
-      lspconfig[server].setup(opts)
+      vim.lsp.config(server, opts)
     end
   end
 
@@ -254,8 +264,9 @@ M.installer = function()
       vim.tbl_deep_extend("force", dart_opts, opts)
     end
 
-    lspconfig[server].setup(opts)
+    vim.lsp.config(server, opts)
   end
+  vim.lsp.enable(M.servers)
 end
 
 return M
