@@ -6,7 +6,7 @@ alias dpersonal="docker run --rm -it --name teste -v personal:/root -v $PWD:/dat
 alias rebuild="sudo nixos-rebuild switch --flake .#notepedro"
 alias pd=podman
 alias pdc=podman-compose
-alias dev="nix-shell -p nodejs_22 go python3 sumneko-lua-language-server openjdk17-bootstrap maven gradle --run fish"
+alias dev="nix-shell -p nodejs_22 go python3 lua-language-server openjdk17-bootstrap maven gradle --run fish"
 alias dev-node="nix develop github:pedrohms/flake-develop#nodejs -c fish"
 alias dev-php="nix develop github:pedrohms/flake-develop#php -c fish"
 alias dev-java="nix-shell -p sumneko-lua-language-server openjdk17-bootstrap maven gradle --run fish"
@@ -20,3 +20,4 @@ alias runelite="nvidia-offload flatpak run net.runelite.RuneLite"
 alias disc="discord --use-gl=desktop"
 alias jump="cd (ghq list -p | fzf -1 -e)"
 alias rebuild="nh os switch -- --impure"
+alias rslxconfig="cd /home/pedro/.local/share/raid-shadow-legends/wineprefix/drive_c/users/pedro/AppData/Roaming/RSL-Xtender"

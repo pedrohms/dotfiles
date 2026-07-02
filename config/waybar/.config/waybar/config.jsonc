@@ -1,6 +1,6 @@
 {
 		"layer": "top",
-		"modules-left": ["hyprland/workspaces", "temperature", "hyprland/window"],
+		"modules-left": ["niri/workspaces", "temperature", "niri/window"],
 		/*"modules-center": ["hyprland/window"],*/
 		"modules-right": ["tray", "custom/hyprpicker", "custom/subs", "cpu", "memory", "battery", "clock", "pulseaudio", "bluetooth"],
 
@@ -130,12 +130,6 @@
      }
  },
 
- "custom/subs": {
-	"format": "<span foreground='#fbf1c7'>󰗃 </span> {}",
-    "exec": "/usr/local/bin/subsfile.sh",
-    "on-click": "vivaldi-stable https://youtube.com/thelinuxcast",
-    "restart-interval": 1
-  },
  "wlr/taskbar": {
     "format": "{name}",
     "icon-size": 14,
